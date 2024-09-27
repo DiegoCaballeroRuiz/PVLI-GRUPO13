@@ -3,3 +3,32 @@
     width: 50%;
     text-align: center;
 }
+
+.titulo{
+    display:inline-block;
+}
+
+/* .subtitulo{
+    display:inline-block;
+} */
+
+.gameLogo{
+    width: 75px;
+    position: relative; 
+        top: 25px;
+}
+
+.RMGLogo{
+    width: 50px;
+}
+
+.flexcontainer {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 320px) {
+    .flexcontainer {
+        display: block;
+    }
+}
