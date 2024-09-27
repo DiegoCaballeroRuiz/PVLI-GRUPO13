@@ -3,6 +3,7 @@ const audio2 = document.getElementById('audio2');
 
 // Reproducir el primer audio al cargar la página
 window.onload = function () {
+    console.log("sonando audio1")
     audio1.play();
 };
 
@@ -13,4 +14,4 @@ audio1.onended = function () {
 
 audio2.onended = function () {
     audio2.play();
-}
+};
