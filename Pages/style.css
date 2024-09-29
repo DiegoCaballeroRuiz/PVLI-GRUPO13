@@ -1,3 +1,20 @@
+html{
+    scroll-behavior: smooth;
+}
+
+link{
+    color: red;
+}
+
+body{
+    background-color: whitesmoke;
+}
+.elem{
+    font-weight: bolder;
+    position: relative;
+        top:1000px;
+}
+
 .centrado{
     margin: auto;
     width: 50%;
@@ -8,9 +25,11 @@
     display:inline-block;
 }
 
-/* .subtitulo{
-    display:inline-block;
-} */
+.subtitulo{
+    display: flex;
+    position:relative;
+        left: 250px;
+}
 
 .gameLogo{
     width: 75px;
@@ -22,13 +41,68 @@
     width: 50px;
 }
 
-.flexcontainer {
-    display: flex;
-    align-items: center;
+.a{
+    position:relative;
+        top: 1000px;
+
 }
 
-@media (max-width: 320px) {
-    .flexcontainer {
-        display: block;
-    }
+.sections{
+    width: 25%;
+    position: relative;
+        left: 35%;
+
+    background-color: lightgray;
+    padding: 10px;
+    margin: 12px;
+}
+
+.introfoto{
+    position: relative;
+        top: 50px;
+}
+
+.ap1{
+    position: relative;
+        top: 100px;
+}
+.ap1 p{
+    text-align: justify;
+}
+.finFoto{
+    position: relative;
+        top: 150px; 
+}
+
+.ap2{
+    position: relative;
+        top: 200px;
+}
+
+.ap2 p{
+    text-align: justify;
+}
+.ap2 ul{
+    text-align: left;
+    position: relative;
+        left: 33%;
+}
+.logoFinal{
+    width: 100px;
+    position: relative;
+        top: 250px
+}
+
+.ap3{
+    position: relative;
+        top: 300px;
+}
+
+.ap3 p{
+    text-align: justify;
+}
+
+.relleno{
+    position: relative;
+        top: 400px;
 }
