@@ -9,16 +9,19 @@ link{
 body{
     background-color: whitesmoke;
 }
-.elem{
-    font-weight: bolder;
-    position: relative;
-        top:1000px;
-}
 
-.centrado{
+.centered{
     margin: auto;
     width: 50%;
     text-align: center;
+}
+
+.spaced{
+    padding: 25px;
+}
+
+.spaced p{
+    text-align: justify;
 }
 
 .titulo{
@@ -38,13 +41,9 @@ body{
 }
 
 .RMGLogo{
-    width: 50px;
-}
-
-.a{
-    position:relative;
-        top: 1000px;
-
+    width: 75px;
+    position: relative;
+        top: -10px;
 }
 
 .sections{
@@ -52,57 +51,20 @@ body{
     position: relative;
         left: 35%;
 
-    background-color: lightgray;
+    background-color: lightsalmon;
     padding: 10px;
     margin: 12px;
+    border-width: 10px;
+    border: black;
 }
 
-.introfoto{
-    position: relative;
-        top: 50px;
-}
-
-.ap1{
-    position: relative;
-        top: 100px;
-}
-.ap1 p{
-    text-align: justify;
-}
-.finFoto{
-    position: relative;
-        top: 150px; 
-}
-
-.ap2{
-    position: relative;
-        top: 200px;
-}
-
-.ap2 p{
-    text-align: justify;
-}
-.ap2 ul{
+.authorsList{
     text-align: left;
     position: relative;
         left: 33%;
 }
+
 .logoFinal{
-    width: 100px;
-    position: relative;
-        top: 250px
-}
-
-.ap3{
-    position: relative;
-        top: 300px;
-}
-
-.ap3 p{
-    text-align: justify;
-}
-
-.relleno{
-    position: relative;
-        top: 400px;
+    width: 200px;
+    padding: 25px;
 }
