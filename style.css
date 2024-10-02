@@ -7,8 +7,28 @@ link{
 }
 
 body{
-    /* background-color: whitesmoke; */
+    background-image: url("media/fondoMercadona.jpg");
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+br{
+    line-height: 2px;
+}
+
+.darkGreen{
+    background-color: #009961;
+}
+
+.lightGreen{
+    background-color: #7BDB79;
+}
+
+.orange{
+    background-color: #FFA100;
+}
+
+.darkGray{
+    background-color: #555050;
 }
 
 .centered{
@@ -52,11 +72,11 @@ body{
     position: relative;
         left: 35%;
 
-    background-color: lightsalmon;
     padding: 10px;
     margin: 12px;
-    border-width: 10px;
-    border: black;
+    
+    border: 2px black;
+    
 }
 
 .authorsList{
