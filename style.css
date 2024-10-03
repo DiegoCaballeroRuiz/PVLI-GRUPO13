@@ -39,6 +39,7 @@ br{
 
 .spaced{
     padding: 25px;
+    border-radius: 3px;
 }
 
 .spaced p{
