@@ -2,10 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>HTML</title>
+  <title>HTMLaaaa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/style.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  <script src="src/Scripts/game.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+  
+  <script src="./src/Scripts/phaser.js"></script>
+  <script src="./src/Scripts/game.js" type="module"></script> 
 </head>
 
 
@@ -14,7 +16,7 @@
   <audio id="audio1" src="./media/mercadona.mp3" loop="false" hidden="false" autostart="true"></audio>
   <audio id="audio2" src="./media/nopuedovivirsinti.mp3" loop="true" hidden="false" autostart="false"></audio>
   
- <div class = "centered">
+  <div class = "centered" id="juego">
     <div >
         <div>
             <img src = "media/logoMercadona.png" class = "gameLogo titulo ">
@@ -87,9 +89,8 @@
     </div>
 
     <div class = "spaced">
-      <h3>¡Gracias por visitarnos!</h3>
     </div>
- </div>
+  </div>
  
 </body>
 <!--2023-2024-->
