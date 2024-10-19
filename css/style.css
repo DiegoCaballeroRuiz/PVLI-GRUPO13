@@ -21,7 +21,7 @@ header{
 
 header p{
     padding-inline: 10px;
-}
+}   
 
 .white{
     background-color: #ffffff;
@@ -41,10 +41,6 @@ header p{
 
 .spaced p{
     text-align: justify;
-}
-
-.subtitulo{
-    text-align: left;
 }
 
 .flexbox{
