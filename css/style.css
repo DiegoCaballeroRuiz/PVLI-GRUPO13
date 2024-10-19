@@ -14,26 +14,24 @@ br{
     line-height: 2px;
 }
 
-.darkGreen{
-    background-color: #009961;
-}
-
-.lightGreen{
-    background-color: #7BDB79;
-}
-
-.orange{
-    background-color: #FFA100;
-}
-
-.darkGray{
-    background-color: #555050;
-}
-
-.centered{
-    margin: auto;
-    width: 50%;
+header{
+    background-color: #ffffff;
     text-align: center;
+}
+
+header p{
+    padding-inline: 10px;
+}
+
+.white{
+    background-color: #ffffff;
+}
+
+.darkWhite{
+    background-color: #F7F7F7;
+}
+.canvasPhaser{
+    background-image: url("../media/banner.jpg");
 }
 
 .spaced{
@@ -45,44 +43,24 @@ br{
     text-align: justify;
 }
 
-.titulo{
-    display:inline-block;
+.subtitulo{
+    text-align: left;
 }
 
-.subtitulo{
+.flexbox{
     display: flex;
-    position:relative;
-        left: 250px;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameLogo{
-    width: 75px;
-    position: relative; 
-        top: 25px;
+    width: 100px;
+    height: 100px;
 }
 
 .RMGLogo{
-    width: 75px;
-    position: relative;
-        top: -10px;
-}
-
-.sections{
-    width: 25%;
-    position: relative;
-        left: 35%;
-
-    padding: 10px;
-    margin: 12px;
-    
-    border: 2px black;
-    
-}
-
-.authorsList{
-    text-align: left;
-    position: relative;
-        left: 33%;
+    width: 100px;
+    height: 100px;
 }
 
 .logoFinal{
