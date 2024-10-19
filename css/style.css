@@ -23,6 +23,11 @@ header p{
     padding-inline: 10px;
 }   
 
+footer{
+    background-color: #000000;
+    text-align: center;
+}
+
 .white{
     background-color: #ffffff;
 }
@@ -62,4 +67,8 @@ header p{
 .logoFinal{
     width: 200px;
     padding: 25px;
+}
+
+.socialMediaLogo{
+    width: 35px;
 }
