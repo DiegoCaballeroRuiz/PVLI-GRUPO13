@@ -7,3 +7,7 @@ new Phaser.Game({
   height: 400,
   scene: []
 })
+
+function create() {
+  this.add.text(400,200, "El juego está sin hacer :(");
+}
