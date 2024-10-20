@@ -1,15 +1,16 @@
-let gameGanvas = document.getElementById('juego');
+import MainScene from './mainScene.js';
 
-new Phaser.Game({
+let gameCanvas = document.getElementById('juegoCanvas');
+
+let config = {
+  //type: Phaser.AUTO,
+  //parent: document.getElementById('juegoCanvas'),
   type: Phaser.CANVAS,
-  canvas: gameGanvas,
+  canvas: gameCanvas,
   width: 800,
   height: 400,
-  scene: [ {
-    create: create
-  }]
-})
+	pixelArt: true,
+  scene: [MainScene]
+};
 
-function create() {
-  this.add.text(300,200, "El juego está sin hacer :(");
-}
+new Phaser.Game(config);

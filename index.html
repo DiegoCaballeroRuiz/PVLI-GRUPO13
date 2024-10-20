@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8">
-  <title>MercadonaJuego</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./css/style.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  
-  
+    <meta charset="utf-8">
+    <title>Pineapple O'Clock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
 </head>
-
-
 
 <body style="font-size: large;">
   <header>
     <div class = "flexbox" style="padding: 5px;">
       <img src = "media/logoMercadona.png" class = "gameLogo titulo "> 
-      <h1>PINEAPPLE O'CLOCK</h1>
+      <h1>Pineapple O'Clock</h1>
       <h2 style="padding-left: 20px;">Un juego de RMGames</h2>
       <img src = "media/logoEmpresa.png" class = "RMGLogo">
     </div>
@@ -25,15 +22,14 @@
       <p><a href = "#objetivo"> Objetivo </a> </p>
       <p><a href = "#controles"> Controles </a> </p>
     </div>
-  </header> 
-  
+  </header>
+
   <main class = "centered">
     <div class = "canvasPhaser flexbox">
-      <canvas id="juego" style="padding: 30px;"></canvas>
+      <canvas id="juegoCanvas" style="padding: 30px;"></canvas>
       <script src="./lib/phaser.js"></script>
       <script src="./src/game.js" type="module"></script> 
     </div>
-    
 
     <div class="flexbox darkWhite spaced">
       <div>
