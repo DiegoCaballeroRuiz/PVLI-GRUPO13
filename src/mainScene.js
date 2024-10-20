@@ -6,25 +6,32 @@ export default class MainScene extends Phaser.Scene {
     }
 
     init(){
-
+        this.scene.start('MainScene');
     }
 
     preload() {
         // Cargar assets
-        this.load.image("character", "./media/player.jpg");
+        //this.load.setBaseURL("https://examples.phaser.io/"); //no necesario?? probando, revisar
+
+        this.load.image('logo', './media/logoEmpresa.png');
+        this.add.image(50, 50, 'logo');
+
+        this.load.image('character', './assets/player.jpg');
+        this.add.sprite(500, 300, 'character');
     }
 
     create() {
+		//console.log("me he creado", this.scene.key);
+
         // Inicializar objetos
-        let player = new Character(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2);
-        player.setOrigin(0,0);
-        player.setScale(0.5,0.5);
+        //let player = new Character(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2);
+        
+        let player = new Character(this, 400, 200); //estamos creando un sprite
         console.log('player creado');
 
-        //esto no va aquí
-        player.moveTo(this.sys.game.config.width / 2, this.sys.game.config.height / 2);
+        //player.moveTo(this.sys.game.config.width / 2, this.sys.game.config.height / 2);
         //player.moveTo(0, 0);
-        console.log('player movido');
+        //console.log('player movido');
     }
 
     update() {

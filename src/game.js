@@ -1,15 +1,16 @@
-import mainScene from './mainScene.js';
+import MainScene from './mainScene.js';
 
-let gameGanvas = document.getElementById('juego');
-
+let gameCanvas = document.getElementById('juegoCanvas');
 
 let config = {
+  //type: Phaser.AUTO,
+  //parent: document.getElementById('juegoCanvas'),
   type: Phaser.CANVAS,
-  canvas: gameGanvas,
+  canvas: gameCanvas,
   width: 800,
   height: 400,
 	pixelArt: true,
-  scene: [mainScene]
-}
+  scene: [MainScene]
+};
 
 new Phaser.Game(config);

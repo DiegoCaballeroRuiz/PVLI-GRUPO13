@@ -23,7 +23,8 @@ export default class Character extends Phaser.GameObjects.Sprite {
         this.position.y = y;
     }
 
-    preUpdate(){
+    preUpdate(t, dt){
+        super.preUpdate(t, dt);
         //metodos preupdate
         console.log('preupdate character');
     }
