@@ -16,7 +16,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('logo', './media/logoEmpresa.png');
         this.add.image(50, 50, 'logo');
 
-        this.load.image('character', './assets/player.jpg');
+        this.load.image('character', './media/player.jpg');
         this.add.sprite(500, 300, 'character');
     }
 
