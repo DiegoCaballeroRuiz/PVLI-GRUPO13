@@ -9,7 +9,7 @@ let config = {
   canvas: gameCanvas,
   width: 800,
   height: 400,
-	pixelArt: true,
+  pixelArt: true,
   scene: [MainScene]
 };
 
