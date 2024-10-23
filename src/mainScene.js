@@ -6,7 +6,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     init(){
-        this.scene.start('MainScene');
+        //this.scene.start('MainScene'); y esto?  todo el problema venia de aquí. cuando Phaser llama a esta escena va a llamar al init(), pero a su vez estáis volviendo a cambiar a esta misma escena y así en un bucle infinitoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     }
 
     preload() {
