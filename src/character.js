@@ -1,7 +1,10 @@
 export default class Character extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y){
-        super(scene, x, y, 'character');
-        scene.add.existing(this);
+    constructor(scene, x, y, name){
+        super(scene, x, y, 'character', 0);
+        this.scene.add.existing(this);
+        //this.scene.physics.add.existing(this); //añadir fisicas
+        //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
+        //para mover, aumentar velocidad con this.body.velocidy.x = int
 
         this.position = {x:x, y:y};
         this.velocity = {vX:0, vY:0};
