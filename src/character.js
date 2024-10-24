@@ -1,17 +1,21 @@
 export default class Character extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, name){
-        super(scene, x, y, 'character', 0);
-        this.scene.add.existing(this);
-        //this.scene.physics.add.existing(this); //añadir fisicas
-        //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
-        //para mover, aumentar velocidad con this.body.velocidy.x = int
+    constructor(scene, x, y, nombre){
+        super(scene, x, y, 'character');
 
-        this.position = {x:x, y:y};
-        this.velocity = {vX:0, vY:0};
+        this.scene.add.existing(this); //innecesario?? pero si lo quitas no se crea player
+        this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena
+        //this.body.setCollideWorldBounds(); //para colisiones con los bordes del mundo
+
+        this.body.setAllowGravity(true); //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
+
+        this.setPosition(x, y);
+        this.velocity = {vx:100, vy:100}; //no es necesario, phaser maneja las velocidades con las fisicas
 
         //Necesitamos un txt o un csv con los nombres de los personajes y los diálogos de cada uno
         //Se pasará por parámetro y con una función se buscará el nombre y se guardarán los diálogos asignados en un array
-        this.name = name;
+        this.name = nombre;
+        console.log(this.name, "se ha creado");
+
         this.dialogs = []; //si se hace por constructor se crea vacío y se modifica después
 
         this.inventory = [];
@@ -22,14 +26,13 @@ export default class Character extends Phaser.GameObjects.Sprite {
     } //investigado como concatenar arrays a arrays
 
     moveTo = function(x, y){
-        this.position.x = x;
-        this.position.y = y;
+        this.setPosition(x, y); //lo mismo que this.body.x y this.body.y
+        console.log(this.name,' movido a', this.body.x, this.body.y);
     }
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
         //metodos preupdate
-        console.log('preupdate character');
     }
 
 }

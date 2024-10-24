@@ -19,3 +19,5 @@ export default class Boot extends Phaser.Scene {
     this.add.image(400, 300, 'logo');
   }
 }
+
+//ESTA ESCENA NO SE HA AÑADIDO A GAME, FALTA CONFIGURAR LOS LOADS Y PASARLOS A BOOT.JS PARA ANADIRLA DESPUES

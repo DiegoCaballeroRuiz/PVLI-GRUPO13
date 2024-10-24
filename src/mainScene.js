@@ -1,4 +1,4 @@
-import Character from "./character.js";
+import Player from "./player.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -6,32 +6,18 @@ export default class MainScene extends Phaser.Scene {
     }
 
     init(){
-        //this.scene.start('MainScene'); y esto?  todo el problema venia de aquí. cuando Phaser llama a esta escena va a llamar al init(), pero a su vez estáis volviendo a cambiar a esta misma escena y así en un bucle infinitoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
     }
 
     preload() {
         // Cargar assets
-        //this.load.setBaseURL("https://examples.phaser.io/"); //no necesario?? probando, revisar
-
-        this.load.image('logo', './media/logoEmpresa.png');
-
-        this.load.spritesheet('character', './media/player.jpg', {frameWidth: 69, frameHeight: 97});
+        this.load.spritesheet('character', './media/player.png', {frameWidth: 69, frameHeight: 97});
     }
 
     create() {
-        this.add.image(50, 50, 'logo');
-        this.add.sprite(500, 300, 'character', 0);
-		console.log("me he creado", this.scene.key);
-
         // Inicializar objetos
-        //let player = new Character(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2);
-        
-        let player = new Character(this, 400, 200,'Jugador'); //estamos creando un sprite
-        console.log('player creado');
-
+        let player = new Player(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Jugador');
         //player.moveTo(this.sys.game.config.width / 2, this.sys.game.config.height / 2);
-        //player.moveTo(0, 0);
-        //console.log('player movido');
 
         //para colisiones
         //this.physics.add.collider(obj1,obj2,()=>{console.log('funcion llamada al colisionar')});
