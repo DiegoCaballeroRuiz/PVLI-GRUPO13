@@ -1,5 +1,5 @@
 import Player from "./player.js";
-import Item from "./item.js";
+import Stand from "./stand.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -11,22 +11,20 @@ export default class MainScene extends Phaser.Scene {
     }
 
     preload() {
-        // Cargar assets
-        this.load.spritesheet('character', './media/player.png', {frameWidth: 69, frameHeight: 97});
 
-        //en el boot deberiamos hacer un
-        //this.load.spritesheet('id','path a una sola imagen con todos los sprites',{frameWidth: n, frameHeight: m}) //cada nxm es un item
-
-        //PRUEBA ITEM
-        this.load.image('itemPrueba', './media/logoEmpresa.png');
     }
 
     create() {
         // Inicializar objetos
-        let player = new Player(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Jugador');
-        //player.moveTo(this.sys.game.config.width / 2, this.sys.game.config.height / 2);
+        //this.add.image(0,0,'background').setOrigin(0,0);
+        let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
+        let player = new Player(this, this.sys.game.config.width / 2, this.sys.game.config.height / 2, "Jugador");
 
-        let itemPrueba = new Item(this, this.sys.game.config.width * 3/4, this.sys.game.config.height * 3/4, 'itemPrueba').setScale(0.025);
+        this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
+        this.cameras.main.startFollow(player);
+
+        let standPrueba1 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
+        let standPrueba2 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [0,1,-3,-1,-1,9,8], true);
 
         //para colisiones
         //this.physics.add.collider(obj1,obj2,()=>{console.log('funcion llamada al colisionar')});
