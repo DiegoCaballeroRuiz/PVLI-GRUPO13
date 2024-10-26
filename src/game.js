@@ -1,4 +1,5 @@
 import MainScene from './mainScene.js';
+import Boot from './boot.js';
 import Title from './escenas/title.js';
 
 let config = {
@@ -7,8 +8,7 @@ let config = {
   width: 800,
   height: 400,
   pixelArt: true,
-  scene: [MainScene],
-  //scene: Title,
+  scene: [Boot, MainScene, Title],
 
   physics: {  
     default: 'arcade', //Tenemos físicas simple, arcade
