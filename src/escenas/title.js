@@ -6,10 +6,16 @@ export default class Title extends Phaser.Scene{
     preload(){
         this.load.image('button_base', './media/button.png');
         this.load.image('gameTitle', './media/logoProvisional.png');
+        this.load.image('congelados', './media/congelados.jpeg');
     }
 
     create(){
         const {width, height} = this.scale;
+
+        // -> Imagen de fondo
+        let background = this.add.image(0, 0, 'congelados');
+        background.setOrigin(0, 0);
+        // background.setScale(4, 4);
 
         // -> Título del juego
         const gameTitle = this.add.image(width * 0.5, height * 0.3, 'gameTitle');
@@ -26,24 +32,20 @@ export default class Title extends Phaser.Scene{
 
         
         playButton.on('pointerdown', ()=>{
-            alert("Yo (el botón de jugar) he sido tocado (sin consentimiento)");
+            this.scene.start('Boot');
         })
 
-        // -> Botón 'quit'
-        const quitButton = this.add.image(width * 0.5, height * 0.9, 'button_base');
-        quitButton.setDisplaySize(100, 50);
-        quitButton.setInteractive();
+        // -> Botón 'options'
+        const optionsButton = this.add.image(width * 0.5, height * 0.9, 'button_base');
+        optionsButton.setDisplaySize(100, 50);
+        optionsButton.setInteractive();
 
-        let quitButtonText = this.add.text(quitButton.x, quitButton.y - 4, "QUIT");
-        quitButtonText.setOrigin(0.5);
-        quitButtonText.setColor("FFFFFF");
+        let optionsButtonText = this.add.text(optionsButton.x, optionsButton.y - 4, "OPTIONS");
+        optionsButtonText.setOrigin(0.5);
+        optionsButtonText.setColor("FFFFFF");
         
-        quitButton.on('pointerdown', ()=>{
-            alert("Yo (el botón de salir) he sido tocado (consensuadamente)");
+        optionsButton.on('pointerdown', ()=>{
+            alert("No existen las opciones, todo es mentira");
         })
-
-
-
-
     }
 }
