@@ -8,7 +8,7 @@ let config = {
   width: 800,
   height: 400,
   pixelArt: true,
-  scene: [Boot, MainScene, Title],
+  scene: [Title, Boot, MainScene],
 
   physics: {  
     default: 'arcade', //Tenemos físicas simple, arcade

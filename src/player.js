@@ -18,13 +18,13 @@ export default class Player extends Character {
         //ANIMACIONES
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
             if(this.anims.currentAnim.key !== 'idle'){
-                console.log('idle');
+                // console.log('idle');
                 this.play('idle');
             }
         }
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
             if(this.anims.currentAnim.key !== 'walk'){
-                console.log('walk');
+                // console.log('walk');
                 this.play('walk');
             }
         }
