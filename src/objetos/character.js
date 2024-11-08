@@ -1,6 +1,7 @@
 export default class Character extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, name){
         super(scene, x, y, 'skin_Toni', 2);
+        this.setOrigin(0.5, 0.5);
 
         this.name = name;
         console.log(name, "se ha creado");
@@ -19,6 +20,9 @@ export default class Character extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena
         //this.body.setCollideWorldBounds(); //para colisiones con los bordes del mundo
         this.body.setAllowGravity(true); //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
+        this.body.height /= 2;
+        this.body.offset.y += 32;
+        this.body.offset.x -= 6;
     }
 
     addDialogs = function(dialogsList){
