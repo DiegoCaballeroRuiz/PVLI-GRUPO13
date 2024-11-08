@@ -53,6 +53,9 @@ export default class MainScene extends Phaser.Scene {
         })
         
         
+        // -> Esto
+        this.physics.add.collider();
+
     }
 
     update() {
