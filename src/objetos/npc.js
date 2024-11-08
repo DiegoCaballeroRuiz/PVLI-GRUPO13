@@ -1,4 +1,5 @@
 import Character from "./character.js";
+import Player from "./player.js";
 
 export default class NPC extends Character{
     
@@ -51,9 +52,10 @@ export default class NPC extends Character{
         }
     }
 
-
-    // -> MOVIMIENTO (callback con los ciclos del timer definido en la constructora)
-    movementCoroutine(){
+    /**
+     * Corrutina de moverse, parar y rotar de los npcs
+     */
+    movementCoroutine(){ // -> MOVIMIENTO - callback con los ciclos del timer definido en la constructora)
         console.log("hemos entrado familia");
         this.cycle += 1;
 
@@ -70,5 +72,31 @@ export default class NPC extends Character{
             this.body.setVelocityX(0);
             this.body.setVelocityY(0);
         } 
+    }
+
+     /**
+     * Función que se ejecuta al chocarse dos Characters
+     * @param {Character} other El personaje con el que se choca 
+     */
+    bump(other){ //-> COLISIONES - Método que hace a un npc hablar o comparar inventarios
+        if(!other instanceof Player) return; //Si no se colisiona con el jugador, no habla ni compara inventarios
+
+        if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
+            console.log("Estoy hablando")
+            return;
+        }
+
+        let sameInventory = true;
+        for(let i = 0; i < this.inventory.length; ++i){
+            sameInventory = false;
+            for(let j = 0; j < this.inventory.length; ++j){
+                if(this.inventory[i] == other.inventory[j]) sameInventory = true;
+            }
+            if(!sameInventory){
+                //Hacerle daño al jugador, porque uno de los items del npc no lo tiene el player
+                return;
+            } 
+        }
+        //¡SI LLEGA AQUÍ TOCA FOLLAAAAAAAAAAAAAAR!
     }
 }

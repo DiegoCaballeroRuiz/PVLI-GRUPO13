@@ -10,6 +10,8 @@ export default class Player extends Character {
 		this.dKey = this.scene.input.keyboard.addKey('D');
 
         this.play('idle');
+
+        this.piñaInCart = false;
     }
 
     preUpdate(t, dt){
