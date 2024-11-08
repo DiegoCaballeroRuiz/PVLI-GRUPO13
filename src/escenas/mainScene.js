@@ -1,6 +1,7 @@
 import Player from "../objetos/player.js";
 import Stand from "../objetos/stand.js";
 import NPC from "../objetos/npc.js";
+import Carro from "../objetos/carro.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
