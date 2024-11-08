@@ -1,5 +1,6 @@
-import MainScene from './mainScene.js';
-import Boot from './boot.js';
+import MainScene from './escenas/mainScene.js';
+import Boot from './escenas/boot.js';
+import Title from './escenas/title.js';
 
 let config = {
   type: Phaser.CANVAS,
@@ -7,13 +8,13 @@ let config = {
   width: 800,
   height: 400,
   pixelArt: true,
-  scene: [Boot, MainScene],
-  
+  scene: [Title, Boot, MainScene],
+
   physics: {  
     default: 'arcade', //Tenemos físicas simple, arcade
     arcade: { 
         gravity: { y: 0 },
-        debug: false
+        debug: true
     }
   }
 };
