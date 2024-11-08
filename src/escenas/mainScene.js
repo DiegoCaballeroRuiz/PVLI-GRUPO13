@@ -1,5 +1,6 @@
-import Player from "./player.js";
-import Stand from "./stand.js";
+import Player from "../objetos/player.js";
+import Stand from "../objetos/stand.js";
+import NPC from "../objetos/npc.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -26,6 +27,8 @@ export default class MainScene extends Phaser.Scene {
         let standPrueba1 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
         let standPrueba2 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [0,1,-3,-1,-1,9,8], true);
 
+
+        let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba")
         //para colisiones
         //this.physics.add.collider(obj1,obj2,()=>{console.log('funcion llamada al colisionar')});
     }

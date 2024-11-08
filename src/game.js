@@ -1,5 +1,5 @@
-import MainScene from './mainScene.js';
-import Boot from './boot.js';
+import MainScene from './escenas/mainScene.js';
+import Boot from './escenas/boot.js';
 import Title from './escenas/title.js';
 
 let config = {
