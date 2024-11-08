@@ -13,12 +13,18 @@ export default class Character extends Phaser.GameObjects.Sprite {
 
         this.dialogs = []; //si se hace por constructor se crea vacío y se modifica después
 
-        this.inventory = [];
+        this.inventory = [1, 5, 22, 25, 8];
         
         this.scene.add.existing(this); //innecesario?? pero si lo quitas no se crea player
         this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena
         //this.body.setCollideWorldBounds(); //para colisiones con los bordes del mundo
         this.body.setAllowGravity(true); //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
+
+        //this.body.setBounce(x, y); //se puede utilizar para los carros
+        //this.physics.add.collider(obj1,  obj2, ()=>{//funcion}); //para colisiones entre dos objetos
+        //this.physics.add.overlap(obj1,  obj2, ()=>{//funcion}); //para overlap entre dos objetos, llama siempre que este en colision
+        
+        
     }
 
     addDialogs = function(dialogsList){
