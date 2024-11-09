@@ -44,6 +44,16 @@ footer{
     border-radius: 3px;
 }
 
+.checkboxList{
+    background-color: palegoldenrod;
+    text-align: center;
+    width: 250px;
+}
+
+.checked{
+    text-decoration: line-through;
+}
+
 .spaced p{
     text-align: justify;
 }
