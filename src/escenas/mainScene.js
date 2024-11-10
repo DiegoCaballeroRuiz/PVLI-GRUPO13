@@ -35,6 +35,9 @@ export default class MainScene extends Phaser.Scene {
         this.physics.add.collider(player, npc, ()=>{
             return npc.bump(player);
         })
+        this.physics.add.collider(player, standPrueba1, ()=> {
+             return console.log("collision");
+        })
     }
 
     update() {

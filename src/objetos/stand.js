@@ -1,8 +1,8 @@
 import Item from "./item.js";
 
-const shelfSize = 32;
+const shelfSize = 64;
 
-export default class Stand{
+export default class Stand extends Phaser.GameObjects.Sprite{
     /**
      * Constructor para estanterías completas
      * @param {Scene} scene La esscena en que se instancia
@@ -17,6 +17,11 @@ export default class Stand{
             else new Shelf(scene, x + i*shelfSize, y, indexArray[i]);
         }
         this.isVertical = isVertical;
+        if (isVertical) {
+            this.body.setSize(shelfSize * 2, indexArray.length * shelfSize )
+        }
+        else this.body.setSize(indexArray.length * shelfSize, shelfSize * 2);
+
     }
 }
 
@@ -31,6 +36,10 @@ class Shelf extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, itemIndex) {
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
-        if(itemIndex != -1) this.item = new Item(scene, x, y, itemIndex);
+        if(itemIndex != -1) {
+            this.item = new Item(scene, x, y, itemIndex);
+            this.empty = false;
+        } 
+        else this.empty = true;
     }
 }
