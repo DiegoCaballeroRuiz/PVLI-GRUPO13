@@ -42,8 +42,6 @@ export default class NPC extends Character{
     preUpdate(t, dt){
         super.preUpdate(t, dt);
 
-        console.log(this.cycle);
-        
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
             if(this.anims.currentAnim.key !== 'idle'){
@@ -60,11 +58,11 @@ export default class NPC extends Character{
 
         // -> LISTA DE LA COMPRA: actualiza las frases que ha dicho en el HTML si han sido tachadas
         for(let i = 0; i < this.checkBoxParagraphPairs.length; ++i){
-            if(this.checkBoxParagraphPairs[i].checkbox.checked)
-                this.checkBoxParagraphPairs[i].paragraph.classList.add('checked');
+            var checkbox = document.getElementById(this.checkBoxParagraphPairs[i].checkboxID);
+            var paragraph = document.getElementById(this.checkBoxParagraphPairs[i].paragraphID);
 
-            else
-                this.checkBoxParagraphPairs[i].paragraph.classList.remove('checked');
+            if(checkbox.checked) paragraph.classList.add('checked');
+            else paragraph.classList.remove('checked');
         }
     }
 
@@ -72,7 +70,6 @@ export default class NPC extends Character{
      * Corrutina de moverse, parar y rotar de los npcs
      */
     movementCoroutine(){ // -> MOVIMIENTO - callback con los ciclos del timer definido en la constructora)
-        console.log("hemos entrado familia");
         this.cycle += 1;
 
         if(this.cycle % 2 == 0){
@@ -117,24 +114,37 @@ export default class NPC extends Character{
     }
 
     talk(){
+        if(this.numberOfPhrasesAdded >= this.dialogs.length) return;
+
         //Crear las partes del nuevo elemento HTML
         var IDToUse = "" + this.name + this.numberOfPhrasesAdded;
         var pID = IDToUse + "p";
-        var checkboxID = IDToUse + "c";
-        var phraseToUse = randomArrayElement(this.dialogs);
+        var cID = IDToUse + "c";
+        var phraseToUse = newRandomArrayElement(this.dialogs);
 
         //Insertar el nuevo elemento
-        var HTMLelement = "<p id='" + pID + "'><input type='checkbox' id='" + checkboxID + "'>" + phraseToUse + "</p>";
+        var HTMLelement = "<p id='" + pID + "'><input type='checkbox' id='" + cID + "'>" + phraseToUse + "</p>";
         this.listHTML.innerHTML += "" + HTMLelement;
 
         //Guardar el checkbox y el paragraph del nuevo elemento para poder tachar y destachar el texto
-        var pair = {checkbox: document.getElementById(checkboxID), paragraph: document.getElementById(pID)}
+        var pair = {checkboxID: cID, paragraphID: pID}
         this.checkBoxParagraphPairs.push(pair);
         this.numberOfPhrasesAdded++;
     }
 }
 
-function randomArrayElement(arr) {
-    var randomIndex = Math.floor(Math.random() * arr.length);
+let indexList = [];
+function newRandomArrayElement(arr) {
+    var randomIndex = -1; 
+    do{
+        randomIndex = Math.floor(Math.random() * arr.length);
+    } while(arrContains(indexList, randomIndex));
+
+    indexList.push(randomIndex);
     return arr[randomIndex];
+}
+
+function arrContains(arr, e){
+    for(let i = 0; i < arr.length; ++i) if(arr[i] == e) return true;
+    return false;
 }
