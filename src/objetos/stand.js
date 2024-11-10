@@ -12,9 +12,10 @@ export default class Stand{
      * @param {Boolean} isVertical Booleano para spawnear los estantes hacia la derecha o hacia abajo
      */
     constructor(scene, x, y, indexArray, isVertical){
+        
         for(let i = 0; i < indexArray.length; ++i){
-            if(isVertical) new Shelf(scene, x, y + i*shelfSize, indexArray[i], true);
-            else new Shelf(scene, x + i*shelfSize, y, indexArray[i], false);
+            if(isVertical) this.shelfs[i] = Shelf(scene, x, y + i*shelfSize, indexArray[i]);
+            else this.shelfs[i] = Shelf(scene, x + i*shelfSize, y, indexArray[i]);
         }
 
         this.isVertical = isVertical;
@@ -33,28 +34,6 @@ export class Shelf extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, itemIndex, isVertical) {
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        if(isVertical) {
-            this.body.setSize(shelfSize * 1.5, shelfSize);
-        }
-        else  this.body.setSize(shelfSize , shelfSize * 1.5);
-        if(itemIndex != -1) {
-            this.item = new Item(scene, x, y, itemIndex);
-            this.empty = false;
-        } 
-        else this.empty = true;
-        this.x = x;
-        this.y = y;
-    }
-    updateItem(scene, itemIndex) {
-        if (itemIndex == -1) {
-            this.empty = true;
-            this.item.destroy();
-        }
-        else {
-            this.item = new Item(scene, this.x, this.y, itemIndex);
-            this.empty = false;
-
-        } 
+        if(itemIndex != -1) this.item = new Item(scene, x, y, itemIndex);
     }
 }
