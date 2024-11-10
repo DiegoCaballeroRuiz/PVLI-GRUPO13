@@ -14,8 +14,8 @@ export default class Stand{
     constructor(scene, x, y, indexArray, isVertical){
         
         for(let i = 0; i < indexArray.length; ++i){
-            if(isVertical) this.shelfs[i] = Shelf(scene, x, y + i*shelfSize, indexArray[i]);
-            else this.shelfs[i] = Shelf(scene, x + i*shelfSize, y, indexArray[i]);
+            if(isVertical) this.shelfs[i] = new Shelf(scene, x, y + i*shelfSize, indexArray[i]);
+            else this.shelfs[i] = new Shelf(scene, x + i*shelfSize, y, indexArray[i]);
         }
 
         this.isVertical = isVertical;
