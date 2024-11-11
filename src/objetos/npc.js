@@ -41,7 +41,7 @@ export default class NPC extends Character{
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-
+      
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
             if(this.anims.currentAnim.key !== 'idle'){
@@ -70,6 +70,7 @@ export default class NPC extends Character{
      * Corrutina de moverse, parar y rotar de los npcs
      */
     movementCoroutine(){ // -> MOVIMIENTO - callback con los ciclos del timer definido en la constructora)
+
         this.cycle += 1;
 
         if(this.cycle % 2 == 0){
