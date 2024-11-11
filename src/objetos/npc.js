@@ -21,6 +21,8 @@ export default class NPC extends Character{
 
         this.play('idle')
 
+        //*Para el movimiento
+        this.cycle = 0;
         this.timer = this.scene.time.addEvent({
             delay: 2000,       
             callback: () => {
@@ -29,14 +31,17 @@ export default class NPC extends Character{
             loop: true
         });
 
-        this.cycle = 0;
+        //*Para hablar
+        this.listHTML = document.getElementById('checks')
+        this.numberOfPhrasesAdded = 0;
+        this.checkBoxParagraphPairs = [];
+
+        this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
     }
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-
-        //console.log(this.cycle);
-        
+      
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
             if(this.anims.currentAnim.key !== 'idle'){
@@ -50,13 +55,22 @@ export default class NPC extends Character{
                 this.play('walk');
             }
         }
+
+        // -> LISTA DE LA COMPRA: actualiza las frases que ha dicho en el HTML si han sido tachadas
+        for(let i = 0; i < this.checkBoxParagraphPairs.length; ++i){
+            var checkbox = document.getElementById(this.checkBoxParagraphPairs[i].checkboxID);
+            var paragraph = document.getElementById(this.checkBoxParagraphPairs[i].paragraphID);
+
+            if(checkbox.checked) paragraph.classList.add('checked');
+            else paragraph.classList.remove('checked');
+        }
     }
 
     /**
      * Corrutina de moverse, parar y rotar de los npcs
      */
     movementCoroutine(){ // -> MOVIMIENTO - callback con los ciclos del timer definido en la constructora)
-        //console.log("hemos entrado familia");
+
         this.cycle += 1;
 
         if(this.cycle % 2 == 0){
@@ -82,7 +96,7 @@ export default class NPC extends Character{
         if(!other instanceof Player) return; //Si no se colisiona con el jugador, no habla ni compara inventarios
 
         if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
-            console.log("Estoy hablando")
+            this.talk();
             return;
         }
 
@@ -99,4 +113,39 @@ export default class NPC extends Character{
         }
         //¡SI LLEGA AQUÍ TOCA FOLLAAAAAAAAAAAAAAR!
     }
+
+    talk(){
+        if(this.numberOfPhrasesAdded >= this.dialogs.length) return;
+
+        //Crear las partes del nuevo elemento HTML
+        var IDToUse = "" + this.name + this.numberOfPhrasesAdded;
+        var pID = IDToUse + "p";
+        var cID = IDToUse + "c";
+        var phraseToUse = newRandomArrayElement(this.dialogs);
+
+        //Insertar el nuevo elemento
+        var HTMLelement = "<p id='" + pID + "'><input type='checkbox' id='" + cID + "'>" + phraseToUse + "</p>";
+        this.listHTML.innerHTML += "" + HTMLelement;
+
+        //Guardar el checkbox y el paragraph del nuevo elemento para poder tachar y destachar el texto
+        var pair = {checkboxID: cID, paragraphID: pID}
+        this.checkBoxParagraphPairs.push(pair);
+        this.numberOfPhrasesAdded++;
+    }
+}
+
+let indexList = [];
+function newRandomArrayElement(arr) {
+    var randomIndex = -1; 
+    do{
+        randomIndex = Math.floor(Math.random() * arr.length);
+    } while(arrContains(indexList, randomIndex));
+
+    indexList.push(randomIndex);
+    return arr[randomIndex];
+}
+
+function arrContains(arr, e){
+    for(let i = 0; i < arr.length; ++i) if(arr[i] == e) return true;
+    return false;
 }
