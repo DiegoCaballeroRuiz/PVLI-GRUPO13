@@ -1,5 +1,5 @@
 import Character from "./character.js";
-
+import Item from "./item.js";
 export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
@@ -8,10 +8,12 @@ export default class Player extends Character {
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');
 		this.dKey = this.scene.input.keyboard.addKey('D');
+        this.eKey = this.scene.input.keyboard.addKey('E');
 
         this.play('idle');
-
         this.piñaInCart = false;
+        this.eDown = false;
+        this.numItems = 0;
     }
 
     preUpdate(t, dt){
@@ -49,9 +51,12 @@ export default class Player extends Character {
         } if(Phaser.Input.Keyboard.JustUp(this.wKey) || Phaser.Input.Keyboard.JustUp(this.sKey) || this.body.velocity.x != 0){
             this.body.setVelocityY(0);
         }
+        
         //si estas apretando ejeX e introduces input ejeY, se cambia eje
         //si estas apretando ejeY e introduces input ejeX, no, SOLUCIONAR
-
+        if(Phaser.Input.Keyboard.JustDown(this.eKey)) {
+            this.eDown = true;
+        }
         //TIPO MOVIMIENTO 1 (movimiento básico con limite de velocidad diagonal)
         /* if(this.aKey.isDown){
             this.body.setVelocityX(-this.velocity.vx);
@@ -73,6 +78,22 @@ export default class Player extends Character {
         } if(Phaser.Input.Keyboard.JustUp(this.wKey) || Phaser.Input.Keyboard.JustUp(this.sKey)){
             this.body.setVelocityY(0);
         } */
+    }
+    pickItem(item) {
+        if(this.numItems < 5) {
+            this.inventory[this.numItems] = item;
+            this.numItems++;
+        }
+
+
+
+    }
+    dropItem() {
+        if(this.numItems > 0) {
+            this.inventory.shift();
+            this.numItems--;
+        }
+
     }
     
 }
