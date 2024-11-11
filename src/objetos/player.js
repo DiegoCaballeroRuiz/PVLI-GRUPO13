@@ -1,5 +1,5 @@
 import Character from "./character.js";
-
+import Item from "./item.js";
 export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
@@ -12,6 +12,8 @@ export default class Player extends Character {
 
         this.play('idle');
         this.piñaInCart = false;
+        this.eDown = false;
+        this.numItems = 0;
     }
 
     preUpdate(t, dt){
@@ -53,7 +55,7 @@ export default class Player extends Character {
         //si estas apretando ejeX e introduces input ejeY, se cambia eje
         //si estas apretando ejeY e introduces input ejeX, no, SOLUCIONAR
         if(Phaser.Input.Keyboard.JustDown(this.eKey)) {
-            console.log(5);
+            this.eDown = true;
         }
         //TIPO MOVIMIENTO 1 (movimiento básico con limite de velocidad diagonal)
         /* if(this.aKey.isDown){
@@ -78,16 +80,20 @@ export default class Player extends Character {
         } */
     }
     pickItem(item) {
-        this.inventory += item;
-        console.log(this.inventory);
+        if(this.numItems < 5) {
+            this.inventory[this.numItems] = item;
+            this.numItems++;
+        }
+
+
 
     }
     dropItem() {
-        this.inventory.length()--;
-        for(i = 0; i < this.inventory.length; i++) {
-            this.inventory[i] = this.inventory[i++];
+        if(this.numItems > 0) {
+            this.inventory.shift();
+            this.numItems--;
         }
-        console.log(this.inventory);
+
     }
     
 }
