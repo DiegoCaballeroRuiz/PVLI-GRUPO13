@@ -26,8 +26,8 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         this.cameras.main.startFollow(player);
 
-        let standPrueba1 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,0,0,-1,-1,0,0], false);
-        let standPrueba2 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [0,0,0,-1,-1,0,0], true);
+        let standPrueba1 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,3,6,-1,-1,0,16], false);
+        let standPrueba2 = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [9,12,20,-1,-1,14,0], true);
 
         //NPC de prueba, esto se tendría que crear con a generación procedural
         let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba")
