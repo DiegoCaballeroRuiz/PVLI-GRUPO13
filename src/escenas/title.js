@@ -4,9 +4,9 @@ export default class Title extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('button_base', './media/button.png');
-        this.load.image('gameTitle', './media/logoProvisional.png');
-        this.load.image('congelados', './media/congelados.jpeg');
+        this.load.image('button_base', './assets/ImgsJuego/button.png');
+        this.load.image('gameTitle', './assets/ImgsJuego/logoProvisional.png');
+        this.load.image('congelados', './assets/ImgsJuego/congelados.jpeg');
     }
 
     create(){
