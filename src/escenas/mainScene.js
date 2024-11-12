@@ -25,7 +25,7 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         this.cameras.main.startFollow(player);
         
-        let stands;
+        let stands = [];
         stands[0] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
         stands[1] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [0,1,-3,-1,-1,9,8], true);
 
@@ -59,9 +59,13 @@ export default class MainScene extends Phaser.Scene {
         /*stands.array.forEach(element => {
             this.physics.add.collider(player, element);
         });*/
-        stands[0].shelfs.array.forEach(element => {
-            this.physics.add.collider(player, element)
-        });
+        // stands[0].shelfs.array.forEach(element => {
+        //     this.physics.add.collider(player, element)
+        // });
+
+        for(let i = 0; i < stands[0].shelfs.length; ++i){
+            this.physics.add.collider(player, stands[0].shelfs[i]);
+        }
         
         
 
