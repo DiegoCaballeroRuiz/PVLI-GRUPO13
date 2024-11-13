@@ -18,8 +18,6 @@ export default class Stand{
             if(isVertical) this.shelfs[i] = new Shelf(scene, x, y + i*shelfSize, indexArray[i]);
             else this.shelfs[i] = new Shelf(scene, x + i*shelfSize, y, indexArray[i]);
         }
-
-        //this.isVertical = isVertical;
         
     }
 }
