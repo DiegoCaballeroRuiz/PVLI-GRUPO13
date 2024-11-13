@@ -37,6 +37,9 @@ export default class NPC extends Character{
         this.checkBoxParagraphPairs = [];
 
         this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
+
+        
+        this.body.setImmovable(true);
     }
 
     preUpdate(t, dt){

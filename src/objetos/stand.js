@@ -18,11 +18,8 @@ export default class Stand{
             if(isVertical) this.shelfs[i] = new Shelf(scene, x, y + i*shelfSize, indexArray[i]);
             else this.shelfs[i] = new Shelf(scene, x + i*shelfSize, y, indexArray[i]);
         }
-<<<<<<< HEAD
 
-        this.isVertical = isVertical;
-=======
->>>>>>> 393683d (ahora deberia funcionar)
+        //this.isVertical = isVertical;
         
     }
 }
@@ -39,5 +36,7 @@ export class Shelf extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
         if(itemIndex != -1) this.item = new Item(scene, x, y, itemIndex);
+        this.scene.physics.add.existing(this);
+        this.body.setImmovable(true);
     }
 }

@@ -37,6 +37,7 @@ export default class MainScene extends Phaser.Scene {
             return npc.bump(player);
         })
 
+
         this.physics.add.overlap(player, allShelves, (obj1, obj2) => {
             if(player.eDown) {
                 if(obj2.empty && player.numItems > 0) {
@@ -53,21 +54,11 @@ export default class MainScene extends Phaser.Scene {
         })
         
         
-        // -> Esto
-        this.physics.add.collider();
-        // -> Esto añade colisiones entre el player y estanteria
-        /*stands.array.forEach(element => {
-            this.physics.add.collider(player, element);
-        });*/
-        // stands[0].shelfs.array.forEach(element => {
-        //     this.physics.add.collider(player, element)
-        // });
-
-        for(let i = 0; i < stands[0].shelfs.length; ++i){
-            this.physics.add.collider(player, stands[0].shelfs[i]);
+        // -> Esto aññade collider entre los estantes y el jugador y entre los estantes y los npcs
+        for(let i = 0; i < allShelves.length; i++){
+            this.physics.add.collider(player, allShelves[i]);
+            this.physics.add.collider(npc, allShelves[i]); //en un futuro esto debera ser un bucle con los npcs de cada sala
         }
-        
-        
 
     }
 
