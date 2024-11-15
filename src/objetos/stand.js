@@ -33,7 +33,11 @@ export class Shelf extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, itemIndex, isVertical) {
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
-        if(itemIndex != -1) this.item = new Item(scene, x, y, itemIndex);
+        if(itemIndex != -1) {
+            this.item = new Item(scene, x, y, itemIndex);
+            this.empty = false;
+        }
+        else this.empty = true;
         this.scene.physics.add.existing(this);
         this.body.setImmovable(true);
     }
