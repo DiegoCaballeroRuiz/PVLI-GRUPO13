@@ -35,8 +35,10 @@ export default class MainScene extends Phaser.Scene {
         //NPC de prueba, esto se tendría que crear con a generación procedural
         let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba")
         let allShelves = this.children.list.filter(x => x instanceof shelf);
+        //let allWalls = this.children.list.filter(x => x instanceof wall);
         // -> Esto añade colisiones entre el npc y el player y se encarga de que cuando se choquen se llame a bump (método de hablar/comparar inventario)
         this.physics.add.collider(player, npc, ()=>{
+            npc.body.setImmovable(true);//para que no puedas empujarlo
             return npc.bump(player);
         })
         
@@ -57,11 +59,22 @@ export default class MainScene extends Phaser.Scene {
             })
             
             
-            // -> Esto aññade collider entre los estantes y el jugador y entre los estantes y los npcs
+            // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
             for(let i = 0; i < allShelves.length; i++){
                 this.physics.add.collider(player, allShelves[i]);
-                this.physics.add.collider(npc, allShelves[i]); //en un futuro esto debera ser un bucle con los npcs de cada sala
+                this.physics.add.collider(npc, allShelves[i], () => {
+                    npc.body.setImmovable(false);//para que no atraviese las estanterias
+                }); //en un futuro esto debera ser un bucle con los npcs de cada sala
             }
+
+            // -> Esto añade collider entre los muros (cuando haya) y el jugador y entre los muros y los npcs
+            /*for(let i = 0; i < allWalls.length; i++){
+                this.physics.add.collider(player, allWalls[i]);
+                this.physics.add.collider(npc, allwalls[i], () => {
+                    npc.body.setImmovable(false);//para que no atraviese los muros
+                }); //en un futuro esto debera ser un bucle con los npcs de cada sala
+            }*/
+
             
         }
 
