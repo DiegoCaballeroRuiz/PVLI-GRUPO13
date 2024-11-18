@@ -14,6 +14,9 @@ export default class Player extends Character {
         this.piñaInCart = false;
         this.eDown = false;
         this.numItems = 0;
+
+        this.body.setMass(0.1);
+        this.body.setBounce(1,1); //evita un bug visual a la hora de chocarse contra los estantes
     }
 
     preUpdate(t, dt){
@@ -84,8 +87,6 @@ export default class Player extends Character {
             this.inventory[this.numItems] = item;
             this.numItems++;
         }
-
-
 
     }
     dropItem() {
