@@ -4,20 +4,22 @@ export default class Clock extends Phaser.GameObjects.Sprite {
      * @param {Phaser.scene} scene La escena en la que se instancia el reloj 
      * @param {number} x Su posición en x 
      * @param {number} y Su posición en y 
-     * @param {string} textureName El nombre de su textura
      * @param {number} hourStarts La hora (1-23) en la que empieza a funcionar el reloj 
      * @param {number} hourEnds La hora (1-23) en la que se lanza el evento de acabar la partida 
      */
-    constructor(scene, x, y, textureName, hourStarts, hourEnds){
+    constructor(scene, x, y, hourStarts, hourEnds){
 
-        super(scene, x, y, textureName);
+        super(scene, x, y, 'clockImage');
+
+        this.scene.add.existing(this);
+        this.setScale(2, 2);
 
         this.hours = hourStarts;
         this.minDozens = 0;
         this.minUnits = 0;
         this.endTimer = hourEnds;
 
-        this.text = this.scene.add.bitmapText(this.x, this.y, "clockFont");
+        this.text = this.scene.add.text(this.x, this.y).setOrigin(0.5, 0.5);
 
         this.timer = this.scene.time.addEvent({
             delay: 1000,
@@ -26,6 +28,7 @@ export default class Clock extends Phaser.GameObjects.Sprite {
             },
             loop: true
         });
+
     }
 
     addMinute(){
@@ -42,6 +45,6 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         let timerText = this.hours + ":" + this.minDozens + this.minUnits;
-        this.text.setText(timerText);
+        this.text = timerText;
     }
 }

@@ -2,7 +2,7 @@ import Player from "../objetos/player.js";
 import Stand from "../objetos/stand.js";
 import NPC from "../objetos/npc.js";
 import Carro from "../objetos/carro.js";
-import Clock from "../objetos/timer.js";
+import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 
 export default class MainScene extends Phaser.Scene {
@@ -27,7 +27,7 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.startFollow(player);
 
         //-> Creación del reloj de la escena
-        this.clock = new Clock(this, this.sys.game.config.width * 0.9, this.sys.game.config.height * 0.9, 'clockImage', 7, 8);
+        this.clock = new Clock(this, this.sys.game.config.width * 0.8, this.sys.game.config.height * 0.8, 7, 8);
         
         let stands = [];
         stands[0] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
