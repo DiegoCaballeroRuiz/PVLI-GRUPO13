@@ -73,11 +73,12 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('background', './assets/ImgsJuego/background.png');
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
+    this.load.image('clockImage', './assets/ImgsJuego/clock.png')
     this.load.spritesheet('skin_Player', './assets/ImgsJuego/skin_Player.png', {frameWidth: 69, frameHeight: 97});
     this.load.spritesheet('skin_Toni', './assets/ImgsJuego/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
-
+    this.load.bitmapFont('clockFont', 'assets/Fuentes/BoxyBold/boxy.png', 'assets/Fuentes/BoxyBold/boxy.fnt');
 
     
     // ANIMACIONES
