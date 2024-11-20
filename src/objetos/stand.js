@@ -40,13 +40,13 @@ export class Shelf extends Phaser.GameObjects.Sprite {
         else this.empty = true;
         this.scene.physics.add.existing(this, true);
     }
-    updateItem(scene, itemIndex) {
+    updateItem(itemIndex) {
         if (itemIndex == -1) {
             this.empty = true;
             this.item.destroy();
         }
         else {
-            this.item = new Item(scene, this.x, this.y, itemIndex);
+            this.item = new Item(this.scene, this.x, this.y, itemIndex);
             this.empty = false;
 
         } 

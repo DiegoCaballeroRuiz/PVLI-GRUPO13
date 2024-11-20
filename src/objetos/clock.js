@@ -12,25 +12,43 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'clockImage');
 
         this.scene.add.existing(this);
-        this.setScale(2, 2);
+        this.setScale(4, 4);
+        this.setScrollFactor(0, 0);
 
         this.hours = hourStarts;
         this.minDozens = 0;
         this.minUnits = 0;
         this.endTimer = hourEnds;
 
-        this.text = this.scene.add.text(this.x, this.y).setOrigin(0.5, 0.5);
+        this.text = this.scene.add.text(this.x, this.y, "NADA", 
+            {font: '32px Georgia, "Goudy Bookletter 1911", Times, serif', fill:"#000000" }
+            ).setOrigin(0.5, 0.5);
+
+        this.updateTextDisplay();
+        this.text.setScrollFactor(0, 0);
 
         this.timer = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 3000,
             callback: ()=>{
-                return this.addMinute();
+                return this.timeTick();
             },
             loop: true
         });
 
+        this.depth = 100;
+        this.text.depth = 101;
     }
 
+    timeTick(){
+        this.addMinute();
+        this.updateTextDisplay();
+    }
+    
+    updateTextDisplay(){
+        let timerText = this.hours + ":" + this.minDozens + this.minUnits;
+        this.text.text = timerText;
+    }
+    
     addMinute(){
         if(++this.minUnits < 10) return;
         this.minUnits = 0;
@@ -39,12 +57,5 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.minDozens = 0;
 
         if(++this.hours == this.endTimer) alert("Se acabó el tiempo");
-    }
-
-    preUpdate(t, dt){
-        super.preUpdate(t, dt);
-
-        let timerText = this.hours + ":" + this.minDozens + this.minUnits;
-        this.text = timerText;
     }
 }

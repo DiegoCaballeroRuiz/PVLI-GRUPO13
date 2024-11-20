@@ -27,7 +27,7 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.startFollow(player);
 
         //-> Creación del reloj de la escena
-        this.clock = new Clock(this, this.sys.game.config.width * 0.8, this.sys.game.config.height * 0.8, 7, 8);
+        this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
         
         let stands = [];
         stands[0] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
@@ -50,12 +50,12 @@ export default class MainScene extends Phaser.Scene {
             
             if(player.eDown) {
                 if(obj2.empty && player.numItems > 0) {
-                    obj2.updateItem(this, player.inventory[0].itemIndex);
+                    obj2.updateItem(player.inventory[0].itemIndex);
                     player.dropItem();
                 }
                 else if(!obj2.empty){
                     player.pickItem(obj2.item);
-                    obj2.updateItem(this, -1);
+                    obj2.updateItem(-1);
                 }
                 //Actualizar inventario carro.
                     player.eDown = false;
