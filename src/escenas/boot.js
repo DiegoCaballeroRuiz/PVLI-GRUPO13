@@ -102,6 +102,7 @@ export default class Boot extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('MainScene');
+    //escena de salas
+    this.scene.start('escenaProcedural');
   }
 }
