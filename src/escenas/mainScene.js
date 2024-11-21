@@ -43,7 +43,7 @@ export default class MainScene extends Phaser.Scene {
                     obj2.updateItem(this, player.inventory[0].itemIndex);
                     player.dropItem();
                 }
-                else if(!obj2.empty){
+                else if(!obj2.empty && player.numItems < 5){
                     player.pickItem(obj2.item);
                     obj2.updateItem(this, -1);
                 }
