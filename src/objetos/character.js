@@ -15,6 +15,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
         this.dialogs = []; //si se hace por constructor se crea vacío y se modifica después
 
         this.inventory = [0, 3, 6, 9, 24];
+        this.scene.events.emit('actualizarInventoryCarro');
         
         this.scene.add.existing(this); //innecesario?? pero si lo quitas no se crea player
         this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena

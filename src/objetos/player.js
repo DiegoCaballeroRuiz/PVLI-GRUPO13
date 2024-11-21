@@ -67,11 +67,11 @@ export default class Player extends Character {
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');
         }
-        if (Phaser.Input.Keyboard.JustDown(this.qKey)) {
+        if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
             this.scene.events.emit('randomInventoryCarro');
             this.scene.events.emit('actualizarInventoryCarro');
         }
-        if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
+        if (Phaser.Input.Keyboard.JustDown(this.iKey)) {
             this.scene.events.emit('randomInventory');
             this.scene.events.emit('actualizarInventoryCarro');
         }
@@ -127,6 +127,8 @@ export default class Player extends Character {
             this.inventory[this.numItems] = item;
             this.numItems++;
         }
+        
+        this.scene.events.emit('actualizarInventoryCarro');
 
     }
     dropItem() {
@@ -134,6 +136,8 @@ export default class Player extends Character {
             this.inventory.shift();
             this.numItems--;
         }
+        
+        this.scene.events.emit('actualizarInventoryCarro');
 
     }
     
