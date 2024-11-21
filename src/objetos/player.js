@@ -1,4 +1,5 @@
 import Character from "./character.js";
+import Item from "./item.js";
 import Carro from "./carro.js";
 
 export default class Player extends Character {
@@ -9,13 +10,20 @@ export default class Player extends Character {
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');
 		this.dKey = this.scene.input.keyboard.addKey('D');
-		this.eKey = this.scene.input.keyboard.addKey('E');
-		this.qKey = this.scene.input.keyboard.addKey('Q');
+        this.eKey = this.scene.input.keyboard.addKey('E');
+
+        this.iKey = this.scene.input.keyboard.addKey('I');
+		this.uKey = this.scene.input.keyboard.addKey('U');
         this.tabKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
 
-        this.play('idle');
 
-        this.pinaInCart = false;
+        this.play('idle');
+        this.piñaInCart = false;
+        this.eDown = false;
+        this.numItems = 0;
+
+        this.body.setMass(0.1);
+        this.body.setBounce(1,1); //evita un bug visual a la hora de chocarse contra los estantes
 
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
@@ -86,9 +94,12 @@ export default class Player extends Character {
         } if(Phaser.Input.Keyboard.JustUp(this.wKey) || Phaser.Input.Keyboard.JustUp(this.sKey) || this.body.velocity.x != 0){
             this.body.setVelocityY(0);
         }
+        
         //si estas apretando ejeX e introduces input ejeY, se cambia eje
         //si estas apretando ejeY e introduces input ejeX, no, SOLUCIONAR
-
+        if(Phaser.Input.Keyboard.JustDown(this.eKey)) {
+            this.eDown = true;
+        }
         //TIPO MOVIMIENTO 1 (movimiento básico con limite de velocidad diagonal)
         /* if(this.aKey.isDown){
             this.body.setVelocityX(-this.velocity.vx);
@@ -110,6 +121,20 @@ export default class Player extends Character {
         } if(Phaser.Input.Keyboard.JustUp(this.wKey) || Phaser.Input.Keyboard.JustUp(this.sKey)){
             this.body.setVelocityY(0);
         } */
+    }
+    pickItem(item) {
+        if(this.numItems < 5) {
+            this.inventory[this.numItems] = item;
+            this.numItems++;
+        }
+
+    }
+    dropItem() {
+        if(this.numItems > 0) {
+            this.inventory.shift();
+            this.numItems--;
+        }
+
     }
     
 }

@@ -36,12 +36,22 @@ footer{
     background-color: #F7F7F7;
 }
 .canvasPhaser{
-    background-image: url("../media/banner.jpg");
+    background-image: url("../assets/ImgsWeb/banner.jpg");
 }
 
 .spaced{
     padding: 25px;
     border-radius: 3px;
+}
+
+.checkboxList{
+    background-color: palegoldenrod;
+    text-align: center;
+    width: 250px;
+}
+
+.checked{
+    text-decoration: line-through;
 }
 
 .spaced p{
