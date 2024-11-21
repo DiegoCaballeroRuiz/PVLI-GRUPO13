@@ -1,22 +1,47 @@
 import Character from "./character.js";
+import Carro from "./carro.js";
 
 export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
-                
+
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');
 		this.dKey = this.scene.input.keyboard.addKey('D');
+		this.eKey = this.scene.input.keyboard.addKey('E');
+		this.qKey = this.scene.input.keyboard.addKey('Q');
+        this.tabKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
 
         this.play('idle');
 
-        this.piñaInCart = false;
+        this.pinaInCart = false;
+
+        this.scene.events.on('tab', () => {this.shiftInventario()});
+
+        this.scene.events.on('randomInventory', () => {
+            for (let i = 0; i < 5; i++) {
+                this.inventory[i] = Math.floor(Math.random() * 25);
+            }
+         });
+    }
+
+    // Mueve los objetos del inventario
+    shiftInventario(){
+        let temp = this.inventory[4];
+        for (let i = 4; i > 0; i--){
+            this.inventory[i] = this.inventory[i-1];
+        }
+        this.inventory[0] = temp;
+
+        console.log('shiftInventario, player, mueve los objetos del inventario');
+        //console.log('shift: ', this.inventory);
+        this.scene.events.emit('actualizarInventoryCarro');
     }
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-               
+
         //ANIMACIONES
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
             if(this.anims.currentAnim.key !== 'idle'){
@@ -29,6 +54,18 @@ export default class Player extends Character {
                 // console.log('walk');
                 this.play('walk');
             }
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
+            this.scene.events.emit('tab');
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.qKey)) {
+            this.scene.events.emit('randomInventoryCarro');
+            this.scene.events.emit('actualizarInventoryCarro');
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
+            this.scene.events.emit('randomInventory');
+            this.scene.events.emit('actualizarInventoryCarro');
         }
 
         //TIPO MOVIMIENTO 2 (movimiento unicamente H o V)

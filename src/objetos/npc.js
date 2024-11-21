@@ -35,7 +35,7 @@ export default class NPC extends Character{
     preUpdate(t, dt){
         super.preUpdate(t, dt);
 
-        console.log(this.cycle);
+        //console.log(this.cycle);
         
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
@@ -56,7 +56,7 @@ export default class NPC extends Character{
      * Corrutina de moverse, parar y rotar de los npcs
      */
     movementCoroutine(){ // -> MOVIMIENTO - callback con los ciclos del timer definido en la constructora)
-        console.log("hemos entrado familia");
+        //console.log("hemos entrado familia");
         this.cycle += 1;
 
         if(this.cycle % 2 == 0){
