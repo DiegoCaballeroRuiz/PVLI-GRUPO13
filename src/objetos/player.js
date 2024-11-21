@@ -95,8 +95,12 @@ export default class Player extends Character {
             this.body.setVelocityY(0);
         }
         
+        
         //si estas apretando ejeX e introduces input ejeY, se cambia eje
         //si estas apretando ejeY e introduces input ejeX, no, SOLUCIONAR
+        if(Phaser.Input.Keyboard.JustDown(this.eKey)) {
+            this.eDown = true;
+        }
         if(Phaser.Input.Keyboard.JustDown(this.eKey)) {
             this.eDown = true;
         }
