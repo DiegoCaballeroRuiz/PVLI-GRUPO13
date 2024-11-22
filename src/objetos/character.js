@@ -32,7 +32,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
 
     moveTo = function(x, y){
         this.setPosition(x, y); //lo mismo que this.body.x y this.body.y
-        console.log(this.name,' movido a', this.body.x, this.body.y);
+        // console.log(this.name,' movido a', this.body.x, this.body.y);
     }
 
     preUpdate(t, dt){

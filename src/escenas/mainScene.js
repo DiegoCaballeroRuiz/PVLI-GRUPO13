@@ -2,6 +2,7 @@ import Player from "../objetos/player.js";
 import Stand from "../objetos/stand.js";
 import NPC from "../objetos/npc.js";
 import Carro from "../objetos/carro.js";
+import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 
 export default class MainScene extends Phaser.Scene {
@@ -34,6 +35,10 @@ export default class MainScene extends Phaser.Scene {
 
         this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         this.cameras.main.startFollow(this.player);
+
+        //-> Creación del reloj de la escena
+        this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
+        
         let stands = [];
         stands[0] = new Stand(this, win_width * 1/4, win_height * 1/4, [0,1,22,-1,-1,25,8], false);
         stands[1] = new Stand(this, win_width * 1/4, win_height * 1/4 + 64, [0,1,3,-1,-1,9,8], true);
@@ -54,14 +59,14 @@ export default class MainScene extends Phaser.Scene {
         
         this.physics.add.overlap(this.player, allShelves, (obj1, obj2) => {
             
-            if(this.player.eDown) {
-                if(obj2.empty && this.player.numItems > 0) {
-                    obj2.updateItem(this, this.player.inventory[0].itemIndex);
-                    this.player.dropItem();
+            if(player.eDown) {
+                if(obj2.empty && player.numItems > 0) {
+                    obj2.updateItem(player.inventory[0].itemIndex);
+                    player.dropItem();
                 }
                 else if(!obj2.empty){
-                    this.player.pickItem(obj2.item);
-                    obj2.updateItem(this, -1);
+                    player.pickItem(obj2.item);
+                    obj2.updateItem(-1);
                 }
                 //Actualizar inventario carro.
                     this.player.eDown = false;
@@ -87,6 +92,7 @@ export default class MainScene extends Phaser.Scene {
                 }); //en un futuro esto debera ser un bucle con los npcs de cada sala
             }*/
 
+            
             
         }
 
