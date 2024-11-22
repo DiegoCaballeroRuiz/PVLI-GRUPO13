@@ -37,7 +37,7 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.player);
 
         //-> Creación del reloj de la escena
-        this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
+        this.clock = new Clock(this, win_width * 0.95, win_height * 0.1, 7, 8);
         
         let stands = [];
         stands[0] = new Stand(this, win_width * 1/4, win_height * 1/4, [0,1,22,-1,-1,25,8], false);
@@ -48,7 +48,7 @@ export default class MainScene extends Phaser.Scene {
         
 
         //NPC de prueba, esto se tendría que crear con a generación procedural
-        let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba")
+        let npc = new NPC(this, win_width, win_height * 0.5, "NPC de prueba")
         let allShelves = this.children.list.filter(x => x instanceof shelf);
         //let allWalls = this.children.list.filter(x => x instanceof wall);
         // -> Esto añade colisiones entre el npc y el player y se encarga de que cuando se choquen se llame a bump (método de hablar/comparar inventario)
@@ -61,7 +61,7 @@ export default class MainScene extends Phaser.Scene {
             
             if(this.player.eDown) {
                 if(obj2.empty && this.player.numItems > 0) {
-                    obj2.updateItem(player.inventory[0].itemIndex);
+                    obj2.updateItem(this.player.inventory[0].itemIndex);
                     this.player.dropItem();
                 }
                 else if(!obj2.empty){
