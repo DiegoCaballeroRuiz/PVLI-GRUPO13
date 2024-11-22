@@ -59,13 +59,13 @@ export default class MainScene extends Phaser.Scene {
         
         this.physics.add.overlap(this.player, allShelves, (obj1, obj2) => {
             
-            if(player.eDown) {
-                if(obj2.empty && player.numItems > 0) {
+            if(this.player.eDown) {
+                if(obj2.empty && this.player.numItems > 0) {
                     obj2.updateItem(player.inventory[0].itemIndex);
-                    player.dropItem();
+                    this.player.dropItem();
                 }
                 else if(!obj2.empty){
-                    player.pickItem(obj2.item);
+                    this.player.pickItem(obj2.item);
                     obj2.updateItem(-1);
                 }
                 //Actualizar inventario carro.
