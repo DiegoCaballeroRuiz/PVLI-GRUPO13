@@ -9,19 +9,31 @@ export default class Section extends Phaser.GameObjects.Sprite{
      * @param {Number[Number[]]} itemIndex matriz de Index (incices de las imagenes)
      * @param {Stand[]} stands array de Stands
      * @param {Boolean} isBigRoom booleano para saber si es una sala grande o pequeña
+     * @param {String} tilemap nombre del tilemap que utiliza
      */
-    constructor(scene, x, y, itemIndex, stands, isBigRoom){
+    constructor(scene, x, y, stands, isBigRoom, tilemap){
         if(isBigRoom){
             super(scene, x, y, 'bigSection');
         }
         else{
             super(scene, x, y, 'littleSection');
         }
+
+        this.map = scene.make.tilemap({
+			key: 'tilemap1',
+			tileWidth: 32,
+			tileHeight: 32
+		});
+
+        //esto esta mal y aun faltan cosas
+        const tileset = scene.map.addTilesetImage('TileSet', 'tileSet');
+
         shuffle(itemIndex);
         for(let i = 0; i < stands.size(); ++i){
             new Stand(scene, stands[i].x, stands[i].y, itemIndex[i], stands[i].isVertical)
         }
-
+        
+        
 
     }
 }
