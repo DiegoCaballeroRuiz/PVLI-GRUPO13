@@ -79,6 +79,16 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
 
+    //Carga salas 
+    this.load.tilemapTiledJSON('tilemap1', './assets/tileMaps/tileMap1.json');
+    this.load.tilemapTiledJSON('tilemap2', './assets/tileMaps/tileMap2.json');
+    this.load.tilemapTiledJSON('tilemap3', './assets/tileMaps/tileMap3.json');
+    this.load.tilemapTiledJSON('tilemap4', './assets/tileMaps/tileMap4.json');
+    this.load.tilemapTiledJSON('tilemap5', './assets/tileMaps/tileMap5.json');
+    this.load.tilemapTiledJSON('tilemap6', './assets/tileMaps/tileMap6.json');
+
+    this.load.image('tileSet', './assets/tileMaps/TileSets/tileset.png');
+
     
     // ANIMACIONES
     // ¿Tiene que estar dentro de complete?
