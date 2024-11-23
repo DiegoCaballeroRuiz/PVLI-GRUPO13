@@ -3,7 +3,6 @@ import Stand from "../objetos/stand.js";
 import Section from "../objetos/sections.js";
 import NPC from "../objetos/npc.js";
 import Carro from "../objetos/carro.js";
-import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 
 export default class Escena extends Phaser.Scene {
