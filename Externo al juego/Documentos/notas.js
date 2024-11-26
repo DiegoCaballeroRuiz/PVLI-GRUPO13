@@ -48,4 +48,9 @@
   this.music = this.sound.add('nombre de la musica', {mute: false, volume: 1, loop: true, delay: 0});
   //llamar al principio 
   if(this.paying != true) this.music.play(); this.playing = true;
+  
+  //EVENTOS
+  this.events.emit('nombre del evento');
+  this.events.on('nombre del evento', function);
+  
   */
