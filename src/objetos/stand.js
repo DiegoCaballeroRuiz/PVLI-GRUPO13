@@ -1,6 +1,6 @@
 import Item from "./item.js";
 
-const shelfSize = 64;
+const shelfSize = 96;
 
 export default class Stand{
     /**

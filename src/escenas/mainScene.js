@@ -61,11 +61,11 @@ export default class MainScene extends Phaser.Scene {
             
             if(this.player.eDown) {
                 if(obj2.empty && this.player.numItems > 0) {
-                    obj2.updateItem(player.inventory[0].itemIndex);
+                    obj2.updateItem(this.player.inventory[0].itemIndex);
                     this.player.dropItem();
                 }
 
-                else if(!obj2.empty && player.numItems < 5){
+                else if(!obj2.empty && this.player.numItems < 5){
                     this.player.pickItem(obj2.item);
                     obj2.updateItem(-1);
                 }
