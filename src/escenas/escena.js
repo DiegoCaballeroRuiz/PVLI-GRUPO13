@@ -19,10 +19,7 @@ export default class Escena extends Phaser.Scene {
     }
 
     create() {
-        let win_width = this.sys.game.config.width;
-        let win_height = this.sys.game.config.height;
-
-        let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
+        let bg = this.add.image(0,0,'background').setOrigin(0,0);
 
         //this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         //this.cameras.main.startFollow(player);
