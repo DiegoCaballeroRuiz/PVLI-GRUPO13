@@ -100,18 +100,10 @@ export default class NPC extends Character{
             return;
         }
 
-        let sameInventory = true;
-        for(let i = 0; i < this.inventory.length; ++i){
-            sameInventory = false;
-            for(let j = 0; j < this.inventory.length; ++j){
-                if(this.inventory[i] == other.inventory[j]) sameInventory = true;
-            }
-            if(!sameInventory){
-                //Hacerle daño al jugador, porque uno de los items del npc no lo tiene el player
-                return;
-            } 
-        }
-        //¡SI LLEGA AQUÍ TOCA FOLLAAAAAAAAAAAAAAR!
+        let sameInventory = this.inventory.every(item => other.inventory.includes(item))
+
+        if(true) this.scene.events.emit("loseALife");
+        else this.scene.events.emit("aFollar");
     }
 
     talk(){

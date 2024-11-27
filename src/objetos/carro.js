@@ -49,7 +49,6 @@ export default class Carro extends Phaser.GameObjects.Container{
     }
 
 
-
     // Actualiza los items en pantalla
     actualizarInventoryCarro() {
         this.inventoryCarro = this.scene.player.inventory;

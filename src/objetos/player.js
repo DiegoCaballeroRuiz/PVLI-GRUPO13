@@ -18,7 +18,7 @@ export default class Player extends Character {
 
 
         this.play('idle');
-        this.piñaInCart = false;
+        this.piñaInCart = true;
         this.eDown = false;
         this.numItems = 0;
 
@@ -31,7 +31,17 @@ export default class Player extends Character {
             for (let i = 0; i < 5; i++) {
                 this.inventory[i] = Math.floor(Math.random() * 25);
             }
-         });
+        });
+
+        this.selfEsteem = 3;
+        this.scene.events.on("loseALife", () => this.loseSelfEsteem());
+
+        this.scene.events.on("actualizarInventoryCarro", ()=>{
+            this.piñaInCart = false;
+            for(let i = 0; i < this.inventory.length; ++i){
+                if(this.inventory[i] == 24) this.piñaInCart = true;
+            }
+        })
     }
 
     // Mueve los objetos del inventario
@@ -48,15 +58,8 @@ export default class Player extends Character {
     }
 
     preUpdate(t, dt){
-        super.preUpdate(t, dt);
 
-        //ANIMACIONES
-        if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
-            if(this.anims.currentAnim.key !== 'idle'){
-                // console.log('idle');
-                this.play('idle');
-            }
-        }
+        super.preUpdate(t, dt);
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
             if(this.anims.currentAnim.key !== 'walk'){
                 // console.log('walk');
@@ -65,7 +68,8 @@ export default class Player extends Character {
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
-            this.scene.events.emit('tab');
+            this.scene.events.emit('tab');      
+
         }
         if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
             this.scene.events.emit('randomInventoryCarro');
@@ -143,6 +147,12 @@ export default class Player extends Character {
         
         this.scene.events.emit('actualizarInventoryCarro');
 
+    }
+
+    loseSelfEsteem(){
+        this.selfEsteem--;
+        console.log(this.selfEsteem);
+        if(this.selfEsteem == 0) alert("Me duele la cuca de no follar") 
     }
     
 }

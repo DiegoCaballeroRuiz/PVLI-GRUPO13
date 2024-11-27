@@ -40,7 +40,7 @@ export default class MainScene extends Phaser.Scene {
         this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
         
         let stands = [];
-        stands[0] = new Stand(this, win_width * 1/4, win_height * 1/4, [0,1,22,-1,-1,25,8], false);
+        stands[0] = new Stand(this, win_width * 1/4, win_height * 1/4, [0,1,22,-1,-1,24,8], false);
         stands[1] = new Stand(this, win_width * 1/4, win_height * 1/4 + 64, [0,1,3,-1,-1,9,8], true);
         
         //timepo para coger objetos entre si 
@@ -91,9 +91,6 @@ export default class MainScene extends Phaser.Scene {
                     npc.body.setImmovable(false);//para que no atraviese los muros
                 }); //en un futuro esto debera ser un bucle con los npcs de cada sala
             }*/
-
-            
-            
         }
 
     update() {
