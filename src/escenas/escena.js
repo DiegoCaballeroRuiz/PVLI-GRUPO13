@@ -19,7 +19,10 @@ export default class Escena extends Phaser.Scene {
     }
 
     create() {
-        let bg = this.add.image(0,0,'background').setOrigin(0,0);
+        let win_width = this.sys.game.config.width;
+        let win_height = this.sys.game.config.height;
+
+        let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
         //this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         //this.cameras.main.startFollow(player);
@@ -28,8 +31,14 @@ export default class Escena extends Phaser.Scene {
         stands[0] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4, [0,1,22,-1,-1,25,8], false);
         stands[1] = new Stand(this, this.sys.game.config.width * 1/4, this.sys.game.config.height * 1/4 + 64, [0,1,3,-1,-1,9,8], true);
 
+        this.player = new Player(this, win_width / 2, win_height / 2, "Jugador");
+
         let sections = []
-        sections[0]= new Section(this, 0, 0, stands, true, 'tilemap1')
+        sections[0]= new Section(this, 100, 100, stands, true, 'section1')
+
+        this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
+        this.cameras.main.startFollow(this.player);
+
         
         //NPC de prueba, esto se tendría que crear con a generación procedural
         let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba");

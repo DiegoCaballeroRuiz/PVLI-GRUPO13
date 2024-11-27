@@ -15,9 +15,9 @@ export default class Section extends Phaser.GameObjects.Sprite{
         super(scene, x, y, Room);
         
         shuffle(itemIndex);
-        newStands= [];
-        for(let i = 0; i < stands.size(); ++i){
-            stands[i] = new Stand(scene, stands[i].x, stands[i].y, itemIndex[i], stands[i].isVertical)
+        this.newStands= [];
+        for(let i = 0; i < stands.length; ++i){
+            stands[i] = new Stand(this.scene, stands[i].x, stands[i].y, itemindex[i], stands[i].isVertical);
             
         }
 
