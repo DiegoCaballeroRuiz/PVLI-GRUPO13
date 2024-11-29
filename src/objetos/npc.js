@@ -102,8 +102,8 @@ export default class NPC extends Character{
 
         let sameInventory = this.inventory.every(item => other.inventory.includes(item))
 
-        if(true) this.scene.events.emit("loseALife");
-        else this.scene.events.emit("aFollar");
+        if(sameInventory) this.scene.events.emit("loseALife");
+        else this.scene.events.emit("aFollar", this);
     }
 
     talk(){

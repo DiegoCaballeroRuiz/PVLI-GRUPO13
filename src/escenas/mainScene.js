@@ -4,6 +4,7 @@ import NPC from "../objetos/npc.js";
 import Carro from "../objetos/carro.js";
 import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
+import GameState from "../objetos/gameState.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -23,15 +24,21 @@ export default class MainScene extends Phaser.Scene {
         let win_width = this.sys.game.config.width;
         let win_height = this.sys.game.config.height;
 
+        
+
         // Inicializar objetos
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
         
-        this.player = new Player(this, win_width / 2, win_height / 2, "Jugador");
+        let playerPosition = {x: win_width/2, y: win_height / 2}
+        this.player = new Player(this, playerPosition.x, playerPosition.y, "Jugador");
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
 
         // Importante que player se cree antes que carro
-        let carro = new Carro(this, 0.75*win_width, 0.5*win_height, 0.17*win_width, 0.4*win_height, 1);
+        this.carro = new Carro(this, 0.75*win_width, 0.5*win_height, 0.17*win_width, 0.4*win_height, 1);
+
+        //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
+        let gameStateMachine = new GameState(this, playerPosition);
 
         this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
         this.cameras.main.startFollow(this.player);
@@ -91,8 +98,16 @@ export default class MainScene extends Phaser.Scene {
                     npc.body.setImmovable(false);//para que no atraviese los muros
                 }); //en un futuro esto debera ser un bucle con los npcs de cada sala
             }*/
-        }
+    }
 
     update() {
+
     }
+
+    //TODO
+    resetSceneWithout(NPC){
+        
+    }     
+
+    
 }

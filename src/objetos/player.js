@@ -53,7 +53,8 @@ export default class Player extends Character {
         this.inventory[0] = temp;
 
         console.log('shiftInventario, player, mueve los objetos del inventario');
-        //console.log('shift: ', this.inventory);
+        //console.log('shift: ', this.inventory);        
+
         this.scene.events.emit('actualizarInventoryCarro');
     }
 
@@ -152,7 +153,7 @@ export default class Player extends Character {
     loseSelfEsteem(){
         this.selfEsteem--;
         console.log(this.selfEsteem);
-        if(this.selfEsteem == 0) alert("Me duele la cuca de no follar") 
+        if(this.selfEsteem == 0) this.scene.events.emit("gameOver");
     }
     
 }
