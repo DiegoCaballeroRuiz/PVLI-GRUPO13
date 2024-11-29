@@ -37,7 +37,6 @@ export default class Section extends Phaser.GameObjects.Sprite{
         for (let i=0; i<itemIndex.length; i++){
             this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * gap, this.y + standSpawn[i].y * gap, itemIndex[i], Math.round(Math.random()))
         }
-
     }
 }
 
