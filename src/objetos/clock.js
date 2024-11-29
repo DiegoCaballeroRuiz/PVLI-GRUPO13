@@ -56,6 +56,6 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         if(++this.minDozens < 6) return;
         this.minDozens = 0;
 
-        if(++this.hours == this.endTimer) alert("Se acabó el tiempo");
+        if(++this.hours == this.endTimer) this.scene.events.emit("gameOver");
     }
 }
