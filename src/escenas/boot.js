@@ -74,22 +74,19 @@ export default class Boot extends Phaser.Scene {
     this.load.image('background', './assets/ImgsJuego/background.png');
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
     this.load.image('clockImage', './assets/ImgsJuego/clock.png')
-    this.load.image('section1', './assets/ImgsJuego/map1.png')
+
+    this.load.image('section0', './assets/tileMaps/map1.png')
+    this.load.image('section1', './assets/tileMaps/map1.png')
+    this.load.image('section2', './assets/tileMaps/map1.png')
+    this.load.image('section3', './assets/tileMaps/map1.png')
+
+    this.load.spritesheet('section1','./assets/tileMaps/map1.png', {frameWidth: 320, frameHeight: 320});
     this.load.spritesheet('skin_Player', './assets/ImgsJuego/skin_Player.png', {frameWidth: 69, frameHeight: 97});
     this.load.spritesheet('skin_Toni', './assets/ImgsJuego/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
 
     //Carga salas 
-    this.load.tilemapTiledJSON('tilemap1', './assets/tileMaps/tileMap1.json');
-    this.load.tilemapTiledJSON('tilemap2', './assets/tileMaps/tileMap2.json');
-    this.load.tilemapTiledJSON('tilemap3', './assets/tileMaps/tileMap3.json');
-    this.load.tilemapTiledJSON('tilemap4', './assets/tileMaps/tileMap4.json');
-    this.load.tilemapTiledJSON('tilemap5', './assets/tileMaps/tileMap5.json');
-    this.load.tilemapTiledJSON('tilemap6', './assets/tileMaps/tileMap6.json');
-
-    this.load.image('tileSet', './assets/tileMaps/TileSets/tileset.png');
-
     
     // ANIMACIONES
     // ¿Tiene que estar dentro de complete?
