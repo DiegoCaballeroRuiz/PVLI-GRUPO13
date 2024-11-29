@@ -6,21 +6,25 @@ export default class Section extends Phaser.GameObjects.Sprite{
      * @param {Scene} scene La escena en la que se encuentra
      * @param {Number} x la posicion en x
      * @param {Number} y la posicion en x
-     * @param {Number[Number[]]} itemIndex matriz de Index (incices de las imagenes)
+     * @param {Number[]} itemIndex array de Index (indices de las imagenes)
      * @param {Stand[]} stands array de Stands
      * @param {String} Room etiqueta del sprite de la sala
      * 
      */
-    constructor(scene, x, y, itemIndex, stands, Room){
+    constructor(scene, x, y, itemIndex, Room){
         super(scene, x, y, Room);
-        
-        shuffle(itemIndex);
-        this.newStands= [];
-        for(let i = 0; i < stands.length; ++i){
-            stands[i] = new Stand(this.scene, stands[i].x, stands[i].y, itemindex[i], stands[i].isVertical);
-            
-        }
 
+        //matriz que incluye los itemIndex y huecos vacios, suffle despues
+        itemIndex = [itemIndex,
+                    [-1, -1, -1]
+        ];
+        shuffle(itemIndex);
+
+        let standSpawn = [{x:0,y:1}, {x:1, y:0}]; //en caso de mas estanterias por seccion, anadir mas posiciones relativas
+        this.stands = [];
+        for (let i=0; i<itemIndex.length; i++){
+            this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * 1, this.y + standSpawn[i].y * 1, itemIndex[i], Math.round(Math.random()))
+        }
     }
 }
 
