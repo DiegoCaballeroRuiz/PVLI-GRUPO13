@@ -32,7 +32,7 @@ export class Shelf extends Phaser.GameObjects.Sprite {
      * @param {Number} itemIndex El item que tiene encima
      */
     constructor(scene, x, y, itemIndex, isVertical) {
-        console.log(scene, x, y)
+        
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
         if(itemIndex != -1) {

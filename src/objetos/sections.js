@@ -13,17 +13,19 @@ export default class Section extends Phaser.GameObjects.Sprite{
      */
     constructor(scene, x, y, itemIndex, Room){
         super(scene, x, y, Room);
+        this.scene.add.existing(this);
+        console.log('Se creo la sala: ' + Room)
 
         //matriz que incluye los itemIndex y huecos vacios, suffle despues
         itemIndex = [itemIndex,
                     [-1, -1, -1]
         ];
         shuffle(itemIndex);
-
-        let standSpawn = [{x:0,y:1}, {x:1, y:0}]; //en caso de mas estanterias por seccion, anadir mas posiciones relativas
+        let standSpawn = [{x:-3,y:-3}, {x:3, y:3}]; //en caso de mas estanterias por seccion, anadir mas posiciones relativas
         this.stands = [];
+        let gap = 32;
         for (let i=0; i<itemIndex.length; i++){
-            this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * 1, this.y + standSpawn[i].y * 1, itemIndex[i], Math.round(Math.random()))
+            this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * gap, this.y + standSpawn[i].y * gap, itemIndex[i], Math.round(Math.random()))
         }
     }
 }
@@ -36,10 +38,10 @@ function shuffle(matriz){
     const nfilas = matriz.length;
 
     var matrizPlana = matriz.flat(); //devuelve la matriz en un solo array para facilitar el barajado
-    let a = matrizPlana.length;
+
     for(let i = 0; i < matrizPlana.length; i++){
         //let j = Phaser.Math.RandomDataGenerator.between(i, matrizPlana.lenght);
-        let j = Math.floor(Math.random() * a);//asi funciona sin phaser
+        let j = Math.floor(Math.random() * matrizPlana.length - 1);//asi funciona sin phaser
         [matrizPlana[i], matrizPlana[j]] = [matrizPlana[j], matrizPlana[i]]
     }
     for(let i = 0; i < nfilas; ++i){
