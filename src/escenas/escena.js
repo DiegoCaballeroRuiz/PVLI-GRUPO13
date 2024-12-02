@@ -29,11 +29,12 @@ export default class Escena extends Phaser.Scene {
         //this.cameras.main.startFollow(player);
         
         this.player = new Player(this, win_width / 2, win_height / 2, "Jugador");
-
-        let sections = []
-        for (let i=0; i<4; i++){
-            console.log('section'+i);
-            this.sections[i] = new Section(this, 100, 100, [0, 3, 6], 'section'+i);
+        let sectionIndex = this.procedural(6, 2, 2);
+        this.sections = []
+        for (let i = 0; i < sectionIndex.length; i++){
+            for (let j = 0; j < sectionIndex[0].length; j++){
+                this.sections[i] = new Section(this, 320 + 640 * i, 320 + 640 * j, [0, 3, 6], 'section'+ sectionIndex[i][j]);
+            }
         }
 
         this.cameras.main.setBounds(-10, -10, bg.displayWidth+20, bg.displayHeight+20); //crea un cuadrado por donde se puede mover la camara
@@ -46,5 +47,32 @@ export default class Escena extends Phaser.Scene {
         }
 
     update() {
+    }
+    /**
+     * 
+     * @param {Number} inNumber el numero de salas de ese mismo tipo que existen
+     * @param {Number} outX el numero de columnas que quieres
+     * @param {Number} outY el numero de filas que quieres
+     */
+
+    procedural(inNumber, outX, outY){
+        let inArray =[];
+        for(let i = 0; i < inNumber; i++){
+            inArray[i]= i;
+        }
+        for(let i = 0; i < inNumber; i++){
+            let j = Phaser.Math.Between(i, inArray.length -1 );
+            [inArray[i], inArray[j]] = [inArray[j], inArray[i]];
+        }
+        let outArray = [];
+        outArray.length = outY;
+        for(let i = 0; i < outX; i++){
+            let fila = [];
+            for(let j = 0; j < outY; j++){
+                fila[j] = inArray[i * outY + j];
+            }
+            outArray[i]= fila;
+        }
+        return outArray;
     }
 }
