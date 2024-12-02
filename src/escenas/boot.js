@@ -75,12 +75,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
     this.load.image('clockImage', './assets/ImgsJuego/clock.png')
 
-    this.load.image('section0', './assets/tileMaps/map1.png')
-    this.load.image('section1', './assets/tileMaps/map1.png')
-    this.load.image('section2', './assets/tileMaps/map1.png')
-    this.load.image('section3', './assets/tileMaps/map1.png')
+    this.load.spritesheet('section0','./assets/tileMaps/map1.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section1','./assets/tileMaps/map2.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section2','./assets/tileMaps/map3.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section3','./assets/tileMaps/map4.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section4','./assets/tileMaps/map5.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section5','./assets/tileMaps/map6.png', {frameWidth: 640, frameHeight: 640});
 
-    this.load.spritesheet('section1','./assets/tileMaps/map1.png', {frameWidth: 320, frameHeight: 320});
     this.load.spritesheet('skin_Player', './assets/ImgsJuego/skin_Player.png', {frameWidth: 69, frameHeight: 97});
     this.load.spritesheet('skin_Toni', './assets/ImgsJuego/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
