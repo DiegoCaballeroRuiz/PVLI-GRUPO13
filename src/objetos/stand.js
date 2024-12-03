@@ -14,6 +14,7 @@ export default class Stand{
     constructor(scene, x, y, indexArray, isVertical){
         this.shelfs = [];
         this.isVertical = isVertical;
+        this.itemIndexes = indexArray;
         for(let i = 0; i < indexArray.length; ++i){
             if(isVertical) this.shelfs[i] = new Shelf(scene, x, y + i*shelfSize, indexArray[i]);
             else this.shelfs[i] = new Shelf(scene, x + i*shelfSize, y, indexArray[i]);
@@ -31,6 +32,7 @@ export class Shelf extends Phaser.GameObjects.Sprite {
      * @param {Number} itemIndex El item que tiene encima
      */
     constructor(scene, x, y, itemIndex, isVertical) {
+        
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
         if(itemIndex != -1) {
