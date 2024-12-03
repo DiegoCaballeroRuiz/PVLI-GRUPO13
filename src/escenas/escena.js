@@ -37,7 +37,7 @@ export default class Escena extends Phaser.Scene {
         this.littleSections = []
         for (let i = 0; i < sectionIndex.length; i++){
             for (let j = 0; j < sectionIndex[0].length; j++){
-                this.littleSections[i * sectionIndex[0].length + j] = new Section(this, 3*gap + 640 * i, gap + 640 * j, [4, 5, 6], 'section'+ sectionIndex[i][j]);
+                this.littleSections[i * sectionIndex[0].length + j] = new Section(this, 3*gap + 640 * i, gap + 640 * j, [11, 12, 13], 'section'+ sectionIndex[i][j]);
             }
         }
 
