@@ -14,15 +14,15 @@ export default class Section extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, itemIndex, Room){
         super(scene, x, y, Room);
         this.scene.add.existing(this);
-        console.log(Room)
         if(Room === 'bigSection1' || Room === 'bigSection2' || Room === 'bigSection3' || Room === 'bigSection0'){
-            console.log('ha entrado')
-            itemIndex = [[-1, -1, -1],
+            
+            itemIndex = [[9, 4, 5],
                           itemIndex,
-                         [-1, -1, -1]
+                         [6, 7, 8]
                         ];
             shuffle(itemIndex);
             var standSpawn = [{x:-3,y:-8}, {x:0, y:0},{x:3, y:8}];
+            console.log(itemIndex)
         }
         else{
             //matriz que incluye los itemIndex y huecos vacios, suffle despues
@@ -47,16 +47,19 @@ export default class Section extends Phaser.GameObjects.Sprite{
 function shuffle(matriz){
     const nfilas = matriz.length;
 
-    var matrizPlana = matriz.flat(); //devuelve la matriz en un solo array para facilitar el barajado
+    var matrizPlana =[];
+    matrizPlana = matriz.flat(); //devuelve la matriz en un solo array para facilitar el barajado
 
     for(let i = 0; i < matrizPlana.length; i++){
-        let j = Phaser.Math.Between(i, matrizPlana.lenght - 1);
+        let j = Phaser.Math.Between(i, matrizPlana.length - 1);
         //let j = Math.floor(Math.random() * matrizPlana.length - 1);//asi funciona sin phaser
         [matrizPlana[i], matrizPlana[j]] = [matrizPlana[j], matrizPlana[i]]
     }
+    let aux = 0;
     for(let i = 0; i < nfilas; ++i){
         for(let j = 0; j < matriz[i].length; ++j){
-            matriz[i][j] = matrizPlana[i * nfilas + j];
+            matriz[i][j] = matrizPlana[aux];
+            aux++;
         }
     }
 }
