@@ -21,6 +21,10 @@ export default class Stand{
         }
         
     }
+
+    resetStand(){
+        for(let i = 0; i < this.shelfs.length; ++i) shelfs[i].resetShelf();
+    }
 }
 
 export class Shelf extends Phaser.GameObjects.Sprite {
@@ -35,6 +39,7 @@ export class Shelf extends Phaser.GameObjects.Sprite {
         
         super(scene, x, y, 'stand_sprite', 0);
         this.scene.add.existing(this);
+        this.startingItem = itemIndex;
         if(itemIndex != -1) {
             this.item = new Item(scene, x, y, itemIndex);
             this.empty = false;
@@ -52,5 +57,9 @@ export class Shelf extends Phaser.GameObjects.Sprite {
             this.empty = false;
 
         } 
+    }
+
+    resetShelf(){
+        this.updateItem(this.startingItem);
     }
 }

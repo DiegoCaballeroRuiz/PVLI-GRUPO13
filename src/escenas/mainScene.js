@@ -70,7 +70,7 @@ export default class MainScene extends Phaser.Scene {
 
         //NPC de prueba, esto se tendría que crear con a generación procedural
         let npc = new NPC(this, this.sys.game.config.width, this.sys.game.config.height * 0.5, "NPC de prueba")
-        let allShelves = this.children.list.filter(x => x instanceof shelf);
+        this.allShelves = this.children.list.filter(x => x instanceof shelf);
         //let allWalls = this.children.list.filter(x => x instanceof wall);
         // -> Esto añade colisiones entre el npc y el player y se encarga de que cuando se choquen se llame a bump (método de hablar/comparar inventario)
         this.physics.add.collider(this.player, npc, ()=>{
@@ -120,7 +120,7 @@ export default class MainScene extends Phaser.Scene {
 
     //TODO
     resetSceneWithout(NPC){
-        
+        for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
     }     
 
     procedural(inNumber, outX, outY){
