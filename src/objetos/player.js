@@ -27,7 +27,11 @@ export default class Player extends Character {
 
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
-        this.scene.events.on('randomInventory', () => {
+        this.scene.events.on('randomInventory', (/**
+            * Constructor de la "máquina de estados"
+            * @param {Phaser.Scene} scene la escena donde vivirám todos los eventos relacionados con ganar/perder 
+            * @param {PositionObject} playerStartingPosition la posición a la que moverá el jugador al reiniciar la escena
+            */) => {
             for (let i = 0; i < 5; i++) {
                 this.inventory[i] = Math.floor(Math.random() * 25);
             }
