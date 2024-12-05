@@ -5,6 +5,7 @@ import Carro from "./carro.js";
 export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
+        
 
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
@@ -71,6 +72,7 @@ export default class Player extends Character {
                 this.play('walk');
             }
         }
+        else this.play('idle');
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');      

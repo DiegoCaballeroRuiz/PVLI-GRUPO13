@@ -92,6 +92,9 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('skin_Toni', './assets/ImgsJuego/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('skin_Ruso', './assets/ImgsJuego/skin_Ruso.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('skin_Solterona', './assets/ImgsJuego/skin_MadreSoltera.png', {frameWidth: 85, frameHeight: 182});
+    this.load.spritesheet('skin_Default', './assets/ImgsJuego/skin_Default.png', {frameWidth: 85, frameHeight: 182});
+    this.load.spritesheet('skin_NotCharacter', './assets/ImgsJuego/skin_Error.png', {frameWidth: 85, frameHeight: 182});
+    this.load.spritesheet('skin_Pijo', './assets/ImgsJuego/skin_Pijo.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
 
