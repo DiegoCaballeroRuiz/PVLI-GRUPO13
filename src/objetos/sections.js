@@ -46,7 +46,6 @@ export default class Section extends Phaser.GameObjects.Sprite{
                     ];
             shuffle(items);
             standSpawn = [{x:-3,y:-8}, {x:0, y:0},{x:3, y:8}];
-            console.log(items)
         }
         else{
             switch(Room){

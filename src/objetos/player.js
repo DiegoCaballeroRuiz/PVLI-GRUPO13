@@ -5,6 +5,7 @@ import Carro from "./carro.js";
 export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
+        
 
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
@@ -27,7 +28,11 @@ export default class Player extends Character {
 
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
-        this.scene.events.on('randomInventory', () => {
+        this.scene.events.on('randomInventory', (/**
+            * Constructor de la "máquina de estados"
+            * @param {Phaser.Scene} scene la escena donde vivirám todos los eventos relacionados con ganar/perder 
+            * @param {PositionObject} playerStartingPosition la posición a la que moverá el jugador al reiniciar la escena
+            */) => {
             for (let i = 0; i < 5; i++) {
                 this.inventory[i] = Math.floor(Math.random() * 25);
             }
@@ -67,6 +72,7 @@ export default class Player extends Character {
                 this.play('walk');
             }
         }
+        else this.play('idle');
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');      
