@@ -18,7 +18,7 @@ export default class Player extends Character {
         this.tabKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
 
 
-        this.play('idle');
+        this.play('idle_'+name);
         this.piñaInCart = true;
         this.eDown = false;
         this.numItems = 0;
@@ -67,12 +67,12 @@ export default class Player extends Character {
 
         super.preUpdate(t, dt);
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
-            if(this.anims.currentAnim.key !== 'walk'){
+            if(this.anims.currentAnim.key !== 'walk_'+this.name){
                 // console.log('walk');
-                this.play('walk');
+                this.play('walk_'+this.name);
             }
         }
-        else this.play('idle');
+        else this.play('idle_'+this.name);
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');      

@@ -73,12 +73,12 @@ export default class MainScene extends Phaser.Scene {
                 array1 = this.procedural(array1, 3, 3);
                 i= 0;
                 while(i<3){
-                    usableCharacters.push({name: 'NotCharacter', itemIndex: array1[i]});
+                    usableCharacters.push({name: '???', itemIndex: array1[i]});
                     i++;
                 }
             break;
             case 1: 
-                console.log('Solo seha podido instanciar un NPC, se procedera a instanciar npcs manualmente');
+                console.log('Solo se ha podido instanciar un NPC, se procedera a instanciar npcs manualmente');
                 let j = 0;
                 let array2 = [];
                 while(j < this.isItem.length && array2.length < 6){
@@ -90,12 +90,12 @@ export default class MainScene extends Phaser.Scene {
                 array2 = this.procedural(array2, 2, 3);
                 j= 1;
                 while(j<3){
-                    usableCharacters.push({name: 'NotCharacter', itemIndex: array2[j]});
+                    usableCharacters.push({name: '???', itemIndex: array2[j]});
                     j++;
                 }
             break;
             case 2: 
-                console.log('Solo seha podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
+                console.log('Solo se ha podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
                 let array3 = [];
                 let k = 0;
                 while(k < this.isItem.length && array3.length < 3){
@@ -105,7 +105,7 @@ export default class MainScene extends Phaser.Scene {
                     k++;
                 }
                
-                usableCharacters.push({name: 'NotCharacter', itemIndex: array3});
+                usableCharacters.push({name: '???', itemIndex: array3});
             break;
             default:
                 usableCharacters=this.procedural(usableCharacters,3,0);
@@ -114,9 +114,9 @@ export default class MainScene extends Phaser.Scene {
 
         let npc =[];
         let npcPos =[
-            {x: gap*2, y: gap*4},
-            {x: gap*2, y: gap*2},
-            {x: gap*3, y: gap*2}
+            {x: gap*6, y: gap*3},
+            {x: gap*2, y: gap*1},
+            {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
             npc[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name)
@@ -125,7 +125,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         let playerPosition = {x: win_width/2, y: win_height / 2};
-        this.player = new Player(this, playerPosition.x, playerPosition.y, "Jugador");
+        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
 
@@ -150,14 +150,11 @@ export default class MainScene extends Phaser.Scene {
         //NPC de prueba, esto se tendría que crear con a generación procedural
        
         this.allShelves = this.children.list.filter(x => x instanceof shelf);
-        //let allWalls = this.children.list.filter(x => x instanceof wall);
         // -> Esto añade colisiones entre el npc y el player y se encarga de que cuando se choquen se llame a bump (método de hablar/comparar inventario)
-        for(let i= 0; i < npc.length; i++){
-            this.physics.add.collider(this.player, npc[i], ()=>{
-                npc[i].body.setImmovable(true);//para que no puedas empujarlo
-                return npc[i].bump(this.player);
-            })
-        }
+        this.physics.add.collider(this.player, npc, (player, character)=>{
+            character.body.setImmovable(true);//para que no puedas empujarlo
+            return character.bump(player);
+        })
         
 
         this.physics.add.overlap(this.player, this.allShelves, (obj1, obj2) => {
@@ -180,14 +177,18 @@ export default class MainScene extends Phaser.Scene {
 
 
         // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
-        for(let i = 0; i < this.allShelves.length; i++){
-            this.physics.add.collider(this.player, this.allShelves[i]);
-            for(let j = 0; j < npc.length; j++){
-                this.physics.add.collider(npc[i], this.allShelves[i], () => {
-                    npc[i].body.setImmovable(false);//para que no atraviese las estanterias
-                }); 
-            }
+        this.physics.add.collider(this.player, this.allShelves);
+        for(let i = 0; i < npc.length; i++){
+            this.physics.add.collider(npc[i], this.allShelves, () => {
+                npc[i].body.setImmovable(false);//para que no atraviese las estanterias
+            }); 
         }
+
+        // -> Esto añade collider para los npcs entre si
+        for(let i = 0; i < npc.length; i++){
+            this.physics.add.collider(npc[i], this.npc);
+        }
+        
     }
 
     update() {

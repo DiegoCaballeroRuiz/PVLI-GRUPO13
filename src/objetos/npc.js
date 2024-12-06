@@ -7,7 +7,6 @@ export default class NPC extends Character{
         super(scene, x, y, name);
         //this.name =name;
         this.addDialogs(dialogsList);
-        console.log('yo soy: '+ name)
         
         this.velocity.vx -= this.velocity.vx * 0.75;
         this.velocity.vy -= this.velocity.vy * 0.75;
@@ -19,7 +18,7 @@ export default class NPC extends Character{
             {angle: 90, velocity: -this.velocity.vx}
         ]
 
-        this.play('idle'/*_'+name*/)
+        this.play('idle_'+name)
 
         //*Para el movimiento
         this.cycle = 0;
@@ -45,15 +44,15 @@ export default class NPC extends Character{
       
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
-            if(this.anims.currentAnim.key !== 'idle'/*_'+this.name*/){
+            if(this.anims.currentAnim.key !== ('idle_'+this.name)){
                 // console.log('idle');
-                this.play('idle'/*_'+this.name*/);
+                this.play('idle_'+this.name);
             }
         }
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
-            if(this.anims.currentAnim.key !== 'walk'/*_'+this.name*/){
+            if(this.anims.currentAnim.key !== ('walk_'+this.name)){
                 // console.log('walk');
-                this.play('walk'/*_'+this.name*/);
+                this.play('walk_'+this.name);
             }
         }
 
