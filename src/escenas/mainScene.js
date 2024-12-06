@@ -35,7 +35,7 @@ export default class MainScene extends Phaser.Scene {
         for (let i = 0; i < sectionIndex[0].length; i++){
             this.bigSections[i] = new Section(this, gap + 1920 * i, 2*gap, 'bigSection'+ sectionIndex[0][i]);
         }
-
+        
         sectionIndex = this.procedural(this.doArray(6), 2, 2);
         this.littleSections = []
         for (let i = 0; i < sectionIndex.length; i++){
@@ -126,7 +126,7 @@ export default class MainScene extends Phaser.Scene {
 
         let playerPosition = {x: win_width/2, y: win_height / 2};
         this.player = new Player(this, playerPosition.x, playerPosition.y, "Jugador");
-        // CADA VEZ QUE SE ACTUALICE INVENTORy DE PLAyER,
+        // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
 
         // Importante que player se cree antes que carro
@@ -140,12 +140,6 @@ export default class MainScene extends Phaser.Scene {
 
         //-> Creación del reloj de la escena
         this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
-
-
-
-        //timepo para coger objetos entre si
-
-
 
 
 
