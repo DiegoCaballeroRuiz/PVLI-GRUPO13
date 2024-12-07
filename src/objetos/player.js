@@ -21,22 +21,23 @@ export default class Player extends Character {
         this.play('idle_'+name);
         this.piñaInCart = true;
         this.eDown = false;
-        this.numItems = 0;
+        this.numItems = 5;
 
         this.body.setMass(0.1);
         this.body.setBounce(1,1); //evita un bug visual a la hora de chocarse contra los estantes
 
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
-        this.scene.events.on('randomInventory', (/**
-            * Constructor de la "máquina de estados"
-            * @param {Phaser.Scene} scene la escena donde vivirám todos los eventos relacionados con ganar/perder 
-            * @param {PositionObject} playerStartingPosition la posición a la que moverá el jugador al reiniciar la escena
-            */) => {
-            for (let i = 0; i < 5; i++) {
-                this.inventory[i] = Math.floor(Math.random() * 25);
-            }
-        });
+        // DEBUG DE INVENTARIO
+        // this.scene.events.on('randomInventory', (/**
+        //     * Constructor de la "máquina de estados"
+        //     * @param {Phaser.Scene} scene la escena donde vivirám todos los eventos relacionados con ganar/perder 
+        //     * @param {PositionObject} playerStartingPosition la posición a la que moverá el jugador al reiniciar la escena
+        //     */) => {
+        //     for (let i = 0; i < 5; i++) {
+        //         this.inventory[i] = Math.floor(Math.random() * 25);
+        //     }
+        // });
 
         this.selfEsteem = 3;
         this.scene.events.on("loseALife", () => this.loseSelfEsteem());
@@ -78,28 +79,42 @@ export default class Player extends Character {
             this.scene.events.emit('tab');      
 
         }
-        if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
-            this.scene.events.emit('randomInventoryCarro');
-            this.scene.events.emit('actualizarInventoryCarro');
-        }
-        if (Phaser.Input.Keyboard.JustDown(this.iKey)) {
-            this.scene.events.emit('randomInventory');
-            this.scene.events.emit('actualizarInventoryCarro');
-        }
+        // DEBUG DE INVENTARIO
+        // if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
+        //     this.scene.events.emit('randomInventoryCarro');
+        //     this.scene.events.emit('actualizarInventoryCarro');
+        // }
+        // if (Phaser.Input.Keyboard.JustDown(this.iKey)) {
+        //     this.scene.events.emit('randomInventory');
+        //     this.scene.events.emit('actualizarInventoryCarro');
+        // }
 
+        console.log(this.body.offset.x, this.body.offset.y);
         //TIPO MOVIMIENTO 2 (movimiento unicamente H o V)
         if(this.aKey.isDown){
             this.body.setVelocityX(-this.velocity.vx);
             this.angle = 90;
+            this.body.offset.x = -7;
+            this.body.offset.y = 35;
+
         } if(this.dKey.isDown){
             this.body.setVelocityX(this.velocity.vx);
             this.angle = 270;
+            this.body.offset.x = 5;
+            this.body.offset.y = 52;
+
         } if(this.wKey.isDown){
             this.body.setVelocityY(-this.velocity.vy);
             this.angle = 180;
+            this.body.offset.x = 5;
+            this.body.offset.y = 38;
+
         } if(this.sKey.isDown){
             this.body.setVelocityY(this.velocity.vy);
             this.angle = 0;
+            this.body.offset.x = -6;
+            this.body.offset.y = 50;
+
         } if(Phaser.Input.Keyboard.JustUp(this.aKey) || Phaser.Input.Keyboard.JustUp(this.dKey) || this.body.velocity.y != 0){
             this.body.setVelocityX(0);
         } if(Phaser.Input.Keyboard.JustUp(this.wKey) || Phaser.Input.Keyboard.JustUp(this.sKey) || this.body.velocity.x != 0){

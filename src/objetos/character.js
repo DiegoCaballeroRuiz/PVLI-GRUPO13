@@ -21,8 +21,10 @@ export default class Character extends Phaser.GameObjects.Sprite {
         //this.body.setCollideWorldBounds(); //para colisiones con los bordes del mundo
         this.body.setAllowGravity(true); //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
         this.body.height /= 2;
-        this.body.offset.y += 32;
+        this.body.offset.y += 50;
         this.body.offset.x -= 6;
+
+        this.setOrigin(0.5, 0.5);
     }
 
     addDialogs = function(dialogsList){

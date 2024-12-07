@@ -1,3 +1,5 @@
+//import CardContainer from "../objetos/cardContainer.js";
+
 export default class Title extends Phaser.Scene{
     constructor(){
         super({key: 'Title'});
@@ -10,6 +12,10 @@ export default class Title extends Phaser.Scene{
     }
 
     create(){
+        // en caso de querer escuchar las cartas en el title, crear container y leer memoria
+        // this.cardContainer = new CardContainer(this);
+        // this.events.emit('leerCartas'); //se guarda en this.cardContainer.cards
+        
         const {width, height} = this.scale;
 
         // -> Imagen de fondo

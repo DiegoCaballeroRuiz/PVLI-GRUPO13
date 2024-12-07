@@ -19,6 +19,8 @@ export default class GameState{
     }
 
     playerSuccess(NPC){
+        this.scene.events.emit('guardarCartas', NPC.name);
+
         // -> Resetear objetos de escena
         this.scene.resetSceneWithout(NPC);
         

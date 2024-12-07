@@ -37,6 +37,8 @@
 
 
   // GUARDADO Y ESCRITURA DE ARCHIVOS
+  //quitar la palabra window/windows?
+
   windows.addEventListener("beforeunload", event => {
     window.localStorage.setItem('nombre_variable', this.info_a_cargar);
   });

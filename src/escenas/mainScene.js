@@ -5,11 +5,12 @@ import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
+import CardContainer from "../objetos/cardContainer.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
-        this.player; //AHORA PLAYER ES UNA VARIABLE DE LA ESCENA
+        this.player;
     }
 
     init(){
@@ -21,6 +22,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.cardContainer = new CardContainer(this);
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
@@ -161,7 +163,7 @@ export default class MainScene extends Phaser.Scene {
 
             if(this.player.eDown) {
                 if(obj2.empty && this.player.numItems > 0) {
-                    obj2.updateItem(player.inventory[0].itemIndex);
+                    obj2.updateItem(this.player.inventory[0].itemIndex);
                     this.player.dropItem();
                 }
                 else if(!obj2.empty){
