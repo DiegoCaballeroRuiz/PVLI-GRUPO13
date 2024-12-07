@@ -18,7 +18,6 @@ export default class Character extends Phaser.GameObjects.Sprite {
         
         this.scene.add.existing(this); //innecesario?? pero si lo quitas no se crea player
         this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena
-        //this.body.setCollideWorldBounds(); //para colisiones con los bordes del mundo
         this.body.setAllowGravity(true); //se puede modificar la gravedad con this.body.gravity.y = int o con this.body.setAllowGravity(t/f)
         this.body.height /= 2;
         this.body.offset.y += 50;

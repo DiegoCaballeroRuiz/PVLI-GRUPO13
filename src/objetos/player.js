@@ -6,7 +6,7 @@ export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
         
-
+        
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');
@@ -39,6 +39,7 @@ export default class Player extends Character {
         //     }
         // });
 
+        
         this.selfEsteem = 3;
         this.scene.events.on("loseALife", () => this.loseSelfEsteem());
 
@@ -65,7 +66,7 @@ export default class Player extends Character {
     }
 
     preUpdate(t, dt){
-
+        //if(x > 0 && y > 0 && x < this.scene.win_width && y < this.scene.win_width)return;
         super.preUpdate(t, dt);
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
             if(this.anims.currentAnim.key !== 'walk_'+this.name){
@@ -89,7 +90,6 @@ export default class Player extends Character {
         //     this.scene.events.emit('actualizarInventoryCarro');
         // }
 
-        console.log(this.body.offset.x, this.body.offset.y);
         //TIPO MOVIMIENTO 2 (movimiento unicamente H o V)
         if(this.aKey.isDown){
             this.body.setVelocityX(-this.velocity.vx);
