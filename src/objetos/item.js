@@ -11,6 +11,5 @@ export default class Item extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'items_spritesheet', itemIndex_);
         this.itemIndex = itemIndex_;
         this.scene.add.existing(this);
-        console.log(this.itemIndex, 'se ha creado');
     }
 }

@@ -5,9 +5,8 @@ export default class NPC extends Character{
     
     constructor(scene, x, y, name, dialogsList){
         super(scene, x, y, name);
-        
+        //this.name =name;
         this.addDialogs(dialogsList);
-        
         
         this.velocity.vx -= this.velocity.vx * 0.75;
         this.velocity.vy -= this.velocity.vy * 0.75;
@@ -19,7 +18,7 @@ export default class NPC extends Character{
             {angle: 90, velocity: -this.velocity.vx}
         ]
 
-        this.play('idle')
+        this.play('idle_'+name)
 
         //*Para el movimiento
         this.cycle = 0;
@@ -41,18 +40,19 @@ export default class NPC extends Character{
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
+        
       
         // -> ANIMACIONES (Hay que cambiar las de Toni por las del NPC que toque)
         if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
-            if(this.anims.currentAnim.key !== 'idle'){
+            if(this.anims.currentAnim.key !== ('idle_'+this.name)){
                 // console.log('idle');
-                this.play('idle');
+                this.play('idle_'+this.name);
             }
         }
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
-            if(this.anims.currentAnim.key !== 'walk'){
+            if(this.anims.currentAnim.key !== ('walk_'+this.name)){
                 // console.log('walk');
-                this.play('walk');
+                this.play('walk_'+this.name);
             }
         }
 
@@ -123,6 +123,23 @@ export default class NPC extends Character{
         var pair = {checkboxID: cID, paragraphID: pID}
         this.checkBoxParagraphPairs.push(pair);
         this.numberOfPhrasesAdded++;
+    }
+    load(){
+        this.scene.load.on('complete', () => {
+            this.anims.create({
+              key: 'walk_'+this.name,
+              frames: this.anims.generateFrameNumbers('skin_'+this.name, {start:2, end:1}),
+              frameRate: 5,
+              repeat: -1
+            });
+      
+            this.anims.create({
+            key: 'idle_'+this.name,
+            frames: [{ key: 'skin_'+this.name, frame: 1 }],
+            frameRate: 1,
+            repeat: -1
+            });
+          });
     }
 }
 

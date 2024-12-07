@@ -45,7 +45,6 @@ export default class Carro extends Phaser.GameObjects.Container{
 
         this.scene.add.existing(this);
         this.setScrollFactor(0, 0);
-        console.log('Carro se ha creado');
     }
 
 
