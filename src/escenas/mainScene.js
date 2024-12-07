@@ -4,11 +4,14 @@ import NPC from "../objetos/npc.js";
 import Carro from "../objetos/carro.js";
 import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
+import GameState from "../objetos/gameState.js";
+import Section from "../objetos/sections.js";
+import CardContainer from "../objetos/cardContainer.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
-        this.player; //AHORA PLAYER ES UNA VARIABLE DE LA ESCENA
+        this.player;
     }
 
     init(){
@@ -20,10 +23,12 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        let win_width = this.sys.game.config.width;
-        let win_height = this.sys.game.config.height;
+        this.cardContainer = new CardContainer(this);
 
-        // Inicializar objetos
+        let gap = 320;
+        let win_width = /*this.sys.game.config.width*/ gap * 8;
+        let win_height = /*this.sys.game.config.height*/ gap * 4;
+
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
         
         this.player = new Player(this, win_width / 2, win_height / 2, "Jugador");

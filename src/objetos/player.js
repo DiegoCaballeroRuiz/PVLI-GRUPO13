@@ -27,11 +27,12 @@ export default class Player extends Character {
 
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
-        this.scene.events.on('randomInventory', () => {
-            for (let i = 0; i < 5; i++) {
-                this.inventory[i] = Math.floor(Math.random() * 25);
-            }
-         });
+        // DEBUG DE INVENTARIO
+        // this.scene.events.on('randomInventory', () => {
+        //     for (let i = 0; i < 5; i++) {
+        //         this.inventory[i] = Math.floor(Math.random() * 25);
+        //     }
+        // });
     }
 
     // Mueve los objetos del inventario
@@ -67,14 +68,15 @@ export default class Player extends Character {
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');
         }
-        if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
-            this.scene.events.emit('randomInventoryCarro');
-            this.scene.events.emit('actualizarInventoryCarro');
-        }
-        if (Phaser.Input.Keyboard.JustDown(this.iKey)) {
-            this.scene.events.emit('randomInventory');
-            this.scene.events.emit('actualizarInventoryCarro');
-        }
+        // DEBUG DE INVENTARIO
+        // if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
+        //     this.scene.events.emit('randomInventoryCarro');
+        //     this.scene.events.emit('actualizarInventoryCarro');
+        // }
+        // if (Phaser.Input.Keyboard.JustDown(this.iKey)) {
+        //     this.scene.events.emit('randomInventory');
+        //     this.scene.events.emit('actualizarInventoryCarro');
+        // }
 
         console.log(this.body.offset.x, this.body.offset.y);
         //TIPO MOVIMIENTO 2 (movimiento unicamente H o V)
