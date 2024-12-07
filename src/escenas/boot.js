@@ -71,6 +71,7 @@ export default class Boot extends Phaser.Scene {
       assetText.destroy();
     }); */
 
+    
     this.load.image('background', './assets/ImgsJuego/background.png');
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
     this.load.image('imagen_carro', './assets/ImgsJuego/carro.png');

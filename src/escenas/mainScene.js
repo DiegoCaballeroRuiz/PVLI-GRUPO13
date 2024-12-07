@@ -22,13 +22,16 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+
+        this.physics.world.setBoundsCollision(true, true, true, true);
+
         this.cardContainer = new CardContainer(this);
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
         let gap = 320
-        let win_width = /*this.sys.game.config.width*/ gap * 8;
-        let win_height = /*this.sys.game.config.height*/ gap * 4;
+        this.win_width = /*this.sys.game.config.width*/ gap * 8;
+        this.win_height = /*this.sys.game.config.height*/ gap * 4;
 
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
@@ -121,22 +124,28 @@ export default class MainScene extends Phaser.Scene {
             {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
-            npc[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name)
+            npc[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name);
+            this.physics.world.enable(npc[i]);
+            //npc[i].body.setCollideWorldBounds(true);
         }
+
         // Inicializar objetos
 
 
-        let playerPosition = {x: win_width/2, y: win_height / 2};
+        let playerPosition = {x: this.win_width/2, y: this.win_height / 2};
+        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
+        this.physics.world.enable(this.player);
+        this.player.body.setCollideWorldBounds(true);
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
         this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
+        this.carro = new Carro(this, 0.75*this.win_width, 0.5*this.win_height, 0.17*this.win_width, 0.4*this.win_height, 1);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
 
-        this.cameras.main.setBounds(-10, -10, /*bg.displayWidth+20, bg.displayHeight+20*/win_width, win_height); //crea un cuadrado por donde se puede mover la camara
+        this.cameras.main.setBounds(-10, -10, /*bg.displayWidth+20, bg.displayHeight+20*/this.win_width, this.win_height); //crea un cuadrado por donde se puede mover la camara
         this.cameras.main.startFollow(this.player);
 
         //-> Creación del reloj de la escena
