@@ -73,12 +73,29 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('background', './assets/ImgsJuego/background.png');
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
-    this.load.image('clockImage', './assets/ImgsJuego/clock.png')
+    this.load.image('clockImage', './assets/ImgsJuego/clock.png');
+    this.load.image('cardBackground', './assets/ImgsJuego/fondo_carta.png');
+
+    this.load.spritesheet('section0','./assets/tileMaps/map1.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section1','./assets/tileMaps/map2.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section2','./assets/tileMaps/map3.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section3','./assets/tileMaps/map4.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section4','./assets/tileMaps/map5.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('section5','./assets/tileMaps/map6.png', {frameWidth: 640, frameHeight: 640});
+    this.load.spritesheet('bigSection0','./assets/tileMaps/bigMap1.png', {frameWidth: 640, frameHeight: 1280});
+    this.load.spritesheet('bigSection1','./assets/tileMaps/bigMap2.png', {frameWidth: 640, frameHeight: 1280});
+    this.load.spritesheet('bigSection2','./assets/tileMaps/bigMap3.png', {frameWidth: 640, frameHeight: 1280});
+    this.load.spritesheet('bigSection3','./assets/tileMaps/bigMap4.png', {frameWidth: 640, frameHeight: 1280});
+
+
     this.load.spritesheet('skin_Player', './assets/ImgsJuego/skin_Player.png', {frameWidth: 69, frameHeight: 97});
     this.load.spritesheet('skin_Toni', './assets/ImgsJuego/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
+    this.load.spritesheet('skin_Ruso', './assets/ImgsJuego/skin_Ruso.png', {frameWidth: 85, frameHeight: 182});
+    this.load.spritesheet('skin_Solterona', './assets/ImgsJuego/skin_MadreSoltera.png', {frameWidth: 85, frameHeight: 182});
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
 
+    //Carga salas 
     
     // ANIMACIONES
     // ¿Tiene que estar dentro de complete?
@@ -102,6 +119,7 @@ export default class Boot extends Phaser.Scene {
   }
 
   create() {
+    //escena de salas
     this.scene.start('MainScene');
   }
 }

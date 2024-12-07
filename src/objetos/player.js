@@ -18,7 +18,7 @@ export default class Player extends Character {
 
 
         this.play('idle');
-        this.piñaInCart = false;
+        this.piñaInCart = true;
         this.eDown = false;
         this.numItems = 5;
 
@@ -28,11 +28,25 @@ export default class Player extends Character {
         this.scene.events.on('tab', () => {this.shiftInventario()});
 
         // DEBUG DE INVENTARIO
-        // this.scene.events.on('randomInventory', () => {
+        // this.scene.events.on('randomInventory', (/**
+        //     * Constructor de la "máquina de estados"
+        //     * @param {Phaser.Scene} scene la escena donde vivirám todos los eventos relacionados con ganar/perder 
+        //     * @param {PositionObject} playerStartingPosition la posición a la que moverá el jugador al reiniciar la escena
+        //     */) => {
         //     for (let i = 0; i < 5; i++) {
         //         this.inventory[i] = Math.floor(Math.random() * 25);
         //     }
         // });
+
+        this.selfEsteem = 3;
+        this.scene.events.on("loseALife", () => this.loseSelfEsteem());
+
+        this.scene.events.on("actualizarInventoryCarro", ()=>{
+            this.piñaInCart = false;
+            for(let i = 0; i < this.inventory.length; ++i){
+                if(this.inventory[i] == 24) this.piñaInCart = true;
+            }
+        })
     }
 
     // Mueve los objetos del inventario
@@ -44,20 +58,14 @@ export default class Player extends Character {
         this.inventory[0] = temp;
 
         console.log('shiftInventario, player, mueve los objetos del inventario');
-        //console.log('shift: ', this.inventory);
+        //console.log('shift: ', this.inventory);        
+
         this.scene.events.emit('actualizarInventoryCarro');
     }
 
     preUpdate(t, dt){
-        super.preUpdate(t, dt);
 
-        //ANIMACIONES
-        if (this.body.velocity.x == 0 && this.body.velocity.y == 0){
-            if(this.anims.currentAnim.key !== 'idle'){
-                // console.log('idle');
-                this.play('idle');
-            }
-        }
+        super.preUpdate(t, dt);
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
             if(this.anims.currentAnim.key !== 'walk'){
                 // console.log('walk');
@@ -66,7 +74,8 @@ export default class Player extends Character {
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
-            this.scene.events.emit('tab');
+            this.scene.events.emit('tab');      
+
         }
         // DEBUG DE INVENTARIO
         // if (Phaser.Input.Keyboard.JustDown(this.uKey)) {
@@ -158,6 +167,12 @@ export default class Player extends Character {
         
         this.scene.events.emit('actualizarInventoryCarro');
 
+    }
+
+    loseSelfEsteem(){
+        this.selfEsteem--;
+        console.log(this.selfEsteem);
+        if(this.selfEsteem == 0) this.scene.events.emit("gameOver");
     }
     
 }

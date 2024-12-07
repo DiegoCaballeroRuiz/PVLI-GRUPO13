@@ -1,6 +1,4 @@
 /**Objeto que se encarga de abstraer la transmisión y escucha de eventos relacionados con ganar o perder la partida*/
-import CardContainer from "../objetos/cardContainer.js";
-
 export default class GameState{
     /**
      * Constructor de la "máquina de estados"

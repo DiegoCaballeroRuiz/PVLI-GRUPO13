@@ -49,7 +49,6 @@ export default class Carro extends Phaser.GameObjects.Container{
     }
 
 
-
     // Actualiza los items en pantalla
     actualizarInventoryCarro() {
         this.inventoryCarro = this.scene.player.inventory;
@@ -59,11 +58,6 @@ export default class Carro extends Phaser.GameObjects.Container{
             this.objects[i] = new Item(this.scene, this[`p${i + 1}`].x, this[`p${i + 1}`].y, this.inventoryCarro[i]);
             this.add(this.objects[i]);
         }
-        console.log('actualizarInventoryCarro, carro, actualiza los items en pantalla');
         //console.log(this.inventoryCarro);
-    }
-
-    funcionPrueba(){
-        console.log('funcionPrueba');
     }
 }
