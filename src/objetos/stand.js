@@ -35,30 +35,27 @@ export class Shelf extends Phaser.GameObjects.Sprite {
      * @param {Number} y La posición en y
      * @param {Number} itemIndex El item que tiene encima
      */
-    constructor(scene, x, y, itemIndex, isVertical) {
-        
+    constructor(scene, x, y, itemIndex_, isVertical) {
         super(scene, x, y, 'stand_sprite', 0);
-        if(itemIndex != -1)
-            this.scene.isItem[itemIndex] = true;
+        this.itemIndex = itemIndex_;
+        if(this.itemIndex != -1)
+            this.scene.isItem[this.itemIndex] = true;
         this.scene.add.existing(this);
-        this.startingItem = itemIndex;
-        if(itemIndex != -1) {
-            this.item = new Item(scene, x, y, itemIndex);
+        this.startingItem = this.itemIndex;
+        if(this.itemIndex != -1) {
+            this.item = new Item(scene, x, y, this.itemIndex);
             this.empty = false;
         }
         else this.empty = true;
         this.scene.physics.add.existing(this, true);
     }
-    updateItem(itemIndex) {
-        if (itemIndex == -1) {
-            this.empty = true;
+    updateItem(itemIndex_) {
+        this.itemIndex = itemIndex_;
+        if (this.item) {
             this.item.destroy();
         }
-        else {
-            this.item = new Item(this.scene, this.x, this.y, itemIndex);
-            this.empty = false;
-
-        } 
+        this.item = new Item(this.scene, this.x, this.y, this.itemIndex == -1 ? 25 : this.itemIndex);
+        this.empty = (this.itemIndex == -1 ? true : false);
     }
 
     resetShelf(){

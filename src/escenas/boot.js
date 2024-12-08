@@ -73,6 +73,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('background', './assets/ImgsJuego/background.png');
     this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
+    this.load.image('imagen_carro', './assets/ImgsJuego/carro.png');
     this.load.image('clockImage', './assets/ImgsJuego/clock.png');
     this.load.image('cardBackground', './assets/ImgsJuego/fondo_carta.png');
 
