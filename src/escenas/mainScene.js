@@ -139,7 +139,7 @@ export default class MainScene extends Phaser.Scene {
         this.player.body.setCollideWorldBounds(true);
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
-        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
+
         // Importante que player se cree antes que carro
         this.carro = new Carro(this, 0.75*this.win_width, 0.5*this.win_height, 0.17*this.win_width, 0.4*this.win_height, 1);
 
