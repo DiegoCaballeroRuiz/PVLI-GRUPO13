@@ -22,16 +22,17 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-
+        let gap = 320
+        this.win_width = /*this.sys.game.config.width*/ gap * 8;
+        this.win_height = /*this.sys.game.config.height*/ gap * 4;
+        this.physics.world.bounds.setSize(this.win_width, this.win_height)
         this.physics.world.setBoundsCollision(true, true, true, true);
-
+        
         this.cardContainer = new CardContainer(this);
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
-        let gap = 320
-        this.win_width = /*this.sys.game.config.width*/ gap * 8;
-        this.win_height = /*this.sys.game.config.height*/ gap * 4;
+      
 
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
