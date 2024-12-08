@@ -24,7 +24,7 @@ export default class MainScene extends Phaser.Scene {
     create() {
         let gap = 320
         this.win_width = /*this.sys.game.config.width*/ gap * 8;
-        this.win_height = /*this.sys.game.config.height*/ gap * 4;
+        this.win_height = /*this.sys.game.config.height*/ gap * 6;
         this.physics.world.bounds.setSize(this.win_width, this.win_height)
         this.physics.world.setBoundsCollision(true, true, true, true);
         
@@ -36,17 +36,22 @@ export default class MainScene extends Phaser.Scene {
 
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
+        //instancia la fruteria
+        this.fruitSection =  new Section(this, gap*4, gap, 'fruitSection');
+
+        //instancia las secciones grandes
         this.bigSections = []
         let sectionIndex = this.procedural(this.doArray(4), 1, 2);
         for (let i = 0; i < sectionIndex[0].length; i++){
-            this.bigSections[i] = new Section(this, gap + 1920 * i, 2*gap, 'bigSection'+ sectionIndex[0][i]);
+            this.bigSections[i] = new Section(this, gap + 1920 * i, 4*gap, 'bigSection'+ sectionIndex[0][i]);
         }
-        
+
+        //instancia las secciones pequeñas
         sectionIndex = this.procedural(this.doArray(6), 2, 2);
         this.littleSections = []
         for (let i = 0; i < sectionIndex.length; i++){
             for (let j = 0; j < sectionIndex[0].length; j++){
-                this.littleSections[i * sectionIndex[0].length + j] = new Section(this, 3*gap + 640 * i, gap + 640 * j, 'section'+ sectionIndex[i][j]);
+                this.littleSections[i * sectionIndex[0].length + j] = new Section(this, 3*gap + 640 * i, gap*3 + 640 * j, 'section'+ sectionIndex[i][j]);
             }
         }
 
@@ -133,7 +138,7 @@ export default class MainScene extends Phaser.Scene {
         // Inicializar objetos
 
 
-        let playerPosition = {x: this.win_width/2, y: this.win_height / 2};
+        let playerPosition = {x: this.win_width/2, y: this.win_height -gap};
         this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         this.physics.world.enable(this.player);
         this.player.body.setCollideWorldBounds(true);

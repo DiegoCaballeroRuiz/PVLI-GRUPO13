@@ -86,6 +86,8 @@ export default class Boot extends Phaser.Scene {
     for(let i = 0; i < 4; i++){
       this.loadSection('bigSection'+i, {frameWidth: 640, frameHeight: 1280});
     }
+    //crea la fruteria
+    this.loadSection('fruitSection', {frameWidth: 2560, frameHeight: 640});
 
     //declaracion de skins y sus respectivas animaciones
     //skinsAnims('Player');
