@@ -37,6 +37,7 @@ export default class Player extends Character {
         //     }
         // });
 
+        
         this.selfEsteem = 3;
         this.scene.events.on("loseALife", () => this.loseSelfEsteem());
 
