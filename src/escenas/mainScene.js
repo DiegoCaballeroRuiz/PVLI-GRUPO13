@@ -127,12 +127,11 @@ export default class MainScene extends Phaser.Scene {
 
 
         let playerPosition = {x: win_width/2, y: win_height / 2};
-        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
-
+        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*win_width, 0.5*win_height, 0.17*win_width, 0.4*win_height, 1);
+        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
@@ -157,25 +156,12 @@ export default class MainScene extends Phaser.Scene {
             character.body.setImmovable(true);//para que no puedas empujarlo
             return character.bump(player);
         })
-        
 
-        this.physics.add.overlap(this.player, this.allShelves, (obj1, obj2) => {
-
-            if(this.player.eDown) {
-                if(obj2.empty && this.player.numItems > 0) {
-                    obj2.updateItem(this.player.inventory[0].itemIndex);
-                    this.player.dropItem();
-                }
-                else if(!obj2.empty){
-                    this.player.pickItem(obj2.item);
-                    obj2.updateItem(-1);
-                }
-                //Actualizar inventario carro.
-                    this.player.eDown = false;
-                }
-
-                this.events.emit('actualizarInventoryCarro');
-        })
+        this.physics.add.overlap(this.player, this.allShelves, (player, shelf_collision) => {
+            if (Phaser.Input.Keyboard.JustDown(player.eKey)) {
+                this.events.emit('eManager', shelf_collision);
+            }
+        });
 
 
         // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
