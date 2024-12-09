@@ -71,37 +71,95 @@ export default class Boot extends Phaser.Scene {
       assetText.destroy();
     }); */
 
-    this.load.image('background', './media/background.png');
-    this.load.image('backgroundBig', './media/backgroundBig.png');
-    this.load.spritesheet('skin_Player', './media/skin_Player.png', {frameWidth: 69, frameHeight: 97});
-    this.load.spritesheet('skin_Toni', './media/skin_Toni.png', {frameWidth: 85, frameHeight: 182});
-    this.load.spritesheet('items_spritesheet','./media/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
-    this.load.spritesheet('stand_sprite','./media/stand_sprite.png', {frameWidth: 32, frameHeight: 32});
-
-
     
+    this.load.image('background', './assets/ImgsJuego/background.png');
+    this.load.image('backgroundBig', './assets/ImgsJuego/backgroundBig.png');
+    this.load.image('imagen_carro', './assets/ImgsJuego/carro.png');
+    this.load.image('clockImage', './assets/ImgsJuego/clock.png');
+    this.load.image('cardBackground', './assets/ImgsJuego/fondo_carta.png');
+
+    //crea las salas pequeñas
+    for(let i = 0; i < 6; i++){
+      this.loadSection('section'+i, {frameWidth: 640, frameHeight: 640});
+    }
+    //crea las salas grandes
+    for(let i = 0; i < 4; i++){
+      this.loadSection('bigSection'+i, {frameWidth: 640, frameHeight: 1280});
+    }
+    //crea la fruteria
+    this.loadSection('fruitSection', {frameWidth: 2560, frameHeight: 640});
+
+    //declaracion de skins y sus respectivas animaciones
+    //skinsAnims('Player');
+    this.skinsAnims('Toni');
+    this.skinsAnims('Ruso');
+    this.skinsAnims('MadreSoltera');
+    this.skinsAnims('Default');
+    this.skinsAnims('Pijo');
+    this.load.spritesheet('skin_???', './assets/ImgsJuego/skin_undefined.png', {frameWidth: 85, frameHeight: 182});
+    //esto es necesario, porque el archivo no se puede llamar '???.png'
+    this.load.on('complete', () => {
+      this.anims.create({
+        key: 'walk_???',
+        frames: this.anims.generateFrameNumbers('skin_???', {start:2, end:1}),
+        frameRate: 5,
+        repeat: -1
+      });
+  
+      this.anims.create({
+      key: 'idle_???',
+      frames: [{ key: 'skin_???', frame: 1 }],
+      frameRate: 1,
+      repeat: -1
+      });
+    });
+
+    this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
+    this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
+    //Carga salas 
+
     // ANIMACIONES
     // ¿Tiene que estar dentro de complete?
     // Creamos las animaciones de las skins, hay que refactorizar esto para que cargue las animaciones de todas las skins
     // Crear una sola configuracion y un bucle para cargar todas?
+  }
+
+  create() {
+    //escena de salas
+    this.scene.start('MainScene');
+  }
+
+  /** 
+   * @param {String} key el nombre que tiene la skin en el cu archivo quitando 'skin_'
+   */
+  skinsAnims(key){
+    let ubicacion =('./assets/ImgsJuego/skin_'+key+'.png');
+    let spriteKey = ('skin_'+key);
+    this.load.spritesheet(spriteKey, ubicacion, {frameWidth: 85, frameHeight: 182});
+   
+    
     this.load.on('complete', () => {
       this.anims.create({
-        key: 'walk',
-        frames: this.anims.generateFrameNumbers('skin_Toni', {start:2, end:1}),
+        key: 'walk_'+key,
+        frames: this.anims.generateFrameNumbers(spriteKey, {start:2, end:1}),
         frameRate: 5,
         repeat: -1
       });
-
+  
       this.anims.create({
-      key: 'idle',
-      frames: [{ key: 'skin_Toni', frame: 1 }],
+      key: 'idle_'+key,
+      frames: [{ key: spriteKey, frame: 1 }],
       frameRate: 1,
       repeat: -1
       });
     });
   }
 
-  create() {
-    this.scene.start('MainScene');
+  /**
+   * @param {String} name el nombre del archivo
+   * @param {{frameWidth: Number, frameHeight:Number}} size 
+   */
+  loadSection(name, size){
+    this.load.spritesheet(name,'./assets/tileMaps/'+ name +'.png', size);
   }
 }

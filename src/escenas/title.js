@@ -1,15 +1,21 @@
+//import CardContainer from "../objetos/cardContainer.js";
+
 export default class Title extends Phaser.Scene{
     constructor(){
         super({key: 'Title'});
     }
 
     preload(){
-        this.load.image('button_base', './media/button.png');
-        this.load.image('gameTitle', './media/logoProvisional.png');
-        this.load.image('congelados', './media/congelados.jpeg');
+        this.load.image('button_base', './assets/ImgsJuego/button.png');
+        this.load.image('gameTitle', './assets/ImgsJuego/logoProvisional.png');
+        this.load.image('congelados', './assets/ImgsJuego/congelados.jpeg');
     }
 
     create(){
+        // en caso de querer escuchar las cartas en el title, crear container y leer memoria
+        // this.cardContainer = new CardContainer(this);
+        // this.events.emit('leerCartas'); //se guarda en this.cardContainer.cards
+        
         const {width, height} = this.scale;
 
         // -> Imagen de fondo
