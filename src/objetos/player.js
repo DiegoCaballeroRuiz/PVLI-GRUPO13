@@ -48,7 +48,7 @@ export default class Player extends Character {
                 if(this.inventory[i] == 24) this.piñaInCart = true;
             }
         })
-
+        
         // El objeto en el hueco interactuable es el inventory[0]
         this.scene.events.on('eManager', (shelf_collision)=>{
 
@@ -60,7 +60,7 @@ export default class Player extends Character {
                     numElems++;
                 }
             }
-            
+            //console.log('numElems: ', numElems);
 
             // Drop item:
             if (shelf_collision.itemIndex == -1 && numElems > 0) {
@@ -69,6 +69,9 @@ export default class Player extends Character {
                 let temp = this.inventory[0];
                 this.inventory[0] = -1;
                 if (temp != -1) this.scene.events.emit('tab');
+                
+                // console.log('drop item');
+                // console.log('inventory: ', this.inventory);
             }
             // Pick item:
             // Asegurarse de que el inventario no esté lleno
@@ -77,17 +80,27 @@ export default class Player extends Character {
                 for (let i = 0; i < this.inventory.length; i++) {
                     if (this.inventory[i] == -1) {
                         this.inventory[i] = shelf_collision.itemIndex;
+                        // console.log('this.inventory[i]: ' + this.inventory[i]);
+                        // console.log(shelf_collision);
                         break;
                     }
                 }
                 // Después de recoger el item, actualizar estanteria a -1
                 shelf_collision.updateItem(-1);
+
+                
+                // console.log('pick item');
+                // console.log('inventory: ', this.inventory);
             }
             // Si lo está, intercambiar el item con el de la estantería
             else if (shelf_collision.itemIndex != -1 && numElems == 5) {
                 let temp = this.inventory[0];
                 this.inventory[0] = shelf_collision.itemIndex;
                 shelf_collision.updateItem(temp);
+
+                
+                // console.log('swap item');
+                // console.log('inventory: ', this.inventory);
             }
 
             // Asegurar que siempre hay un objeto en la mano (comprueba si no está vacio)
