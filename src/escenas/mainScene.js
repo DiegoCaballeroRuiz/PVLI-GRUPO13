@@ -202,6 +202,12 @@ export default class MainScene extends Phaser.Scene {
     resetSceneWithout(NPC){
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
     }
+
+    pauseScene(){
+        this.scene.launch("Pause");
+        this.scene.pause();
+    }
+    
     /**
      * 
      * @param {Any[]} array 
