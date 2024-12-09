@@ -20,7 +20,7 @@ export default class Player extends Character {
         this.escKey = this.scene.input.keyboard.addKey("ESC");
 
         this.play('idle_'+name);
-        this.piñaInCart = true;
+        this.piñaInCart = false;
 
         this.body.setMass(0.1);
         this.body.setBounce(1,1); //evita un bug visual a la hora de chocarse contra los estantes
