@@ -131,7 +131,7 @@ export default class MainScene extends Phaser.Scene {
         ]
         for(let i = 0; i < usableCharacters.length; i++){
             this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name);
-            this.physics.world.enable(npc[i]);
+            this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
 
@@ -181,9 +181,9 @@ export default class MainScene extends Phaser.Scene {
 
         // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
         this.physics.add.collider(this.player, this.allShelves);
-        for(let i = 0; i < npc.length; i++){
+        for(let i = 0; i < this.npcs.length; i++){
             this.physics.add.collider(this.npcs[i], this.allShelves, () => {
-                npc[i].body.setImmovable(false);//para que no atraviese las estanterias
+                this.npcs[i].body.setImmovable(false);//para que no atraviese las estanterias
             }); 
         }
 
@@ -202,8 +202,7 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 
         let toRemoveIndex = this.npcs.indexOf(NPC);
-        (npcs[toRemoveIndex], npcs[this.npcs.length - 1]) = (npcs[this.npcs.length - 1], npcs(toRemoveIndex));
-        this.npcs.pop();
+        if(toRemoveIndex != -1) this.npcs.splice(toRemoveIndex, 1);
     }
 
     pauseScene(){

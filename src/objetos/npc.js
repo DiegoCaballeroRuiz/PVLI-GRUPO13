@@ -36,6 +36,8 @@ export default class NPC extends Character{
         this.checkBoxParagraphPairs = [];
 
         this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
+
+        this.canBump = true;
     }
 
     preUpdate(t, dt){
@@ -93,12 +95,20 @@ export default class NPC extends Character{
      * @param {Character} other El personaje con el que se choca 
      */
     bump(other){ //-> COLISIONES - Método que hace a un npc hablar o comparar inventarios
+        if(!this.canBump) return;
+
         if(!other instanceof Player) return; //Si no se colisiona con el jugador, no habla ni compara inventarios
 
         if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
             this.talk();
             return;
         }
+
+        this.canBump = false;
+        this.scene.time.addEvent({
+            delay: 1000, //ms
+            callback: () => { this.canBump = true; console.log("Timer end");}
+        })
 
         let sameInventory = this.inventory.every(item => other.inventory.includes(item))
 
