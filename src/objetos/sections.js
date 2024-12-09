@@ -103,20 +103,22 @@ export default class Section extends Phaser.GameObjects.Sprite{
             this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * gap, this.y + standSpawn[i].y * gap, items[i], Math.round(Math.random()))
         }
     }
+
+    //T= tiene sus objetos, F= no tiene sus objetos
     itemSection = [
-        [0, 1, 2],
-        [4, 5, 6],
-        [8, 9, 10],
-        [12, 13, 14],
+        [0, 5, 2],      //Carnicería F
+        [2, 9, 12],     //Pescadería F
+        [3, 14, 20],    //Panadería F
+        [15, 6, 10],    //Comidas preparadas F
 
-        [16, 18],
-        [22, 16],//apartir de aqui se repiten los items porque no tenemos mas sprites
-        [1, 15],
-        [3, 5],
-        [7, 8],
-        [10, 11],
+        [1, 18],        //Lacteos T
+        [11, 16],       //Desayunos F
+        [4, 8],         //Alcohol T
+        [13, 14],       //Congelados T
+        [7, 20],        //Limpieza F
+        [22, 4],        //Parafarmacia F
 
-        [20, 8, 24, 6]
+        [14, 8, 24, 6]  //Frutería F
     ]
     
 }

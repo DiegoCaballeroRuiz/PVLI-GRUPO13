@@ -243,14 +243,15 @@ export default class MainScene extends Phaser.Scene {
     isItem = [];//matriz de booleanos que permite identificar si esta el item que buscamos
 }
 
+////T= tiene sus objetos, F= no tiene sus objetos
 var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [0, 7, 15]},
-    character1: {name: 'MadreSoltera', itemIndex: [1, 8, 16]},
-    character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
-    character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
-    character4: {name: 'Default', itemIndex: [4, 11, 19]},
-    character5: {name: 'Ruso', itemIndex: [5, 12, 20]},
-    character6: {name: 'MadreSoltera', itemIndex: [6, 13, 0]},
-    character7: {name: 'Toni', itemIndex: [14, 22, 1]},
+    character0: {name: 'Toni', itemIndex: [0, 7, 15]},          //
+    character1: {name: 'MadreSoltera', itemIndex: [1, 8, 16]},  //
+    character2: {name: 'Ruso', itemIndex: [2, 9, 17]},          //
+    character3: {name: 'Pijo', itemIndex: [3, 10, 18]},         //
+    character4: {name: 'Default', itemIndex: [4, 11, 19]},      //
+    character5: {name: 'Ruso', itemIndex: [5, 12, 20]},         //
+    character6: {name: 'MadreSoltera', itemIndex: [6, 13, 0]},  //
+    character7: {name: 'Toni', itemIndex: [14, 22, 1]},         //
     length: 8
 }
