@@ -17,7 +17,18 @@ export default class Section extends Phaser.GameObjects.Sprite{
         
         let items = [];
         let standSpawn = [];
-        if(Room === 'bigSection1' || Room === 'bigSection2' || Room === 'bigSection3' || Room === 'bigSection0'){
+        if(Room === 'fruitSection'){
+            items = this.itemSection[10];
+            this.itemIndexes = items;
+            items = [[-1, -1, -1, -1],
+                     items,
+                     [-1, -1, -1, -1],
+                     [-1, -1, -1, -1]
+                    ];
+            shuffle(items);
+            standSpawn = [{x:-12,y:0}, {x:-26, y:-4},{x:12, y:0}, {x:26, y:-4}];
+        }
+        else if(Room === 'bigSection1' || Room === 'bigSection2' || Room === 'bigSection3' || Room === 'bigSection0'){
             switch(Room){
                 case 'bigSection1':
                     items = this.itemSection[1];
@@ -39,6 +50,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
                     items = [-1, -1, -1, -1]
                     console.log('No se ha podido cargar: ' + Room);
             }
+            items.push(-1);
             this.itemIndexes = items;
             items = [[-1, -1, -1],
                      items,
@@ -77,6 +89,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
                     items = [-1, -1, -1]
                     console.log('No se ha podido cargar: ' + Room);
             }
+            items.push(-1);
             this.itemIndexes = items;
             items = [items,
                         [-1, -1, -1]
@@ -91,17 +104,19 @@ export default class Section extends Phaser.GameObjects.Sprite{
         }
     }
     itemSection = [
-        [0, 1, 2, 3],
-        [4, 5, 6, 7],
-        [8, 9, 10, 11],
-        [12, 13, 14, 15],
-
-        [16, 18, 20],
-        [22, 24, 0],//apartir de aqui se repiten los items porque no tenemos mas sprites
-        [1, 2, 3],
+        [0, 1, 2],
         [4, 5, 6],
-        [7, 8, 9],
-        [10, 11, 12],
+        [8, 9, 10],
+        [12, 13, 14],
+
+        [16, 18],
+        [22, 16],//apartir de aqui se repiten los items porque no tenemos mas sprites
+        [1, 15],
+        [3, 5],
+        [7, 8],
+        [10, 11],
+
+        [20, 8, 24, 6]
     ]
     
 }

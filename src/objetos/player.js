@@ -6,7 +6,7 @@ export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
         
-
+        
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');
@@ -37,6 +37,7 @@ export default class Player extends Character {
         //     }
         // });
 
+        
         this.selfEsteem = 3;
         this.scene.events.on("loseALife", () => this.loseSelfEsteem());
 
@@ -58,7 +59,7 @@ export default class Player extends Character {
                     numElems++;
                 }
             }
-            console.log('numElems: ', numElems);
+            
 
             // Drop item:
             if (shelf_collision.itemIndex == -1 && numElems > 0) {
@@ -67,9 +68,6 @@ export default class Player extends Character {
                 let temp = this.inventory[0];
                 this.inventory[0] = -1;
                 if (temp != -1) this.scene.events.emit('tab');
-                
-                console.log('drop item');
-                console.log('inventory: ', this.inventory);
             }
             // Pick item:
             // Asegurarse de que el inventario no esté lleno
@@ -78,27 +76,17 @@ export default class Player extends Character {
                 for (let i = 0; i < this.inventory.length; i++) {
                     if (this.inventory[i] == -1) {
                         this.inventory[i] = shelf_collision.itemIndex;
-                        console.log('this.inventory[i]: ' + this.inventory[i]);
-                        console.log(shelf_collision);
                         break;
                     }
                 }
                 // Después de recoger el item, actualizar estanteria a -1
                 shelf_collision.updateItem(-1);
-
-                
-                console.log('pick item');
-                console.log('inventory: ', this.inventory);
             }
             // Si lo está, intercambiar el item con el de la estantería
             else if (shelf_collision.itemIndex != -1 && numElems == 5) {
                 let temp = this.inventory[0];
                 this.inventory[0] = shelf_collision.itemIndex;
                 shelf_collision.updateItem(temp);
-
-                
-                console.log('swap item');
-                console.log('inventory: ', this.inventory);
             }
 
             // Asegurar que siempre hay un objeto en la mano (comprueba si no está vacio)
@@ -117,16 +105,13 @@ export default class Player extends Character {
         for (let i = 0; i < 4; i++){
             this.inventory[i] = this.inventory[i + 1];
         }
-        this.inventory[4] = temp;
-
-        console.log('shiftInventario, player, mueve los objetos del inventario');
-        //console.log('shift: ', this.inventory);        
+        this.inventory[4] = temp;     
 
         this.scene.events.emit('actualizarInventoryCarro');
     }
 
     preUpdate(t, dt){
-
+        //if(x > 0 && y > 0 && x < this.scene.win_width && y < this.scene.win_width)return;
         super.preUpdate(t, dt);
         if (this.body.velocity.x != 0 || this.body.velocity.y != 0){
             if(this.anims.currentAnim.key !== 'walk_'+this.name){
@@ -148,8 +133,6 @@ export default class Player extends Character {
         //     this.scene.events.emit('randomInventory');
         //     this.scene.events.emit('actualizarInventoryCarro');
         // }
-
-        //console.log(this.body.offset.x, this.body.offset.y);
 
         //TIPO MOVIMIENTO 2 (movimiento unicamente H o V)
         if(this.aKey.isDown){
