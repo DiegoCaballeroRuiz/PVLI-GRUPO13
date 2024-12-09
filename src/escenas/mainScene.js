@@ -146,7 +146,7 @@ export default class MainScene extends Phaser.Scene {
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
 
         // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*this.win_width, 0.5*this.win_height, 0.17*this.win_width, 0.4*this.win_height, 1);
+        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
