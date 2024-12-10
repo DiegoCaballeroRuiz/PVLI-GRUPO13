@@ -256,17 +256,17 @@ export default class MainScene extends Phaser.Scene {
 
 ////T= tiene sus objetos, F= no tiene sus objetos
 var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [18, 17, 5]},         //T
-    character1: {name: 'MadreSoltera', itemIndex: [1, 20, 8]},  //T
-    character2: {name: 'Ruso', itemIndex: [4, 9, 17]},          //F
+    character0: {name: 'Toni', itemIndex: [18, 17, 12]},        //T
+    character1: {name: 'MadreSoltera', itemIndex: [1, 7, 8]},   //T
+    character2: {name: 'Ruso', itemIndex: [4, 9, 17]},          //T
     character3: {name: 'Pijo', itemIndex: [2, 8, 5]},           //T
-    character4: {name: 'Default', itemIndex: [13, 14, 11]},     //Estudiante T
-    character5: {name: 'Default', itemIndex: [6, 15, 20]},      //Trabajador de oficina F
+    character4: {name: 'Default', itemIndex: [13, 10, 11]},     //Estudiante T
+    character5: {name: 'Default', itemIndex: [6, 15, 7]},       //Trabajador de oficina F
     character6: {name: 'Default', itemIndex: [17, 13, 0]},      //Gym bro F
-    character7: {name: 'Default', itemIndex: [14, 22, 6]},      //Gótica F
+    character7: {name: 'Default', itemIndex: [11, 22, 6]},      //Gótica T
     character8: {name: 'Default', itemIndex: [3, 22, 6]},       //Policía F
     character9: {name: 'Default', itemIndex: [3, 9, 6]},        //Chef F
-    character10: {name: 'Default', itemIndex: [4, 3, 5]},       //Payaso F
+    character10: {name: 'Default', itemIndex: [4, 3, 11]},      //Payaso T
     character11: {name: 'Default', itemIndex: [0, 7, 18]},      //Vagabundo F
     length: 12
 }
