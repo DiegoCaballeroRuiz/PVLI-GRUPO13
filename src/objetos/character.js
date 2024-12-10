@@ -4,7 +4,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
         this.setOrigin(0.5, 0.5);
 
 
-        this.name = 'skin_'+name;
+        this.name = name;
         this.setPosition(x, y);
         this.velocity = {vx:200, vy:200}; //no es necesario, phaser maneja las velocidades con las fisicas
 
