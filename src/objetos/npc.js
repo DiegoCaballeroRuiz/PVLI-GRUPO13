@@ -3,9 +3,9 @@ import Player from "./player.js";
 
 export default class NPC extends Character{
     
-    constructor(scene, x, y, name, dialogsList){
+    constructor(scene, x, y, name, dialogsList, queueHandler){
         super(scene, x, y, name);
-        //this.name =name;
+        this.queueHandler = queueHandler;
         this.addDialogs(dialogsList);
         
         this.velocity.vx -= this.velocity.vx * 0.75;
@@ -32,8 +32,6 @@ export default class NPC extends Character{
 
         //*Para hablar
         this.listHTML = document.getElementById('checks')
-        this.numberOfPhrasesAdded = 0;
-        this.checkBoxParagraphPairs = [];
 
         this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
 
@@ -56,16 +54,7 @@ export default class NPC extends Character{
                 // console.log('walk');
                 this.play('walk_'+this.name);
             }
-        }
-
-        // -> LISTA DE LA COMPRA: actualiza las frases que ha dicho en el HTML si han sido tachadas
-        for(let i = 0; i < this.checkBoxParagraphPairs.length; ++i){
-            var checkbox = document.getElementById(this.checkBoxParagraphPairs[i].checkboxID);
-            var paragraph = document.getElementById(this.checkBoxParagraphPairs[i].paragraphID);
-
-            if(checkbox.checked) paragraph.classList.add('checked');
-            else paragraph.classList.remove('checked');
-        }
+        } 
     }
 
     /**
@@ -107,7 +96,7 @@ export default class NPC extends Character{
         this.canBump = false;
         this.scene.time.addEvent({
             delay: 1000, //ms
-            callback: () => { this.canBump = true; console.log("Timer end");}
+            callback: () => { this.canBump = true;}
         })
 
         let sameInventory = this.inventory.every(item => other.inventory.includes(item))
@@ -117,21 +106,10 @@ export default class NPC extends Character{
     }
 
     talk(){
-        if(this.numberOfPhrasesAdded >= this.dialogs.length) return;
-
-        //Crear las partes del nuevo elemento HTML
-        var IDToUse = "" + this.name + this.numberOfPhrasesAdded;
-        var pID = IDToUse + "p";
-        var cID = IDToUse + "c";
-        var phraseToUse = newRandomArrayElement(this.dialogs);
+        var phraseToUse = this.randomArrayElement(this.dialogs);
 
         //Insertar el nuevo elemento
-        var HTMLelement = "<p id='" + pID + "'><input type='checkbox' id='" + cID + "'>" + phraseToUse + "</p>";
-        this.listHTML.innerHTML += "" + HTMLelement;
-
-        //Guardar el checkbox y el paragraph del nuevo elemento para poder tachar y destachar el texto
-        var pair = {checkboxID: cID, paragraphID: pID}
-        this.checkBoxParagraphPairs.push(pair);
+        this.queueHandler.addDialog(phraseToUse);
         this.numberOfPhrasesAdded++;
     }
     load(){
@@ -151,20 +129,11 @@ export default class NPC extends Character{
             });
           });
     }
+
+    randomArrayElement(arr) {
+        var randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
 }
 
-let indexList = [];
-function newRandomArrayElement(arr) {
-    var randomIndex = -1; 
-    do{
-        randomIndex = Math.floor(Math.random() * arr.length);
-    } while(arrContains(indexList, randomIndex));
 
-    indexList.push(randomIndex);
-    return arr[randomIndex];
-}
-
-function arrContains(arr, e){
-    for(let i = 0; i < arr.length; ++i) if(arr[i] == e) return true;
-    return false;
-}
