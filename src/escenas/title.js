@@ -38,7 +38,7 @@ export default class Title extends Phaser.Scene{
 
         
         playButton.on('pointerdown', ()=>{
-            this.scene.start('Boot');
+            this.scene.start('MainScene');
         })
 
         // -> Botón 'options'
