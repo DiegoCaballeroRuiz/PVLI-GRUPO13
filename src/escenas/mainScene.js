@@ -5,12 +5,22 @@ import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
-import CardContainer from "../objetos/cardContainer.js";
 import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
+        this.charactersItems = {
+            character0: {name: 'Toni', itemIndex: [0, 7, 15]},
+            character1: {name: 'Solterona', itemIndex: [1, 8, 16]},
+            character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
+            character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
+            character4: {name: 'Default', itemIndex: [4, 11, 19]},
+            character5: {name: 'Ruso', itemIndex: [5, 12, 20]},
+            character6: {name: 'Solterona', itemIndex: [6, 13, 0]},
+            character7: {name: 'Toni', itemIndex: [14, 22, 1]},
+            length: 8
+        }
         this.player;
     }
 
@@ -28,8 +38,7 @@ export default class MainScene extends Phaser.Scene {
         this.win_height = /*this.sys.game.config.height*/ gap * 6;
         this.physics.world.bounds.setSize(this.win_width, this.win_height)
         this.physics.world.setBoundsCollision(true, true, true, true);
-        
-        this.cardContainer = new CardContainer(this);
+
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
@@ -61,14 +70,14 @@ export default class MainScene extends Phaser.Scene {
 
         //busca los npcs compatimbles con el escenario generado
         let usableCharacters =[];
-        for(let i = 0; i < charactersItems.length; i++){
+        for(let i = 0; i < this.charactersItems.length; i++){
             let j = 0;
-            let char = charactersItems['character'+i].itemIndex;
+            let char = this.charactersItems['character'+i].itemIndex;
             while(j < char.length && this.isItem[char[j]]){
                 j++;
             }
             if(j === char.length && this.isItem[char[j-1]]){
-                usableCharacters.push(charactersItems['character'+i]);
+                usableCharacters.push(this.charactersItems['character'+i]);
             }
         }
 
@@ -216,6 +225,13 @@ export default class MainScene extends Phaser.Scene {
         this.scene.launch("Pause");
         this.scene.pause();
     }
+
+    CardMenuOpen(){
+        this.scene.launch("CardMenu");
+    }
+    CardMenuClose(){
+        this.scene.stop('CardMenu')
+    }
     
     /**
      * 
@@ -256,16 +272,4 @@ export default class MainScene extends Phaser.Scene {
     }
 
     isItem = [];//matriz de booleanos que permite identificar si esta el item que buscamos
-}
-
-var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [0, 7, 15]},
-    character1: {name: 'MadreSoltera', itemIndex: [1, 8, 16]},
-    character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
-    character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
-    character4: {name: 'Default', itemIndex: [4, 11, 19]},
-    character5: {name: 'Ruso', itemIndex: [5, 12, 20]},
-    character6: {name: 'MadreSoltera', itemIndex: [6, 13, 0]},
-    character7: {name: 'Toni', itemIndex: [14, 22, 1]},
-    length: 8
 }

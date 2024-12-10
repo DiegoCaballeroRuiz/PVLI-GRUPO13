@@ -93,7 +93,7 @@ export default class Boot extends Phaser.Scene {
     //skinsAnims('Player');
     this.skinsAnims('Toni');
     this.skinsAnims('Ruso');
-    this.skinsAnims('MadreSoltera');
+    this.skinsAnims('Solterona');
     this.skinsAnims('Default');
     this.skinsAnims('Pijo');
     this.load.spritesheet('skin_???', './assets/ImgsJuego/skin_undefined.png', {frameWidth: 85, frameHeight: 182});
@@ -126,7 +126,7 @@ export default class Boot extends Phaser.Scene {
 
   create() {
     //escena de salas
-    this.scene.start('Title');
+    this.scene.start('MainScene');
   }
 
   /** 

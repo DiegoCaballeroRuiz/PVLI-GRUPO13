@@ -7,11 +7,11 @@ export default class CardContainer  {
     console.log('this.cards: ' + this.cards);
 
     // Al principio de la partida
-    scene.events.on('leerCartas', () => {
+    this.scene.events.on('leerCartas', () => {
       this.cards = JSON.parse(localStorage.getItem('cartas_memoria')) || [];
     });
     // Al modificar las cartas
-    scene.events.on('guardarCartas', (card_) => {
+    this.scene.events.on('guardarCartas', (card_) => {
       //actualizar el array ingame
       console.log('guardando ' + card_);
       this.cards.push(card_);

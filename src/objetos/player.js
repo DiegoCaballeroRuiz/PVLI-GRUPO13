@@ -12,6 +12,7 @@ export default class Player extends Character {
 		this.sKey = this.scene.input.keyboard.addKey('S');
 		this.dKey = this.scene.input.keyboard.addKey('D');
         this.eKey = this.scene.input.keyboard.addKey('E');
+        this.fKey = this.scene.input.keyboard.addKey('F');
 
         this.iKey = this.scene.input.keyboard.addKey('I');
 		this.uKey = this.scene.input.keyboard.addKey('U');
@@ -136,6 +137,12 @@ export default class Player extends Character {
 
         if (Phaser.Input.Keyboard.JustDown(this.tabKey)) {
             this.scene.events.emit('tab');
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.fKey)) {
+            this.scene.CardMenuOpen();
+        }
+        if (Phaser.Input.Keyboard.JustUp(this.fKey)) {
+            this.scene.CardMenuClose();
         }
         // DEBUG DE INVENTARIO
         // if (Phaser.Input.Keyboard.JustDown(this.uKey)) {

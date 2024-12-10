@@ -97,7 +97,7 @@ El jugador trata de un cliente de Mercadona que acude al supermercado para inten
 
 Clientes
 Los clientes estarán en algunas salas y serán los pretendientes a conquistar. Los clientes son los siguientes.
-Madre Soltera: leche, detergente y vino.
+Solterona: leche, detergente y vino.
 Ruso: Vodka, ternera y condones.
 Estudiante: Helado, cereales y pizza.
 Pijo: Salmón, vino y ternera.
