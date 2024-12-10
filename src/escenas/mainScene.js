@@ -6,6 +6,7 @@ import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
 import CardContainer from "../objetos/cardContainer.js";
+import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -32,7 +33,9 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
-      
+        
+        //-> Instanciar el gestor de cola de diálogos
+        this.dialogQueueHandler = new DialogQueueHandler(6);
 
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
@@ -130,8 +133,8 @@ export default class MainScene extends Phaser.Scene {
             {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
-            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name);
-            this.physics.world.enable(npc[i]);
+            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], this.dialogQueueHandler);
+            this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
 
@@ -146,7 +149,7 @@ export default class MainScene extends Phaser.Scene {
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
 
         // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*this.win_width, 0.5*this.win_height, 0.17*this.win_width, 0.4*this.win_height, 1);
+        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
@@ -181,9 +184,9 @@ export default class MainScene extends Phaser.Scene {
 
         // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
         this.physics.add.collider(this.player, this.allShelves);
-        for(let i = 0; i < npc.length; i++){
+        for(let i = 0; i < this.npcs.length; i++){
             this.physics.add.collider(this.npcs[i], this.allShelves, () => {
-                npc[i].body.setImmovable(false);//para que no atraviese las estanterias
+                this.npcs[i].body.setImmovable(false);//para que no atraviese las estanterias
             }); 
         }
 
@@ -202,8 +205,7 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 
         let toRemoveIndex = this.npcs.indexOf(NPC);
-        (npcs[toRemoveIndex], npcs[this.npcs.length - 1]) = (npcs[this.npcs.length - 1], npcs(toRemoveIndex));
-        this.npcs.pop();
+        if(toRemoveIndex != -1) this.npcs.splice(toRemoveIndex, 1);
     }
 
     pauseScene(){
