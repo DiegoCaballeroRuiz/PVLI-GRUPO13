@@ -6,6 +6,7 @@ import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
 import CardContainer from "../objetos/cardContainer.js";
+import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -32,7 +33,9 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
-      
+        
+        //-> Instanciar el gestor de cola de diálogos
+        this.dialogQueueHandler = new DialogQueueHandler(6);
 
         let bg = this.add.image(0,0,'backgroundBig').setOrigin(0,0);
 
@@ -130,7 +133,7 @@ export default class MainScene extends Phaser.Scene {
             {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
-            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name);
+            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], this.dialogQueueHandler);
             this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
@@ -202,8 +205,7 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 
         let toRemoveIndex = this.npcs.indexOf(NPC);
-        //(this.npcs[toRemoveIndex], this.npcs[this.npcs.length - 1]) = (this.npcs[this.npcs.length - 1], this.npcs(toRemoveIndex));
-        this.npcs.pop();
+        if(toRemoveIndex != -1) this.npcs.splice(toRemoveIndex, 1);
     }
 
     pauseScene(){
