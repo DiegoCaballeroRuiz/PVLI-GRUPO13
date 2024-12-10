@@ -39,6 +39,6 @@ export default class GameState{
         this.scene.events.emit('actualizarInventoryCarro');
 
         //-> Mostrar el mensaje de enhorabuena
-        //...
+        this.scene.scene.launch("VictoryCanvas", NPC.name);
     }
 }
