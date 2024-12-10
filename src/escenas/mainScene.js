@@ -217,7 +217,7 @@ export default class MainScene extends Phaser.Scene {
      * @param {Number} fils numero final de filas de la matriz resultante, si no se devolvera un array vacio
      * @param {Number} cols numero de columnas de la matriz resultante, si es cero se devolvera una array simple
      * @returns devuelve una matriz de tamaño fils * cols
-     */
+     */ 
     procedural(array, fils, cols){
         if(fils == 0) return[];
         for(let i = 0; i < array.length; i++){
@@ -254,13 +254,13 @@ export default class MainScene extends Phaser.Scene {
 
 ////T= tiene sus objetos, F= no tiene sus objetos
 var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [18, 9, 5]},          //F
+    character0: {name: 'Toni', itemIndex: [18, 17, 5]},         //T
     character1: {name: 'MadreSoltera', itemIndex: [1, 20, 8]},  //T
     character2: {name: 'Ruso', itemIndex: [4, 9, 17]},          //F
     character3: {name: 'Pijo', itemIndex: [2, 8, 5]},           //T
     character4: {name: 'Default', itemIndex: [13, 14, 11]},     //Estudiante T
     character5: {name: 'Default', itemIndex: [6, 15, 20]},      //Trabajador de oficina F
-    character6: {name: 'Default', itemIndex: [3, 13, 0]},       //Gym bro F
+    character6: {name: 'Default', itemIndex: [17, 13, 0]},      //Gym bro F
     character7: {name: 'Default', itemIndex: [14, 22, 6]},      //Gótica F
     character8: {name: 'Default', itemIndex: [3, 22, 6]},       //Policía F
     character9: {name: 'Default', itemIndex: [3, 9, 6]},        //Chef F

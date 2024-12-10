@@ -6,7 +6,7 @@ export default class Player extends Character {
     constructor(scene, x, y, name){
         super(scene, x, y, name);
         
-        
+        console.log(this.frame.texture.frames[0])
 		this.wKey = this.scene.input.keyboard.addKey('W');
 		this.aKey = this.scene.input.keyboard.addKey('A');
 		this.sKey = this.scene.input.keyboard.addKey('S');

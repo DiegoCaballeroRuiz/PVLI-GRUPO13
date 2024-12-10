@@ -14,7 +14,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, Room){
         super(scene, x, y, Room);
         this.scene.add.existing(this);
-        
+
         let items = [];
         let standSpawn = [];
         if(Room === 'fruitSection'){
@@ -116,7 +116,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
         [4, 8],         //Alcohol T
         [13, 14],       //Congelados T
         [7, 20],        //Limpieza F
-        [22, 4],        //Parafarmacia F
+        [22, 17],        //Parafarmacia T
 
         [14, 8, 24, 6]  //Frutería F
     ]
