@@ -13,10 +13,7 @@ export default class MainScene extends Phaser.Scene {
         super({key: 'MainScene'});
         this.player;
     }
-
-    init(){
-
-    }
+    init(){}
 
     preload() {
 
@@ -134,6 +131,7 @@ export default class MainScene extends Phaser.Scene {
         ]
         for(let i = 0; i < usableCharacters.length; i++){
             this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], this.dialogQueueHandler);
+            this.npcs[i].addDialogs(charactersItems["character" + i].phrases);
             this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
@@ -256,17 +254,17 @@ export default class MainScene extends Phaser.Scene {
 
 ////T= tiene sus objetos, F= no tiene sus objetos
 var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [18, 17, 12]},        //T
-    character1: {name: 'MadreSoltera', itemIndex: [1, 7, 8]},   //T
-    character2: {name: 'Ruso', itemIndex: [4, 9, 17]},          //T
-    character3: {name: 'Pijo', itemIndex: [2, 8, 5]},           //T
-    character4: {name: 'Default', itemIndex: [13, 10, 11]},     //Estudiante T
-    character5: {name: 'Default', itemIndex: [6, 15, 7]},       //Trabajador de oficina F
-    character6: {name: 'Default', itemIndex: [17, 13, 0]},      //Gym bro F
-    character7: {name: 'Default', itemIndex: [11, 22, 6]},      //Gótica T
-    character8: {name: 'Default', itemIndex: [3, 22, 6]},       //Policía F
-    character9: {name: 'Default', itemIndex: [3, 9, 6]},        //Chef F
-    character10: {name: 'Default', itemIndex: [4, 3, 11]},      //Payaso T
-    character11: {name: 'Default', itemIndex: [0, 7, 18]},      //Vagabundo F
+    character0: {name: 'Toni', itemIndex: [18, 17, 12], phrases: [""]},        //T
+    character1: {name: 'MadreSoltera', itemIndex: [1, 7, 8], phrases: ["Un poco de tinto de despeja una mala tarde", "Mi hijo ha dejado los pantalones verdes de tanto furgol", "Que no se me olvide la materia prima de los colacaos"]},   //T
+    character2: {name: 'Ruso', itemIndex: [4, 9, 17], phrases: ["Esta gomita no atrapa a semejante titán", "Me falta el agua de la madre Rusia", "Ya tengo la sal y el tekila, ahora el último ingrediente"]},          //T
+    character3: {name: 'Pijo', itemIndex: [2, 8, 9], phrases: ["Sin esto no puedo terminar mi Bagel de aguacate y queso crema", "Necesito un rosado, como mi jersey", "Las únicas rojas mediterráneas que soporto"]},           //T
+    character4: {name: 'Default', itemIndex: [13, 10, 11], phrases: ["Hoy pillo una cuatro quesos, que es \'Martes Loco\'", "Este mes voy sobrao, que le den a los copos de avena", "Que ya sé que hace frío, pero están buenos"]},     //Estudiante T
+    character5: {name: 'Default', itemIndex: [6, 15, 7], phrases: ["Voy a cogerme un Bimbo, que me cae bien el Punset", "Eso, la española va con cebolla", "No tengo tiempo de cocinar, me pillaré algo asiático"]},       //Oficinista F
+    character6: {name: 'Default', itemIndex: [17, 13, 0], phrases: ["Proteína pura y de la más barata", "Venga pequeña, calienta que esta noche sales", "¿Un pepino?"]},      //Gymbro F
+    character7: {name: 'Default', itemIndex: [11, 22, 6], phrases: ["Un chupito de DonLimpio y a dormir la mona", "Para ser rara y cool tengo que oler rara y cool", "Como saben los de Mercadona lo que nos gusta a los Otakus"]},      //Gótica T
+    character8: {name: 'Default', itemIndex: [3, 22, 6], phrases: ["Sin carne no hay Hot Dogs", "A por la favorita de Homer, que mañana madrugo", "Las voy a pillar porque no me ha podido hacer mi madre"]},       //Policía F
+    character9: {name: 'Default', itemIndex: [3, 9, 6], phrases: ["A la gallega esto está brutal", "Las reinas del mar y de la navidad", "Una a la semana aleja al médico... o algo de eso"]}, //Chef F
+    character10: {name: 'Default', itemIndex: [4, 3, 11], phrases: ["No la voy a usar para fregar el suelo", "Payaso triste necesita agua alegre", "Son como los aros de fuego, pero más"]},  //Payaso T
+    character11: {name: 'Default', itemIndex: [0, 7, 18], phrases: ["Si le doy un taco a las ratas, se harán mis amiguitas", "Si le tiro esto a las palomas, se harán mis amiguitas", "Si le tiro esto a los niños, se harán mis amiguitos"]},      //Vagabundo F
     length: 12
 }

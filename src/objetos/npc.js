@@ -33,7 +33,6 @@ export default class NPC extends Character{
         //*Para hablar
         this.listHTML = document.getElementById('checks')
 
-        this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
 
         this.canBump = true;
     }
