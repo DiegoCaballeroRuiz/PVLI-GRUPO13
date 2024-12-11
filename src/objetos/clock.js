@@ -31,7 +31,7 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.text.setScrollFactor(0, 0);
 
         this.timer = this.scene.time.addEvent({
-            delay: 3000,
+            delay: 30000,
             callback: this.timeTick,
             callbackScope:this,
             loop: true

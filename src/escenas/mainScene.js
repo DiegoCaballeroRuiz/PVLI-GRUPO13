@@ -130,8 +130,9 @@ export default class MainScene extends Phaser.Scene {
             {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
-            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], this.dialogQueueHandler);
+            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], [], this.dialogQueueHandler);
             this.npcs[i].addDialogs(charactersItems["character" + i].phrases);
+            console.log(this.npcs[i].name);
             this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
@@ -203,7 +204,11 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 
         let toRemoveIndex = this.npcs.indexOf(NPC);
-        if(toRemoveIndex != -1) this.npcs.splice(toRemoveIndex, 1);
+        console.log(toRemoveIndex);
+        if(toRemoveIndex != -1){
+            this.npcs[toRemoveIndex] = {};
+            this.npcs.splice(toRemoveIndex, 1);
+        } 
     }
 
     pauseScene(){
