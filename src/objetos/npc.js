@@ -88,16 +88,16 @@ export default class NPC extends Character{
 
         if(!other instanceof Player) return; //Si no se colisiona con el jugador, no habla ni compara inventarios
 
-        if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
-            this.talk();
-            return;
-        }
-
         this.canBump = false;
         this.scene.time.addEvent({
             delay: 1000, //ms
             callback: () => { this.canBump = true;}
         })
+
+        if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
+            this.talk();
+            return;
+        }
 
         let sameInventory = this.inventory.every(item => other.inventory.includes(item))
 
