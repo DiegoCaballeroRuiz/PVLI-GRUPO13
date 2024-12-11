@@ -3,7 +3,7 @@ import Player from "./player.js";
 
 export default class NPC extends Character{
     
-    constructor(scene, x, y, name, dialogsList, queueHandler){
+    constructor(scene, x, y, name, itemList, dialogsList, queueHandler){
         super(scene, x, y, name);
         this.queueHandler = queueHandler;
         this.addDialogs(dialogsList);
@@ -32,8 +32,7 @@ export default class NPC extends Character{
 
         //*Para hablar
         this.listHTML = document.getElementById('checks')
-
-        this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
+        this.inventory = itemList;
 
         this.canBump = true;
     }
@@ -99,9 +98,11 @@ export default class NPC extends Character{
             return;
         }
 
-        let sameInventory = this.inventory.every(item => other.inventory.includes(item))
+        let sameInventory = this.inventory.every(item => other.inventory.includes(item));
+        console.log(this.inventory);
+        console.log("SameInventory: " + sameInventory);
 
-        if(sameInventory) this.scene.events.emit("loseALife");
+        if(!sameInventory) this.scene.events.emit("loseALife");
         else this.scene.events.emit("aFollar", this);
     }
 
