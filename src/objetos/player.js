@@ -97,7 +97,13 @@ export default class Player extends Character {
 
             // Se actualiza el inventario en pantalla, no tocar
             this.scene.events.emit('actualizarInventoryCarro');
+
+            this.woosh = this.scene.sound.add("wooshSound");
+
         });
+    }
+
+    preload(){
     }
 
     // Mueve los objetos del inventario
@@ -107,7 +113,7 @@ export default class Player extends Character {
             this.inventory[i] = this.inventory[i + 1];
         }
         this.inventory[4] = temp;     
-
+        this.woosh.play();
         this.scene.events.emit('actualizarInventoryCarro');
     }
 
