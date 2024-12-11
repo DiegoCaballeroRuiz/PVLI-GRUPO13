@@ -106,10 +106,10 @@ export default class Section extends Phaser.GameObjects.Sprite{
 
     //T= tiene sus objetos, F= no tiene sus objetos
     itemSection = [
-        [0, 5, 20],      //Carnicería F
-        [2, 9, 12],     //Pescadería F
-        [3, 10, 7],     //Panadería F
-        [15, 6, 10],    //Comidas preparadas F
+        [0, 5, 20],      //Carnicería T
+        [2, 9, 28],     //Pescadería T
+        [3, 26, 27],     //Panadería T
+        [15, 6, 21],    //Comidas preparadas T
 
         [1, 18],        //Lacteos T
         [16, 14],       //Desayunos T
@@ -118,7 +118,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
         [7, 11],        //Limpieza T
         [22, 17],       //Parafarmacia T
 
-        [12, 19, 24, 23]  //Frutería F
+        [12, 19, 24, 23]  //Frutería T
     ]
     
 }
