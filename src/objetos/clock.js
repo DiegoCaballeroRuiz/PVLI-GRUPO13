@@ -18,20 +18,22 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.hours = hourStarts;
         this.minDozens = 0;
         this.minUnits = 0;
+        this.timePassed = 0;
         this.endTimer = hourEnds;
 
         this.text = this.scene.add.text(this.x, this.y, "NADA", 
             {font: '32px Georgia, "Goudy Bookletter 1911", Times, serif', fill:"#000000" }
             ).setOrigin(0.5, 0.5);
 
+        this.announcement = this.scene.sound.add("announcementSound");
+
         this.updateTextDisplay();
         this.text.setScrollFactor(0, 0);
 
         this.timer = this.scene.time.addEvent({
             delay: 3000,
-            callback: ()=>{
-                return this.timeTick();
-            },
+            callback: this.timeTick,
+            callbackScope:this,
             loop: true
         });
 
@@ -40,7 +42,6 @@ export default class Clock extends Phaser.GameObjects.Sprite {
     }
 
     preload(){
-        this.announcement = this.scene.sound.add("announcementSound");
     }
 
     timeTick(){
@@ -54,21 +55,17 @@ export default class Clock extends Phaser.GameObjects.Sprite {
     }
     
     addMinute(){
+        this.timePassed++;
+        if(this.timePassed != 0 && this.timePassed / 15 === 0) this.announcement.play();
+
+
         if(++this.minUnits < 10) return;
         this.minUnits = 0;
 
         if(++this.minDozens < 6) return;
         this.minDozens = 0;
 
-        this.announcementEvent();
 
         if(++this.hours == this.endTimer) this.scene.events.emit("gameOver");
-    }
-
-    announcementEvent(){
-        if(this.minUnits == 0 && this.minDozens == 3) this.announcement.play();
-        else if(this.minUnits == 5){
-            if(this.minDozens == 1 || this.minDozens == 4) this.announcement.play();
-        }
     }
 }

@@ -127,6 +127,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('beepSound', './assets/Sonido/SFX/beep.wav');
     this.load.audio('wooshSound', './assets/Sonido/SFX/woosh.wav');
     this.load.audio('announcementSound', './assets/Sonido/SFX/anuncio_start.wav');
+    this.load.audio('hitSound', './assets/Sonido/SFX/hit.wav')
 
   }
 
