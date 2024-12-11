@@ -109,7 +109,7 @@ export default class MainScene extends Phaser.Scene {
                 }
             break;
             case 2: 
-                console.log('Solo se ha podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
+                console.log('Solo se han podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
                 let array3 = [];
                 let k = 0;
                 while(k < this.isItem.length && array3.length < 3){
@@ -219,7 +219,7 @@ export default class MainScene extends Phaser.Scene {
      * @param {Number} fils numero final de filas de la matriz resultante, si no se devolvera un array vacio
      * @param {Number} cols numero de columnas de la matriz resultante, si es cero se devolvera una array simple
      * @returns devuelve una matriz de tamaño fils * cols
-     */
+     */ 
     procedural(array, fils, cols){
         if(fils == 0) return[];
         for(let i = 0; i < array.length; i++){
@@ -254,14 +254,19 @@ export default class MainScene extends Phaser.Scene {
     isItem = [];//matriz de booleanos que permite identificar si esta el item que buscamos
 }
 
+////T= tiene sus objetos, F= no tiene sus objetos
 var charactersItems ={
-    character0: {name: 'Toni', itemIndex: [0, 7, 15]},
-    character1: {name: 'MadreSoltera', itemIndex: [1, 8, 16]},
-    character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
-    character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
-    character4: {name: 'Default', itemIndex: [4, 11, 19]},
-    character5: {name: 'Ruso', itemIndex: [5, 12, 20]},
-    character6: {name: 'MadreSoltera', itemIndex: [6, 13, 0]},
-    character7: {name: 'Toni', itemIndex: [14, 22, 1]},
-    length: 8
+    character0: {name: 'Toni', itemIndex: [18, 17, 12]},        //T
+    character1: {name: 'MadreSoltera', itemIndex: [1, 7, 8]},   //T
+    character2: {name: 'Ruso', itemIndex: [4, 9, 17]},          //T
+    character3: {name: 'Pijo', itemIndex: [2, 8, 5]},           //T
+    character4: {name: 'Default', itemIndex: [13, 10, 11]},     //Estudiante T
+    character5: {name: 'Default', itemIndex: [6, 15, 7]},       //Trabajador de oficina F
+    character6: {name: 'Default', itemIndex: [17, 13, 0]},      //Gym bro F
+    character7: {name: 'Default', itemIndex: [11, 22, 6]},      //Gótica T
+    character8: {name: 'Default', itemIndex: [3, 22, 6]},       //Policía F
+    character9: {name: 'Default', itemIndex: [3, 9, 6]},        //Chef F
+    character10: {name: 'Default', itemIndex: [4, 3, 11]},      //Payaso T
+    character11: {name: 'Default', itemIndex: [0, 7, 18]},      //Vagabundo F
+    length: 12
 }
