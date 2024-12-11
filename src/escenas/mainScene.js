@@ -11,15 +11,12 @@ export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
         this.charactersItems = {
-            character0: {name: 'Toni', itemIndex: [0, 7, 15]},
+            character0: {name: 'Toni', itemIndex: [5, 7, 15]},
             character1: {name: 'Solterona', itemIndex: [1, 8, 16]},
             character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
             character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
             character4: {name: 'Default', itemIndex: [4, 11, 19]},
-            character5: {name: 'Ruso', itemIndex: [5, 12, 20]},
-            character6: {name: 'Solterona', itemIndex: [6, 13, 0]},
-            character7: {name: 'Toni', itemIndex: [14, 22, 1]},
-            length: 8
+            length: 5
         }
         this.player;
     }
