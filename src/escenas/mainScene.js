@@ -6,6 +6,7 @@ import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
 import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
+import CardContainer from "../objetos/cardContainer.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -19,6 +20,7 @@ export default class MainScene extends Phaser.Scene {
             length: 5
         }
         this.player;
+        this.cardContainer;
     }
 
     init(){
@@ -152,14 +154,16 @@ export default class MainScene extends Phaser.Scene {
         this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // Importante que player se cree antes que carro
         this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
+        this.cardContainer = new CardContainer(this);
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        let meterCartas = ['Toni', 'Default', 'Default'];
+        for (let i = 0; i < meterCartas.length; i++) {
+            this.events.emit('guardarCartas', meterCartas[i]);
+        }
 
         this.physics.world.enable(this.player);
         this.player.body.setCollideWorldBounds(true);
-        // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
-        // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
-
-        // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
@@ -227,7 +231,7 @@ export default class MainScene extends Phaser.Scene {
         this.scene.launch("CardMenu");
     }
     CardMenuClose(){
-        this.scene.stop('CardMenu')
+        this.scene.stop('CardMenu');
     }
     
     /**
