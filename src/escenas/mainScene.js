@@ -262,11 +262,11 @@ var charactersItems ={
     character3: {name: 'Pijo', itemIndex: [2, 8, 5]},           //T
     character4: {name: 'Default', itemIndex: [13, 10, 11]},     //Estudiante T
     character5: {name: 'Default', itemIndex: [6, 15, 7]},       //Trabajador de oficina F
-    character6: {name: 'Default', itemIndex: [17, 13, 0]},      //Gym bro F
+    character6: {name: 'Default', itemIndex: [17, 23, 0]},      //Gym bro F
     character7: {name: 'Default', itemIndex: [11, 22, 6]},      //Gótica T
-    character8: {name: 'Default', itemIndex: [3, 22, 6]},       //Policía F
-    character9: {name: 'Default', itemIndex: [3, 9, 6]},        //Chef F
+    character8: {name: 'Default', itemIndex: [3, 20, 6]},       //Policía F
+    character9: {name: 'Default', itemIndex: [19, 9, 19]},      //Chef F
     character10: {name: 'Default', itemIndex: [4, 3, 11]},      //Payaso T
-    character11: {name: 'Default', itemIndex: [0, 7, 18]},      //Vagabundo F
+    character11: {name: 'Default', itemIndex: [0, 14, 18]},     //Vagabundo F
     length: 12
 }
