@@ -122,6 +122,12 @@ export default class Boot extends Phaser.Scene {
     // ¿Tiene que estar dentro de complete?
     // Creamos las animaciones de las skins, hay que refactorizar esto para que cargue las animaciones de todas las skins
     // Crear una sola configuracion y un bucle para cargar todas?
+
+    //-> SONIDO
+    this.load.audio('beepSound', './assets/Sonido/SFX/beep.wav');
+    this.load.audio('wooshSound', './assets/Sonido/SFX/woosh.wav');
+    this.load.audio('announcementSound', './assets/Sonido/SFX/anuncio_start.wav');
+
   }
 
   create() {

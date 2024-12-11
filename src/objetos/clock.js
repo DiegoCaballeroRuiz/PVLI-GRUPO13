@@ -39,6 +39,10 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.text.depth = 101;
     }
 
+    preload(){
+        this.announcement = this.scene.sound.add("announcementSound");
+    }
+
     timeTick(){
         this.addMinute();
         this.updateTextDisplay();
@@ -56,6 +60,15 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         if(++this.minDozens < 6) return;
         this.minDozens = 0;
 
+        this.announcementEvent();
+
         if(++this.hours == this.endTimer) this.scene.events.emit("gameOver");
+    }
+
+    announcementEvent(){
+        if(this.minUnits == 0 && this.minDozens == 3) this.announcement.play();
+        else if(this.minUnits == 5){
+            if(this.minDozens == 1 || this.minDozens == 4) this.announcement.play();
+        }
     }
 }
