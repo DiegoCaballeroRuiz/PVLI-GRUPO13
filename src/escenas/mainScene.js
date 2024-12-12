@@ -139,7 +139,6 @@ export default class MainScene extends Phaser.Scene {
                 j++;
             }
             if(j === char.length && this.isItem[char[j-1]]){
-                this.charactersItems['character'+i].index = i;
                 usableCharacters.push(this.charactersItems['character'+i]);
             }
         }
