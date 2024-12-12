@@ -6,12 +6,9 @@ export default class NPC extends Character{
     constructor(scene, x, y, name, itemList, dialogsList, queueHandler){
         super(scene, x, y, name);
         
-        console.log(this);
         this.queueHandler = queueHandler;
         
-        
         this.addDialogs(dialogsList);
-        
         
         this.velocity.vx -= this.velocity.vx * 0.75;
         this.velocity.vy -= this.velocity.vy * 0.75;
@@ -40,7 +37,6 @@ export default class NPC extends Character{
         this.inventory = itemList;
 
         this.canBump = true;
-        
     }
 
     preUpdate(t, dt){

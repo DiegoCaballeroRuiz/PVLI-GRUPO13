@@ -7,6 +7,7 @@ import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
 import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
 import CardContainer from "../objetos/cardContainer.js";
+import SelfEsteemDisplay from "../objetos/selfEsteemDisplay.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -232,7 +233,8 @@ export default class MainScene extends Phaser.Scene {
         //-> Creación del reloj de la escena
         this.clock = new Clock(this, this.sys.game.config.width * 0.95, this.sys.game.config.height * 0.1, 7, 8);
 
-
+        //->Creación del indicador de autoestima
+        this.selfEsteemDisplay = new SelfEsteemDisplay(this, this.sys.game.config.width * 0.05, this.sys.game.config.height * 0.1);
 
         //timepo para coger objetos entre si
 
@@ -279,9 +281,11 @@ export default class MainScene extends Phaser.Scene {
         let toRemoveIndex = this.npcs.indexOf(NPC);
         console.log(toRemoveIndex);
         if(toRemoveIndex != -1){
-            this.npcs[toRemoveIndex] = {};
             this.npcs.splice(toRemoveIndex, 1);
+            NPC.setActive(false);
+            NPC.setVisible(false);
         } 
+        if(this.npcs.length == 0) this.scene.start("WinScene");
     }
 
     pauseScene(){

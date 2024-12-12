@@ -40,18 +40,5 @@ export default class Title extends Phaser.Scene{
         playButton.on('pointerdown', ()=>{
             this.scene.start('MainScene');
         })
-
-        // -> Botón 'options'
-        const optionsButton = this.add.image(width * 0.5, height * 0.9, 'button_base');
-        optionsButton.setDisplaySize(100, 50);
-        optionsButton.setInteractive();
-
-        let optionsButtonText = this.add.text(optionsButton.x, optionsButton.y - 4, "OPTIONS");
-        optionsButtonText.setOrigin(0.5);
-        optionsButtonText.setColor("FFFFFF");
-        
-        optionsButton.on('pointerdown', ()=>{
-            alert("No existen las opciones, todo es mentira");
-        })
     }
 }
