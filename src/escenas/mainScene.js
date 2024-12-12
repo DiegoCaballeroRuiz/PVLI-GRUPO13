@@ -31,8 +31,8 @@ export default class MainScene extends Phaser.Scene {
             ]},
                 //T
             character3: {name: 'Pijo', itemIndex: [2, 8, 9], 
-            phrases: ["Sin esto no puedo terminar mi Bagel de aguacate y queso crema", 
-                "Necesito un rosado, como mi jersey", 
+            phrases: ["Sin este pescado no puedo terminar mi Bagel de aguacate y queso crema", 
+                "Necesito una copita de rosado, como mi jersey", 
                 "Las únicas rojas mediterráneas que soporto"
             ]},
                 //Estudiante T
@@ -75,7 +75,7 @@ export default class MainScene extends Phaser.Scene {
             character10: {name: 'Default', itemIndex: [4, 3, 11], 
             phrases: ["No la voy a usar para fregar el suelo", 
                 "Payaso triste necesita agua alegre", 
-                "Son como los aros de fuego, pero más"
+                "Son como los aros de fuego, pero más dulces"
             ]},
                 //Vagabundo T
             character11: {name: 'Default', itemIndex: [26, 14, 18], 

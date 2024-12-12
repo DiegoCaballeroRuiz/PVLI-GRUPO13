@@ -13,7 +13,7 @@ Esta decisión se tomó para que pudiéramos crear los assets nosotros mismos de
 Todos los assets del proyecto están en la carpeta */assets/*, que se divide a su vez en las siguientes subcarpetas:
 
 - *FUENTES*: Contiene las tipografías usadas en el proyecto
-- *IMGSJUEGO*: Contiene los sprites que se usan en el propio juego, todos ellos creados por nosotros a excepción de *autoestima.png, congelados.jpg y background.png*
+- *IMGSJUEGO*: Contiene los sprites que se usan en el propio juego, todos ellos creados por nosotros a excepción de *congelados.jpg y background.png*
 - *IMGSWEB*: Contiene los recursos que se usan en el HTML
 - *MARKDOWN*: Contiene los recursos que se usan en los otros .md del proyecto
 - *SONIDO*: Contiene los efectos de sonido y la música del juego

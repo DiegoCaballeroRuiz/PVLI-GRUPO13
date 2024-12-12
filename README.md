@@ -13,9 +13,9 @@ El jugador podrá meter ítems en el carro y chocar con los clientes, si tiene l
 Hay más detalles en el GDD.md
 
 Capturas: 
-![alt text](CapturaJuego2-2.png)
-![alt text](CapturaJuego1-1.png)
-![alt text](CapturaJuego2-1.png)
+![alt text](assets/Markdown/CapturaJuego2-2.png)
+![alt text](assets/Markdown/CapturaJuego1-1.png)
+![alt text](assets/Markdown/CapturaJuego2-1.png)
 
 Enlace a la web pública del juego: https://diegocaballeroruiz.github.io/PVLI-GRUPO13/
 
