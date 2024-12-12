@@ -83,8 +83,7 @@ export default class MainScene extends Phaser.Scene {
                 "Si le tiro esto a los niños, se harán mis amiguitos"
             ]},     
             
-            length: 12
-        }
+            length: 12 }
         this.player;
         this.cardContainer;
     }
