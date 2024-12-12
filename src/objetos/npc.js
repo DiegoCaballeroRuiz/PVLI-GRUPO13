@@ -3,10 +3,15 @@ import Player from "./player.js";
 
 export default class NPC extends Character{
     
-    constructor(scene, x, y, name, dialogsList, queueHandler){
+    constructor(scene, x, y, name, itemList, dialogsList, queueHandler){
         super(scene, x, y, name);
+        
+        console.log(this);
         this.queueHandler = queueHandler;
+        
+        
         this.addDialogs(dialogsList);
+        
         
         this.velocity.vx -= this.velocity.vx * 0.75;
         this.velocity.vy -= this.velocity.vy * 0.75;
@@ -32,10 +37,10 @@ export default class NPC extends Character{
 
         //*Para hablar
         this.listHTML = document.getElementById('checks')
-
-        this.addDialogs(["Soy Toni jaja", "Te voy a suspender, que guapo", "El hermano de Jordi me ha dibujado muy gordo"])
+        this.inventory = itemList;
 
         this.canBump = true;
+        
     }
 
     preUpdate(t, dt){
@@ -88,20 +93,22 @@ export default class NPC extends Character{
 
         if(!other instanceof Player) return; //Si no se colisiona con el jugador, no habla ni compara inventarios
 
-        if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
-            this.talk();
-            return;
-        }
-
         this.canBump = false;
         this.scene.time.addEvent({
             delay: 1000, //ms
             callback: () => { this.canBump = true;}
         })
 
-        let sameInventory = this.inventory.every(item => other.inventory.includes(item))
+        if(!other.piñaInCart){ //Si no tiene la piña en el inventario, solo habla
+            this.talk();
+            return;
+        }
 
-        if(sameInventory) this.scene.events.emit("loseALife");
+        let sameInventory = this.inventory.every(item => other.inventory.includes(item));
+        console.log(this.inventory);
+        console.log("SameInventory: " + sameInventory);
+
+        if(!sameInventory) this.scene.events.emit("loseALife");
         else this.scene.events.emit("aFollar", this);
     }
 

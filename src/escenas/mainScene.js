@@ -11,21 +11,84 @@ import CardContainer from "../objetos/cardContainer.js";
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
+        ////T= tiene sus objetos, F= no tiene sus objetos
         this.charactersItems = {
-            character0: {name: 'Toni', itemIndex: [5, 7, 15]},
-            character1: {name: 'Solterona', itemIndex: [1, 8, 16]},
-            character2: {name: 'Ruso', itemIndex: [2, 9, 17]},
-            character3: {name: 'Pijo', itemIndex: [3, 10, 18]},
-            character4: {name: 'Default', itemIndex: [4, 11, 19]},
-            length: 5
+                //T
+            character0: {name: 'Toni', itemIndex: [18, 17, 5], 
+            phrases: [""]},   
+                //T
+            character1: {name: 'Solterona', itemIndex: [1, 7, 8], 
+            phrases: ["Un poco de tinto de despeja una mala tarde", 
+                "Mi hijo ha dejado los pantalones verdes de tanto furgol", 
+                "Que no se me olvide la materia prima de los colacaos"
+            ]},  
+                //T
+            character2: {name: 'Ruso', itemIndex: [4, 19, 17], 
+            phrases: ["Esta gomita no atrapa a semejante titán", 
+                "Me falta el agua de la madre Rusia", 
+                "Ya tengo la sal y el tekila, ahora el último ingrediente"
+            ]},
+                //T
+            character3: {name: 'Pijo', itemIndex: [2, 8, 9], 
+            phrases: ["Sin esto no puedo terminar mi Bagel de aguacate y queso crema", 
+                "Necesito un rosado, como mi jersey", 
+                "Las únicas rojas mediterráneas que soporto"
+            ]},
+                //Estudiante T
+            character4: {name: 'Default', itemIndex: [13, 10, 16], 
+            phrases: ["Hoy pillo una cuatro quesos, que es \'Martes Loco\'", 
+                "Este mes voy sobrao, que le den a los copos de avena", 
+                "Que ya sé que hace frío, pero están buenos"
+            ]}, 
+                //Oficinista T
+            character5: {name: 'Default', itemIndex: [6, 15, 27], 
+            phrases: ["Voy a cogerme un Bimbo, que me cae bien el Punset", 
+                "Eso, la española va con cebolla", 
+                "No tengo tiempo de cocinar, me pillaré algo asiático"
+            ]}, 
+                //Gymbro T
+            character6: {name: 'Default', itemIndex: [17, 23, 0], 
+            phrases: ["Proteína pura y de la más barata", 
+                "Venga pequeña, calienta que esta noche sales", 
+                "¿Un pepino?"
+            ]},
+                //Gótica T
+            character7: {name: 'Default', itemIndex: [11, 22, 6], 
+            phrases: ["Un chupito de DonLimpio y a dormir la mona", 
+                "Para ser rara y cool tengo que oler rara y cool", 
+                "Como saben los de Mercadona lo que nos gusta a los Otakus"
+            ]}, 
+                //Policía T
+            character8: {name: 'Default', itemIndex: [3, 21, 20], 
+            phrases: ["Sin carne no hay Hot Dogs", 
+                "A por la favorita de Homer, que mañana madrugo", 
+                "Las voy a pillar porque no me ha podido hacer mi madre"
+            ]}, 
+                //Chef T
+            character9: {name: 'Default', itemIndex: [19, 9, 28], 
+            phrases: ["A la gallega esto está brutal", 
+                "Las reinas del mar y de la navidad", 
+                "Una a la semana aleja al médico... o algo de eso"
+            ]}, 
+                //Payaso T
+            character10: {name: 'Default', itemIndex: [4, 3, 11], 
+            phrases: ["No la voy a usar para fregar el suelo", 
+                "Payaso triste necesita agua alegre", 
+                "Son como los aros de fuego, pero más"
+            ]},
+                //Vagabundo T
+            character11: {name: 'Default', itemIndex: [26, 14, 18], 
+            phrases: ["Si le doy un taco a las ratas, se harán mis amiguitas", 
+                "Si le tiro esto a las palomas, se harán mis amiguitas", 
+                "Si le tiro esto a los niños, se harán mis amiguitos"
+            ]},     
+            
+            length: 12
         }
         this.player;
         this.cardContainer;
     }
-
-    init(){
-
-    }
+    init(){}
 
     preload() {
 
@@ -76,6 +139,7 @@ export default class MainScene extends Phaser.Scene {
                 j++;
             }
             if(j === char.length && this.isItem[char[j-1]]){
+                this.charactersItems['character'+i].index = i;
                 usableCharacters.push(this.charactersItems['character'+i]);
             }
         }
@@ -95,7 +159,7 @@ export default class MainScene extends Phaser.Scene {
                 array1 = this.procedural(array1, 3, 3);
                 i= 0;
                 while(i<3){
-                    usableCharacters.push({name: '???', itemIndex: array1[i]});
+                    usableCharacters.push({name: '???', itemIndex: array1[i], phrases: ['No lo se', 'Buscate a otro con quien ligar', 'Nisiquiera soy una Persona']});
                     i++;
                 }
             break;
@@ -112,12 +176,12 @@ export default class MainScene extends Phaser.Scene {
                 array2 = this.procedural(array2, 2, 3);
                 j= 1;
                 while(j<3){
-                    usableCharacters.push({name: '???', itemIndex: array2[j]});
+                    usableCharacters.push({name: '???', itemIndex: array2[j], phrases: ['No lo se', 'Buscate a otro con quien ligar', 'Nisiquiera soy una Persona']});
                     j++;
                 }
             break;
             case 2: 
-                console.log('Solo se ha podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
+                console.log('Solo se han podido instanciar dos NPC, se procedera a instanciar npcs manualmente');
                 let array3 = [];
                 let k = 0;
                 while(k < this.isItem.length && array3.length < 3){
@@ -127,7 +191,7 @@ export default class MainScene extends Phaser.Scene {
                     k++;
                 }
                
-                usableCharacters.push({name: '???', itemIndex: array3});
+                usableCharacters.push({name: '???', itemIndex: array3, phrases: ['No lo se', 'Buscate a otro con quien ligar', 'Nisiquiera soy una Persona']});
             break;
             default:
                 usableCharacters=this.procedural(usableCharacters,3,0);
@@ -141,7 +205,8 @@ export default class MainScene extends Phaser.Scene {
             {x: gap*4, y: gap*3}
         ]
         for(let i = 0; i < usableCharacters.length; i++){
-            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, [], this.dialogQueueHandler);
+            this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, usableCharacters[i].itemIndex, usableCharacters[i].phrases, this.dialogQueueHandler);
+            //console.log(this.npcs[i].name, this.npcs[i]);
             this.physics.world.enable(this.npcs[i]);
             //npc[i].body.setCollideWorldBounds(true);
         }
@@ -219,7 +284,11 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 
         let toRemoveIndex = this.npcs.indexOf(NPC);
-        if(toRemoveIndex != -1) this.npcs.splice(toRemoveIndex, 1);
+        console.log(toRemoveIndex);
+        if(toRemoveIndex != -1){
+            this.npcs[toRemoveIndex] = {};
+            this.npcs.splice(toRemoveIndex, 1);
+        } 
     }
 
     pauseScene(){
@@ -240,7 +309,7 @@ export default class MainScene extends Phaser.Scene {
      * @param {Number} fils numero final de filas de la matriz resultante, si no se devolvera un array vacio
      * @param {Number} cols numero de columnas de la matriz resultante, si es cero se devolvera una array simple
      * @returns devuelve una matriz de tamaño fils * cols
-     */
+     */ 
     procedural(array, fils, cols){
         if(fils == 0) return[];
         for(let i = 0; i < array.length; i++){

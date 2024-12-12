@@ -27,18 +27,18 @@ export default class GameState{
         // -> Ressetear al jugador
         this.scene.player.setPosition(this.playerPosition.x, this.playerPosition.y);
 
-        let playerInventory = this.scene.player.inventory;
+        // let playerInventory = this.scene.player.inventory;
         
-        for(let i = 0; playerInventory.length; ++i){
-            let itemIsPiña = playerInventory[i] == 24;
-            let itemWasUsed = NPC.inventory.includes(playerInventory[i])
+        // for(let i = 0; playerInventory.length; ++i){
+        //     let itemIsPiña = playerInventory[i] == 24;
+        //     let itemWasUsed = NPC.inventory.includes(playerInventory[i])
 
-            if(itemWasUsed || itemIsPiña) playerInventory.remove(playerInventory[i]);
-        }
+        //     if(itemWasUsed || itemIsPiña) playerInventory.remove(playerInventory[i]);
+        // }
 
         this.scene.events.emit('actualizarInventoryCarro');
 
         //-> Mostrar el mensaje de enhorabuena
-        //...
+        this.scene.scene.launch("VictoryCanvas", NPC.name);
     }
 }

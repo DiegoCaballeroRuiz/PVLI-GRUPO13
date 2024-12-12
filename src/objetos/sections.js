@@ -14,7 +14,7 @@ export default class Section extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, Room){
         super(scene, x, y, Room);
         this.scene.add.existing(this);
-        
+
         let items = [];
         let standSpawn = [];
         if(Room === 'fruitSection'){
@@ -103,20 +103,22 @@ export default class Section extends Phaser.GameObjects.Sprite{
             this.stands[i] = new Stand(this.scene, this.x + standSpawn[i].x * gap, this.y + standSpawn[i].y * gap, items[i], Math.round(Math.random()))
         }
     }
+
+    //T= tiene sus objetos, F= no tiene sus objetos
     itemSection = [
-        [0, 1, 2],
-        [4, 5, 6],
-        [8, 9, 10],
-        [12, 13, 14],
+        [0, 5, 20],      //Carnicería T
+        [2, 9, 28],     //Pescadería T
+        [3, 26, 27],     //Panadería T
+        [15, 6, 21],    //Comidas preparadas T
 
-        [16, 18],
-        [22, 16],//apartir de aqui se repiten los items porque no tenemos mas sprites
-        [1, 15],
-        [3, 5],
-        [7, 8],
-        [10, 11],
+        [1, 18],        //Lacteos T
+        [16, 14],       //Desayunos T
+        [4, 8],         //Alcohol T
+        [13, 10],       //Congelados T
+        [7, 11],        //Limpieza T
+        [22, 17],       //Parafarmacia T
 
-        [20, 8, 24, 6]
+        [12, 19, 24, 23]  //Frutería T
     ]
     
 }

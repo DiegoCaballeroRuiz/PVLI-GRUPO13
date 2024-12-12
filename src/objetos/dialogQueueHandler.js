@@ -14,7 +14,7 @@ export default class DialogQueueHandler{
 
         //-> Añadir el nuevo dialogo
         let li = document.createElement("li");
-        li.appendChild(document.createTextNode(dialog));
+        li.appendChild(document.createTextNode(dialog + " ❌"));
 
         li.addEventListener('click', () => {
             li.parentNode.removeChild(li);
