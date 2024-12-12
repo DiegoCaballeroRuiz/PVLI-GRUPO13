@@ -208,6 +208,7 @@ export default class MainScene extends Phaser.Scene {
             this.npcs[i] = new NPC(this, npcPos[i].x, npcPos[i].y, usableCharacters[i].name, usableCharacters[i].itemIndex, usableCharacters[i].phrases, this.dialogQueueHandler);
             //console.log(this.npcs[i].name, this.npcs[i]);
             this.physics.world.enable(this.npcs[i]);
+            this.npcs[i].body.setCollideWorldBounds(true);
             //npc[i].body.setCollideWorldBounds(true);
         }
 
@@ -258,16 +259,18 @@ export default class MainScene extends Phaser.Scene {
 
         // -> Esto añade collider entre los estantes y el jugador y entre los estantes y los npcs
         this.physics.add.collider(this.player, this.allShelves);
-        for(let i = 0; i < this.npcs.length; i++){
-            this.physics.add.collider(this.npcs[i], this.allShelves, () => {
-                this.npcs[i].body.setImmovable(false);//para que no atraviese las estanterias
-            }); 
-        }
+        this.physics.add.collider(this.npcs, this.allShelves, ()=> {this.npcs.every(npc => npc.body.setImmovable(false))});
+        // for(let i = 0; i < this.npcs.length; i++){
+        //     this.physics.add.collider(this.npcs[i], this.allShelves, () => {
+        //         this.npcs[i].body.setImmovable(false);//para que no atraviese las estanterias
+        //     }); 
+        // }
 
         // -> Esto añade collider para los npcs entre si
-        for(let i = 0; i < this.npcs.length; i++){
-            this.physics.add.collider(this.npcs[i], this.npcs);
-        }
+        // for(let i = 0; i < this.npcs.length; i++){
+        //     this.physics.add.collider(this.npcs[i], this.npcs);
+        // }
+        this.physics.add.collider(this.npcs, this.npcs);
         
     }
 
