@@ -23,7 +23,7 @@ export default class NPC extends Character{
             {angle: 90, velocity: -this.velocity.vx}
         ]
 
-        this.play('idle_'+name)
+        this.play('idle_'+this.name);
 
         //*Para el movimiento
         this.cycle = 0;

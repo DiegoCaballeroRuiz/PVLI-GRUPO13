@@ -15,7 +15,7 @@ export default class Card extends Phaser.GameObjects.Container{
         super(scene, x, y);
         
         this.backgroundImageName = 'cardBackground';
-        let items = itemsList;
+        let items = [];
         
         let backgroundImage = new Phaser.GameObjects.Sprite(scene, 0, 0, this.backgroundImageName);
         // backgroundImage.setScale(0.2, 0.2);
@@ -27,8 +27,8 @@ export default class Card extends Phaser.GameObjects.Container{
         let characterImage = new Phaser.GameObjects.Sprite(scene, backgroundImage.x + backgroundImage.displayWidth * 0.5, backgroundImage.y + backgroundImage.displayHeight * 0.5, character);
         let nameText = this.scene.add.text(backgroundImage.x + backgroundImage.displayWidth * 0.5, backgroundImage.y + backgroundImage.displayHeight * 0.05, name).setOrigin(0.5, 0.5);
         nameText.setColor('FFFFFF');
-        for(let i = 0; i < items.length; ++i){
-            items[i] = new Item(scene, 40 + backgroundImage.x + 40*i, backgroundImage.y + backgroundImage.displayHeight * 0.85, items[i]);
+        for(let i = 0; i < itemsList.length; ++i){
+            items[i] = new Item(scene, 40 + backgroundImage.x + 40*i, backgroundImage.y + backgroundImage.displayHeight * 0.85, itemsList[i]);
         }
         this.add(backgroundImage);
         this.add(characterImage);

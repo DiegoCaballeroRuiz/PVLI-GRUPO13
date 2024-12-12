@@ -5,13 +5,87 @@ import Clock from "../objetos/clock.js";
 import {Shelf as shelf} from "../objetos/stand.js";
 import GameState from "../objetos/gameState.js";
 import Section from "../objetos/sections.js";
-import CardContainer from "../objetos/cardContainer.js";
 import DialogQueueHandler from "../objetos/dialogQueueHandler.js";
+import CardContainer from "../objetos/cardContainer.js";
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super({key: 'MainScene'});
+        ////T= tiene sus objetos, F= no tiene sus objetos
+        this.charactersItems = {
+                //T
+            character0: {name: 'Toni', itemIndex: [18, 17, 5], 
+            phrases: [""]},   
+                //T
+            character1: {name: 'Solterona', itemIndex: [1, 7, 8], 
+            phrases: ["Un poco de tinto de despeja una mala tarde", 
+                "Mi hijo ha dejado los pantalones verdes de tanto furgol", 
+                "Que no se me olvide la materia prima de los colacaos"
+            ]},  
+                //T
+            character2: {name: 'Ruso', itemIndex: [4, 19, 17], 
+            phrases: ["Esta gomita no atrapa a semejante titán", 
+                "Me falta el agua de la madre Rusia", 
+                "Ya tengo la sal y el tekila, ahora el último ingrediente"
+            ]},
+                //T
+            character3: {name: 'Pijo', itemIndex: [2, 8, 9], 
+            phrases: ["Sin esto no puedo terminar mi Bagel de aguacate y queso crema", 
+                "Necesito un rosado, como mi jersey", 
+                "Las únicas rojas mediterráneas que soporto"
+            ]},
+                //Estudiante T
+            character4: {name: 'Default', itemIndex: [13, 10, 16], 
+            phrases: ["Hoy pillo una cuatro quesos, que es \'Martes Loco\'", 
+                "Este mes voy sobrao, que le den a los copos de avena", 
+                "Que ya sé que hace frío, pero están buenos"
+            ]}, 
+                //Oficinista T
+            character5: {name: 'Default', itemIndex: [6, 15, 27], 
+            phrases: ["Voy a cogerme un Bimbo, que me cae bien el Punset", 
+                "Eso, la española va con cebolla", 
+                "No tengo tiempo de cocinar, me pillaré algo asiático"
+            ]}, 
+                //Gymbro T
+            character6: {name: 'Default', itemIndex: [17, 23, 0], 
+            phrases: ["Proteína pura y de la más barata", 
+                "Venga pequeña, calienta que esta noche sales", 
+                "¿Un pepino?"
+            ]},
+                //Gótica T
+            character7: {name: 'Default', itemIndex: [11, 22, 6], 
+            phrases: ["Un chupito de DonLimpio y a dormir la mona", 
+                "Para ser rara y cool tengo que oler rara y cool", 
+                "Como saben los de Mercadona lo que nos gusta a los Otakus"
+            ]}, 
+                //Policía T
+            character8: {name: 'Default', itemIndex: [3, 21, 20], 
+            phrases: ["Sin carne no hay Hot Dogs", 
+                "A por la favorita de Homer, que mañana madrugo", 
+                "Las voy a pillar porque no me ha podido hacer mi madre"
+            ]}, 
+                //Chef T
+            character9: {name: 'Default', itemIndex: [19, 9, 28], 
+            phrases: ["A la gallega esto está brutal", 
+                "Las reinas del mar y de la navidad", 
+                "Una a la semana aleja al médico... o algo de eso"
+            ]}, 
+                //Payaso T
+            character10: {name: 'Default', itemIndex: [4, 3, 11], 
+            phrases: ["No la voy a usar para fregar el suelo", 
+                "Payaso triste necesita agua alegre", 
+                "Son como los aros de fuego, pero más"
+            ]},
+                //Vagabundo T
+            character11: {name: 'Default', itemIndex: [26, 14, 18], 
+            phrases: ["Si le doy un taco a las ratas, se harán mis amiguitas", 
+                "Si le tiro esto a las palomas, se harán mis amiguitas", 
+                "Si le tiro esto a los niños, se harán mis amiguitos"
+            ]},     
+            
+            length: 12 }
         this.player;
+        this.cardContainer;
     }
     init(){}
 
@@ -25,8 +99,7 @@ export default class MainScene extends Phaser.Scene {
         this.win_height = /*this.sys.game.config.height*/ gap * 6;
         this.physics.world.bounds.setSize(this.win_width, this.win_height)
         this.physics.world.setBoundsCollision(true, true, true, true);
-        
-        this.cardContainer = new CardContainer(this);
+
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
@@ -58,15 +131,15 @@ export default class MainScene extends Phaser.Scene {
 
         //busca los npcs compatimbles con el escenario generado
         let usableCharacters =[];
-        for(let i = 0; i < charactersItems.length; i++){
+        for(let i = 0; i < this.charactersItems.length; i++){
             let j = 0;
-            let char = charactersItems['character'+i].itemIndex;
+            let char = this.charactersItems['character'+i].itemIndex;
             while(j < char.length && this.isItem[char[j]]){
                 j++;
             }
             if(j === char.length && this.isItem[char[j-1]]){
-                charactersItems['character'+i].index = i;
-                usableCharacters.push(charactersItems['character'+i]);
+                this.charactersItems['character'+i].index = i;
+                usableCharacters.push(this.charactersItems['character'+i]);
             }
         }
 
@@ -139,16 +212,16 @@ export default class MainScene extends Phaser.Scene {
 
         // Inicializar objetos
 
-
         let playerPosition = {x: this.win_width/2, y: this.win_height -gap};
-        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
-        this.physics.world.enable(this.player);
-        this.player.body.setCollideWorldBounds(true);
         // CADA VEZ QUE SE ACTUALICE INVENTORY DE PLAYER,
         // SE HA DE LLAMAR AL EVENTO 'actualizarInventoryCarro'
-
+        this.player = new Player(this, playerPosition.x, playerPosition.y, "Toni");
         // Importante que player se cree antes que carro
-        this.carro = new Carro(this, 0.75*this.win_width, 0.5*this.win_height, 0.17*this.win_width, 0.4*this.win_height, 1);
+        this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
+        this.cardContainer = new CardContainer(this);
+
+        this.physics.world.enable(this.player);
+        this.player.body.setCollideWorldBounds(true);
 
         //-> Creación de la máquina de estados. Importante que se haga al menos después de instanciar a player
         let gameStateMachine = new GameState(this, playerPosition);
@@ -215,6 +288,13 @@ export default class MainScene extends Phaser.Scene {
         this.scene.launch("Pause");
         this.scene.pause();
     }
+
+    CardMenuOpen(){
+        this.scene.launch("CardMenu");
+    }
+    CardMenuClose(){
+        this.scene.stop('CardMenu');
+    }
     
     /**
      * 
@@ -255,79 +335,4 @@ export default class MainScene extends Phaser.Scene {
     }
 
     isItem = [];//matriz de booleanos que permite identificar si esta el item que buscamos
-}
-
-////T= tiene sus objetos, F= no tiene sus objetos
-var charactersItems ={
-                    //T
-    character0: {name: 'Toni', itemIndex: [18, 17, 5], 
-        phrases: [""]},   
-                    //T
-    character1: {name: 'MadreSoltera', itemIndex: [1, 7, 8], 
-        phrases: ["Un poco de tinto de despeja una mala tarde", 
-                    "Mi hijo ha dejado los pantalones verdes de tanto furgol", 
-                    "Que no se me olvide la materia prima de los colacaos"
-                ]},  
-                    //T
-    character2: {name: 'Ruso', itemIndex: [4, 19, 17], 
-        phrases: ["Esta gomita no atrapa a semejante titán", 
-                    "Me falta el agua de la madre Rusia", 
-                    "Ya tengo la sal y el tekila, ahora el último ingrediente"
-                ]},
-                    //T
-    character3: {name: 'Pijo', itemIndex: [2, 8, 9], 
-        phrases: ["Sin esto no puedo terminar mi Bagel de aguacate y queso crema", 
-                    "Necesito un rosado, como mi jersey", 
-                    "Las únicas rojas mediterráneas que soporto"
-                ]},
-                    //Estudiante T
-    character4: {name: 'Default', itemIndex: [13, 10, 16], 
-        phrases: ["Hoy pillo una cuatro quesos, que es \'Martes Loco\'", 
-                    "Este mes voy sobrao, que le den a los copos de avena", 
-                    "Que ya sé que hace frío, pero están buenos"
-                ]}, 
-                    //Oficinista T
-    character5: {name: 'Default', itemIndex: [6, 15, 27], 
-        phrases: ["Voy a cogerme un Bimbo, que me cae bien el Punset", 
-                    "Eso, la española va con cebolla", 
-                    "No tengo tiempo de cocinar, me pillaré algo asiático"
-                ]}, 
-                    //Gymbro T
-    character6: {name: 'Default', itemIndex: [17, 23, 0], 
-        phrases: ["Proteína pura y de la más barata", 
-                    "Venga pequeña, calienta que esta noche sales", 
-                    "¿Un pepino?"
-                ]},
-                    //Gótica T
-    character7: {name: 'Default', itemIndex: [11, 22, 6], 
-        phrases: ["Un chupito de DonLimpio y a dormir la mona", 
-                    "Para ser rara y cool tengo que oler rara y cool", 
-                    "Como saben los de Mercadona lo que nos gusta a los Otakus"
-                ]}, 
-                    //Policía T
-    character8: {name: 'Default', itemIndex: [3, 21, 20], 
-        phrases: ["Sin carne no hay Hot Dogs", 
-                    "A por la favorita de Homer, que mañana madrugo", 
-                    "Las voy a pillar porque no me ha podido hacer mi madre"
-                ]}, 
-                    //Chef T
-    character9: {name: 'Default', itemIndex: [19, 9, 28], 
-        phrases: ["A la gallega esto está brutal", 
-                    "Las reinas del mar y de la navidad", 
-                    "Una a la semana aleja al médico... o algo de eso"
-                ]}, 
-                    //Payaso T
-    character10: {name: 'Default', itemIndex: [4, 3, 11], 
-        phrases: ["No la voy a usar para fregar el suelo", 
-                    "Payaso triste necesita agua alegre", 
-                    "Son como los aros de fuego, pero más"
-                ]},
-                    //Vagabundo T
-    character11: {name: 'Default', itemIndex: [26, 14, 18], 
-        phrases: ["Si le doy un taco a las ratas, se harán mis amiguitas", 
-                    "Si le tiro esto a las palomas, se harán mis amiguitas", 
-                    "Si le tiro esto a los niños, se harán mis amiguitos"
-                ]},     
-                 
-    length: 12
 }
