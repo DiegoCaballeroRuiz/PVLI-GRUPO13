@@ -116,6 +116,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.spritesheet('items_spritesheet','./assets/ImgsJuego/items_spritesheet.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('stand_sprite','./assets/ImgsJuego/stand_sprite.png', {frameWidth: 64, frameHeight: 64});
+    this.load.spritesheet('selfEsteem_spriteSheet', './assets/ImgsJuego/autoestima.png', {frameWidth: 736 / 3, frameHeight: 218});
     //Carga salas 
 
     // ANIMACIONES

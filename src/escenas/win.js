@@ -1,6 +1,6 @@
-export default class GameOver extends Phaser.Scene{
+export default class WinScene extends Phaser.Scene{
     constructor(){
-        super({key: 'GameOver'});
+        super({key: 'WinScene'});
     }
 
     preload(){
@@ -10,8 +10,9 @@ export default class GameOver extends Phaser.Scene{
     create(){
         const {width, height} = this.scale;
 
-        let gameOverText = this.add.text(this.sys.game.config.width * 0.5, this.sys.game.config.height * 0.5, "GAME OVER", 
-                                         {font: '32px Georgia, "Goudy Bookletter 1911", Times, serif', fill:"#FF0000" }).setOrigin(0.5, 0.5);
+        let winText = this.add.text(this.sys.game.config.width * 0.5, this.sys.game.config.height * 0.5, "YOU WIN", 
+                                         {font: '32px Georgia, "Goudy Bookletter 1911", Times, serif', fill:"#00FF00" }).setOrigin(0.5, 0.5);
+
         //-> BOTON
         const exitButton = this.add.image(width * 0.5, height * 0.8, 'button_base');
         exitButton.setInteractive();
