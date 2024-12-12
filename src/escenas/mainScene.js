@@ -220,12 +220,6 @@ export default class MainScene extends Phaser.Scene {
         this.carro = new Carro(this, 0.75*this.sys.game.config.width, 0.5*this.sys.game.config.height, 0.17*this.sys.game.config.width, 0.4*this.sys.game.config.height, 1);
         this.cardContainer = new CardContainer(this);
 
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        let meterCartas = ['Toni', 'Default', 'Default'];
-        for (let i = 0; i < meterCartas.length; i++) {
-            this.events.emit('guardarCartas', meterCartas[i]);
-        }
-
         this.physics.world.enable(this.player);
         this.player.body.setCollideWorldBounds(true);
 
