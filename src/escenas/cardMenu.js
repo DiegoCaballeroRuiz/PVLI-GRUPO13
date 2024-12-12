@@ -18,12 +18,7 @@ export default class CardMenu extends Phaser.Scene{
             for (let i = 0; i < cardsTemp.length; ++i) {
                 if (objetosPersonajes['character'+j].name == cardsTemp[i]) {
                     let tempIndexes = objetosPersonajes['character'+j].itemIndex;
-                    console.log('before', tempIndexes[0] + ' ' + tempIndexes[1] + ' ' + tempIndexes[2]);
-                    console.log('before',tempIndexes[0].itemIndex + ' ' + tempIndexes[1].itemIndex + ' ' + tempIndexes[2].itemIndex);
                     cardsUnlocked.push(new Card(this, 0, 0, "skin_"+objetosPersonajes['character'+j].name, objetosPersonajes['character'+j].name.toUpperCase(), tempIndexes));
-                    
-                    console.log('after',tempIndexes[0] + ' ' + tempIndexes[1] + ' ' + tempIndexes[2]);
-                    console.log('after',tempIndexes[0].itemIndex + ' ' + tempIndexes[1].itemIndex + ' ' + tempIndexes[2].itemIndex);
                     break;
                 }
             }
@@ -39,6 +34,5 @@ export default class CardMenu extends Phaser.Scene{
             
             k++;
         }
-        cardsUnlocked = [];
     }
 }

@@ -6,7 +6,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     //cargar archivos en memoria
 
-    /* //barra de carga
+     //barra de carga
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -50,7 +50,7 @@ export default class Boot extends Phaser.Scene {
 
     //dentro de preload, eventos de carga
     this.load.on('progress', function(value){
-      console.log(value);
+      // console.log(value);
       
       percentText.setText(parseInt(value * 100) + '%');
       progressBar.clear();
@@ -58,18 +58,18 @@ export default class Boot extends Phaser.Scene {
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
     this.load.on('fileprogress', function (file) {
-      console.log(file.src);
+      // console.log(file.src);
       assetText.setText('Loading asset: ' + file.key);
     });
     this.load.on('complete', function () {
-      console.log('complete');
+      // console.log('complete');
 
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();
       percentText.destroy();
       assetText.destroy();
-    }); */
+    });
 
     
     this.load.image('background', './assets/ImgsJuego/background.png');
@@ -126,7 +126,7 @@ export default class Boot extends Phaser.Scene {
 
   create() {
     //escena de salas
-    this.scene.start('MainScene');
+    this.scene.start('Title');
   }
 
   /** 
