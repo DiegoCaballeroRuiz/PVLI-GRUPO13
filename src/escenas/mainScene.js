@@ -104,6 +104,10 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
+
+        this.music = this.sound.add('mainThemeMusic');
+        this.music.loop = true;
+        this.music.play();
         
         //-> Instanciar el gestor de cola de diálogos
         this.dialogQueueHandler = new DialogQueueHandler(6);
