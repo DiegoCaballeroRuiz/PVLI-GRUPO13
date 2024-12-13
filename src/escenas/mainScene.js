@@ -105,7 +105,7 @@ export default class MainScene extends Phaser.Scene {
             this.isItem[i] = false;
         }
 
-        this.music = this.sound.add('MainTheme');
+        this.music = this.sound.add('mainThemeMusic');
         this.music.loop = true;
         this.music.play();
         
