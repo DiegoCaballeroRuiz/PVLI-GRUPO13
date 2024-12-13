@@ -6,6 +6,8 @@ export default class Pause extends Phaser.Scene{
     create(){
         const {width, height} = this.scale;
 
+        let pauseBG = this.add.rectangle(0, 0, this.sys.game.config.width, this.sys.game.config.height, 0xFFFFFF, 0.3).setOrigin(0, 0);
+
         //-> Botón de reanudar
         const resumeButton = this.add.image(width * 0.5, height * 0.4, 'button_base');
         resumeButton.setInteractive();
