@@ -15,6 +15,7 @@ export default class GameState{
 
     
     gameOver(){
+        this.scene.scene.stop();
         this.scene.scene.start('GameOver');
     }
 

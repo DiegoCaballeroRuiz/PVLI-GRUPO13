@@ -48,13 +48,14 @@ export default class Player extends Character {
         
         this.selfEsteem = 3;
         this.scene.events.on("loseALife", () => this.loseSelfEsteem());
-
+        
         this.scene.events.on("actualizarInventoryCarro", ()=>{
             this.piñaInCart = false;
             for(let i = 0; i < this.inventory.length; ++i){
                 if(this.inventory[i] == 24) this.piñaInCart = true;
             }
         })
+        
         
         // El objeto en el hueco interactuable es el inventory[0]
         this.scene.events.on('eManager', (shelf_collision)=>{
