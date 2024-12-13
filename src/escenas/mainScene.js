@@ -287,7 +287,10 @@ export default class MainScene extends Phaser.Scene {
             NPC.setActive(false);
             NPC.setVisible(false);
         } 
-        if(this.npcs.length == 0) this.scene.start("WinScene");
+        if(this.npcs.length == 0){
+            this.scene.stop();
+            this.scene.start("WinScene");
+        } 
     }
 
     pauseScene(){
