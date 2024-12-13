@@ -24,7 +24,7 @@ export default class MainScene extends Phaser.Scene {
                 "Que no se me olvide la materia prima de los colacaos"
             ]},  
                 //T
-            character2: {name: 'Ruso', itemIndex: [4, 19, 17], 
+            character2: {name: 'Ruso', itemIndex: [4, 12, 17], 
             phrases: ["Esta gomita no atrapa a semejante titán", 
                 "Me falta el agua de la madre Rusia", 
                 "Ya tengo la sal y el tekila, ahora el último ingrediente"
