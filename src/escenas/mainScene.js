@@ -104,6 +104,10 @@ export default class MainScene extends Phaser.Scene {
         for(let i = 0; i < 32; i++){
             this.isItem[i] = false;
         }
+
+        this.music = this.sound.add('mainThemeMusic');
+        this.music.loop = true;
+        this.music.play();
         
         //-> Instanciar el gestor de cola de diálogos
         this.dialogQueueHandler = new DialogQueueHandler(6);
@@ -287,7 +291,10 @@ export default class MainScene extends Phaser.Scene {
             NPC.setActive(false);
             NPC.setVisible(false);
         } 
-        if(this.npcs.length == 0) this.scene.start("WinScene");
+        if(this.npcs.length == 0){
+            this.scene.stop();
+            this.scene.start("WinScene");
+        } 
     }
 
     pauseScene(){
