@@ -23,6 +23,7 @@ export default class CardMenu extends Phaser.Scene{
                 }
             }
         }
+        console.log(cardsUnlocked);
 
         let k = 0;
         let arriba = true;

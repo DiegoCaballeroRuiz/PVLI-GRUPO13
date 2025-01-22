@@ -39,6 +39,7 @@ export default class Pause extends Phaser.Scene{
     }
 
     backToMenu(){
+        this.scene.shutdown();
         this.scene.stop("MainScene");
         this.scene.start('Title');
     }

@@ -273,6 +273,11 @@ export default class MainScene extends Phaser.Scene {
 
     }
 
+    shutdown() {
+        this.resumeButton.off("pointerdown");
+        this.exitButton.off("pointerdown");
+    }
+
     resetSceneWithout(NPC){
         for(let i = 0; i < this.allShelves.length; ++i) this.allShelves[i].resetShelf();
 

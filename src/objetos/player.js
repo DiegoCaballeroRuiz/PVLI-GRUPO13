@@ -29,7 +29,7 @@ export default class Player extends Character {
         //-> Sonidos:
         this.woosh = this.scene.sound.add("wooshSound");
         this.beep = this.scene.sound.add("beepSound");
-        this.beep.volume = 0.5;
+        this.beep.volume = 0.6;
         this.hit = this.scene.sound.add("hitSound");
 
         this.scene.events.on('tab', (sonido) => {this.shiftInventario(sonido)});
@@ -121,7 +121,9 @@ export default class Player extends Character {
             }
 
             // Se actualiza el inventario en pantalla, no tocar
+            console.log('error1');
             this.scene.events.emit('actualizarInventoryCarro');
+            console.log('error2');
 
 
         });

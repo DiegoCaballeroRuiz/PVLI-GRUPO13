@@ -6,7 +6,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
 
         this.name = name;
         this.setPosition(x, y);
-        this.velocity = {vx:200, vy:200}; //no es necesario, phaser maneja las velocidades con las fisicas
+        this.velocity = {vx:300, vy:300}; //no es necesario, phaser maneja las velocidades con las fisicas
 
         //Necesitamos un txt o un csv con los nombres de los personajes y los diálogos de cada uno
         //Se pasará por parámetro y con una función se buscará el nombre y se guardarán los diálogos asignados en un array
@@ -14,7 +14,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
         this.dialogs = []; //si se hace por constructor se crea vacío y se modifica después
 
         this.inventory = [-1, -1, -1, -1, -1];
-        this.scene.events.emit('actualizarInventoryCarro');
+        // this.scene.events.emit('actualizarInventoryCarro');
         
         this.scene.add.existing(this); //innecesario?? pero si lo quitas no se crea player
         this.scene.physics.add.existing(this); //añadir fisicas //tambien lo añade a la escena
