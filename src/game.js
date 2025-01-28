@@ -19,7 +19,7 @@ let config = {
     default: 'arcade', //Tenemos físicas simple, arcade
     arcade: { 
         gravity: { y: 0 },
-        debug: true
+        debug: false
     }
   }
 };
