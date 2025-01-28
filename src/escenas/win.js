@@ -18,7 +18,7 @@ export default class WinScene extends Phaser.Scene{
         exitButton.setInteractive();
         exitButton.setDisplaySize(100, 50);
 
-        let exitButtonText = this.add.text(exitButton.x, exitButton.y - 4, "EXIT");
+        let exitButtonText = this.add.text(exitButton.x, exitButton.y - 4, "SALIR");
         exitButtonText.setOrigin(0.5, 0.5);
         exitButtonText.setColor("FFFFFF");
 
